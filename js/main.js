@@ -1,178 +1,198 @@
 function load_charts() {
-	load_chart1();
-	load_chart2();
+    load_chart1();
+    load_chart2();
 };
 
 
- function load_chart1() {
-var margin = {top: 20, right: 20, bottom: 70, left: 30},
-    width = 1400 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+function load_chart1() {
+    var margin = {top: 20, right: 20, bottom: 70, left: 30},
+        width = 1400 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
 
 
 //var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
 
 //var y = d3.scale.linear().range([height, 0]);
-    
+
     var x = d3.scaleBand()
-          .range([0, width])
-          .padding(0.1);
-var y = d3.scaleLinear()
-          .range([height, 0]);
+        .range([0, width])
+        .padding(0.1);
+    var y = d3.scaleLinear()
+        .range([height, 0]);
 
-/*
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-.ticks(20);
-    
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(20);
-*/
-    
-var svg = d3.select("#chart1").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
+    /*
+     var xAxis = d3.svg.axis()
+     .scale(x)
+     .orient("bottom")
+     .ticks(20);
 
-d3.csv("data.csv", function(error, data) {
+     var yAxis = d3.svg.axis()
+     .scale(y)
+     .orient("left")
+     .ticks(20);
+     */
 
-    data.forEach(function(d) {
-        d.metANN = +d["metANN"];
-        d.year = +d["YEAR"];
+    var svg = d3.select("#chart1").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("data.csv", function (error, data) {
+
+        data.forEach(function (d) {
+            d.metANN = +d["metANN"];
+            d.year = +d["YEAR"];
+        });
+
+        x.domain(data.map(function (d) {
+            return d.year;
+        }));
+        y.domain([0, d3.max(data, function (d) {
+            return d.metANN;
+        })]);
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            //.call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", "-.55em")
+            .attr("transform", "rotate(-90)");
+
+        svg.append("g")
+            .attr("class", "y axis")
+            //.call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Degree Celsius");
+
+        svg.selectAll("bar")
+            .data(data)
+            .enter().append("rect")
+            .style("fill", "steelblue")
+            .attr("x", function (d) {
+                return x(d.year);
+            })
+            .attr("width", x.bandwidth())
+            .attr("y", function (d) {
+                return y(d.metANN);
+            })
+            .attr("height", function (d) {
+                return height - y(d.metANN);
+            });
+
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        // add the y Axis
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        var ticks = d3.selectAll(".tick text");
+        ticks.attr("class", function (d, i) {
+            if (i % 5 != 0) d3.select(this).remove();
+        });
     });
-	
-  x.domain(data.map(function(d) { return d.year; }));
-  y.domain([0, d3.max(data, function(d) { return d.metANN; })]);
 
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      //.call(xAxis)
-    .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)" );
-
-  svg.append("g")
-      .attr("class", "y axis")
-      //.call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Degree Celsius");
-
-  svg.selectAll("bar")
-      .data(data)
-        .enter().append("rect")
-      .style("fill", "steelblue")
-      .attr("x", function(d) { return x(d.year); })
-      .attr("width", x.bandwidth())
-      .attr("y", function(d) { return y(d.metANN); })
-      .attr("height", function(d) { return height - y(d.metANN); });
-    
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-  // add the y Axis
-  svg.append("g")
-      .call(d3.axisLeft(y));
-    
-    var ticks = d3.selectAll(".tick text");
-    ticks.attr("class", function(d,i){
-        if(i%5 != 0) d3.select(this).remove();
-    });
-});
-
- }
+}
 
 function load_chart2() {
 
-	// set the dimensions and margins of the graph
-	var margin = {top: 20, right: 20, bottom: 70, left: 70},
-	    width = 1150 - margin.left - margin.right,
-	    height = 400 - margin.top - margin.bottom;
+    // set the dimensions and margins of the graph
+    var margin = {top: 20, right: 20, bottom: 70, left: 70},
+        width = 1150 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
 
 
-	// parse the date / time
-	var parseTime = d3.timeParse("%Y");
+    // parse the date / time
+    var parseTime = d3.timeParse("%Y");
 
-	// set the ranges
-	var x = d3.scaleTime().range([0, width]);
-	var y = d3.scaleLinear().range([height, 0]);
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
 
-	// define the line
-	var valueline = d3.line()
-	    .x(function(d) { return x(d.yr); })
-	    .y(function(d) { if (d.mean < 900) return y(d.mean); else return 0; });
+    // define the line
+    var valueline = d3.line()
+        .x(function (d) {
+            return x(d.yr);
+        })
+        .y(function (d) {
+            if (d.mean < 900) return y(d.mean); else return 0;
+        });
 
-	// append the svg obgect to the body of the page
-	// appends a 'group' element to 'svg'
-	// moves the 'group' element to the top left margin
-	var svg = d3.select("#chart2").append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
-	  .append("g")
-	    .attr("transform",
-	          "translate(" + margin.left + "," + margin.top + ")");
+    // append the svg obgect to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3.select("#chart2").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.csv("data.csv", function(error, data) {
-	  if (error) throw error;
+    d3.csv("data.csv", function (error, data) {
+        if (error) throw error;
 
-	  // format the data
-	  data.forEach(function(d) {
-	      d.yr = parseTime(d.YEAR);
-	      d.mean = +d.metANN;
-	  });
+        // format the data
+        data.forEach(function (d) {
+            d.yr = parseTime(d.YEAR);
+            d.mean = +d.metANN;
+        });
 
-	  // Scale the range of the data
-	  avg = d3.mean(data, function(d) {if (d.mean < 900) return d.mean; else return 0; });
+        // Scale the range of the data
+        avg = d3.mean(data, function (d) {
+            if (d.mean < 900) return d.mean; else return 0;
+        });
 
-	  x.domain(d3.extent(data, function(d) { return d.yr; }));
-	  y.domain(d3.extent(data, function(d) { if (d.mean < 900) return d.mean; else return 0;  }));
-	  
-	  // Add the valueline path.
-	  svg.append("path")
-	      .data([data])
-	      .attr("class", "line")
-	      .attr("d", valueline);
+        x.domain(d3.extent(data, function (d) {
+            return d.yr;
+        }));
+        y.domain(d3.extent(data, function (d) {
+            if (d.mean < 900) return d.mean; else return 0;
+        }));
 
-	  // Add the X Axis
-	  svg.append("g")
-	      .attr("transform", "translate(0," + height + ")")
-	      .attr("class", "x")
-	      .call(d3.axisBottom(x));
+        // Add the valueline path.
+        svg.append("path")
+            .data([data])
+            .attr("class", "line")
+            .attr("d", valueline);
 
-	// text label for the x axis
-	  svg.append("text")
-	      .attr("transform",
-	            "translate(" + (width/2) + " ," + 
-	                           (height + margin.top + 20) + ")")
-	      .attr("class", "axistext")
-	      .text("Year");
+        // Add the X Axis
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .attr("class", "x")
+            .call(d3.axisBottom(x));
 
-	  // Add the Y Axis
-	  svg.append("g")
-	  	  .attr("class", "y")
-	      .call(d3.axisLeft(y));
+        // text label for the x axis
+        svg.append("text")
+            .attr("transform",
+                "translate(" + (width / 2) + " ," +
+                (height + margin.top + 20) + ")")
+            .attr("class", "axistext")
+            .text("Year");
 
-	  // text label for the y axis
-	  svg.append("text")
-	  	  .attr("class", "y")
-	      .attr("transform", "rotate(-90)")
-	      .attr("y", 0 - margin.left)
-	      .attr("x",0 - (height / 2))
-	      .attr("dy", "1em")
-	      .attr("class", "axistext")
-	      .text("Mean Annual Temperature (in °C)");
+        // Add the Y Axis
+        svg.append("g")
+            .attr("class", "y")
+            .call(d3.axisLeft(y));
 
-	});
+        // text label for the y axis
+        svg.append("text")
+            .attr("class", "y")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left)
+            .attr("x", 0 - (height / 2))
+            .attr("dy", "1em")
+            .attr("class", "axistext")
+            .text("Mean Annual Temperature (in °C)");
+
+    });
 }
