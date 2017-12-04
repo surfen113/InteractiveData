@@ -23,42 +23,42 @@
 
 .axis {
   font: 10px sans-serif;
+  fill: steelblue;
 }
 
 .axis path,
 .axis line {
-  fill: none;
+  fill: steelblue;
   stroke: #000;
   shape-rendering: crispEdges;
 }
 
 .line {
   fill: none;
-  stroke: red;
-  stroke-width: 2px;
+  stroke: steelblue;
 }
 
 .x line, .x path{
-  stroke: black;
-  stroke-width: 2px;
+  stroke: steelblue;
+
 }
 
 .y line, .y path{
-  stroke: darkred;
-  stroke-width: 2px;
+  stroke: steelblue;
+
 }
 
 .x text{
-    font: 18px Calibri;
-    fill: black;
+/*    font: 18px Calibri;*/
+    fill: steelblue;
 }
 
 .y text{
-    font: 16px Calibri;
-    fill: darkred;
+    /*font: 16px Calibri;*/
+    fill: steelblue;
 }
 
 .axistext{
     text-anchor: middle;
-    font: 18px Calibri;
+/*    font: 30px Calibri;*/
 }
