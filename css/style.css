@@ -1,12 +1,25 @@
 #main {
   width: 90%;
   margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.title{
+  text-align: center;
 }
 
 #chart2 {
   width: 1150px;
   margin: 0 auto;
 }
+
+
+#chart1 {
+  width: 1150px;
+  margin: 0 auto;
+}
+
 
 .axis {
   font: 10px sans-serif;

@@ -4,9 +4,9 @@ function load_charts() {
 };
 
 
- function load_chart1() {
-var margin = {top: 20, right: 20, bottom: 70, left: 30},
-    width = 1400 - margin.left - margin.right,
+function load_chart1() {
+var margin = {top: 20, right: 20, bottom: 70, left: 70},
+    width = 1150 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 
