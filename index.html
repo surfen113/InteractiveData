@@ -1,138 +1,51 @@
-<html lang="en">
+<!DOCTYPE html>
+<meta charset="utf-8">
 
 <head>
-
-    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>Assignment 2</title>
-    
-<style>
-    .axis {
-	  font: 10px sans-serif;
-	}
-
-	.axis path,
-	.axis line {
-	  fill: none;
-	  stroke: #000;
-	  shape-rendering: crispEdges;
-	}
-
-</style>
-
-    
 </head>
     
 
 
-<body>
-    <h1>Assignment 2</h1>
-    <h3>Part 1 - Visualizations</h3>
+<body onload="load_charts()">
+    <div id="main">
+        <h1>Assignment 2</h1>
+        <h3>Part 1 - Visualizations</h3>
 
-<script>
-
-    
-
-var margin = {top: 20, right: 20, bottom: 70, left: 30},
-    width = 1150 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-
-var y = d3.scale.linear().range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-.ticks(20);
-    
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(20);
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
-
-d3.csv("data.csv", function(error, data) {
-
-    data.forEach(function(d) {
-        d.metANN = +d["metANN"];
-        d.year = +d["YEAR"];
-    });
-	
-  x.domain(data.map(function(d) { return d.year; }));
-  y.domain([0, d3.max(data, function(d) { return d.metANN; })]);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)" );
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Degree Celsius");
-
-  svg.selectAll("bar")
-      .data(data)
-        .enter().append("rect")
-      .style("fill", "steelblue")
-      .attr("x", function(d) { return x(d.year); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.metANN); })
-      .attr("height", function(d) { return height - y(d.metANN); });
-    
-    var ticks = d3.selectAll(".x .tick text");
-    ticks.attr("class", function(d,i){
-        if(i%5 != 0) d3.select(this).remove();
-    });
-});
-
-    </script>
-    
-    
-    <h3>Part 2 - Motivation,Method</h3>
-    <ul>
-        <li>Data Set Description and Preparation</li>
-            <ul>
-                <li>...</li> 
-                <li>...</li>
-            </ul>
-        <li>Result, Discussion</li>
-            <ul>
-                <li>xxx</li>
-            </ul>
-        <li>Conclusions</li>
-            <ul>
-                <li>yyy</li>
-            </ul>
-    </ul>
-    
-    
-    
-    <h3>Part 3 - Individual Part</h3>
-    
-    <h4>Simona</h4>
-    
-    <h4>Riddhi</h4>
-    
-    <h4>Julian</h4>
-    
+        <div id="chart1"></div>
+        <div id="chart2"></div>
+        
+        
+        <h3>Part 2 - Motivation,Method</h3>
+        <ul>
+            <li>Data Set Description and Preparation</li>
+                <ul>
+                    <li>...</li> 
+                    <li>...</li>
+                </ul>
+            <li>Result, Discussion</li>
+                <ul>
+                    <li>xxx</li>
+                </ul>
+            <li>Conclusions</li>
+                <ul>
+                    <li>yyy</li>
+                </ul>
+        </ul>
+        
+        
+        
+        <h3>Part 3 - Individual Part</h3>
+        
+        <h4>Simona</h4>
+        
+        <h4>Riddhi</h4>
+        
+        <h4>Julian</h4>
+    </div>
     
 </body>
 </html>
