@@ -1,81 +1,98 @@
 function load_charts() {
-	// load_chart1();
+	load_chart1();
 	load_chart2();
 };
 
 
-// function load_chart1() {
-// 	var margin = {top: 20, right: 20, bottom: 70, left: 30},
-// 	    width = 1150 - margin.left - margin.right,
-// 	    height = 400 - margin.top - margin.bottom;
+ function load_chart1() {
+var margin = {top: 20, right: 20, bottom: 70, left: 30},
+    width = 1400 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 
-// 	var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+//var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
 
-// 	var y = d3.scale.linear().range([height, 0]);
+//var y = d3.scale.linear().range([height, 0]);
+    
+    var x = d3.scaleBand()
+          .range([0, width])
+          .padding(0.1);
+var y = d3.scaleLinear()
+          .range([height, 0]);
 
-// 	var xAxis = d3.svg.axis()
-// 	    .scale(x)
-// 	    .orient("bottom")
-// 	.ticks(20);
-	    
-// 	var yAxis = d3.svg.axis()
-// 	    .scale(y)
-// 	    .orient("left")
-// 	    .ticks(20);
+/*
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+.ticks(20);
+    
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(20);
+*/
+    
+var svg = d3.select("#chart1").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", 
+          "translate(" + margin.left + "," + margin.top + ")");
 
-// 	var svg = d3.select("#chart1").append("svg")
-// 	    .attr("width", width + margin.left + margin.right)
-// 	    .attr("height", height + margin.top + margin.bottom)
-// 	  .append("g")
-// 	    .attr("transform", 
-// 	          "translate(" + margin.left + "," + margin.top + ")");
+d3.csv("data.csv", function(error, data) {
 
-// 	d3.csv("./data.csv", function(error, data) {
+    data.forEach(function(d) {
+        d.metANN = +d["metANN"];
+        d.year = +d["YEAR"];
+    });
+	
+  x.domain(data.map(function(d) { return d.year; }));
+  y.domain([0, d3.max(data, function(d) { return d.metANN; })]);
 
-// 	    data.forEach(function(d) {
-// 	        d.metANN = +d["metANN"];
-// 	        d.year = +d["YEAR"];
-// 	    });
-	  
-// 	  x.domain(data.map(function(d) { return d.year; }));
-// 	  y.domain([0, d3.max(data, function(d) { return d.metANN; })]);
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      //.call(xAxis)
+    .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", "-.55em")
+      .attr("transform", "rotate(-90)" );
 
-// 	  svg.append("g")
-// 	      .attr("class", "x axis")
-// 	      .attr("transform", "translate(0," + height + ")")
-// 	      .call(xAxis)
-// 	    .selectAll("text")
-// 	      .style("text-anchor", "end")
-// 	      .attr("dx", "-.8em")
-// 	      .attr("dy", "-.55em")
-// 	      .attr("transform", "rotate(-90)" );
+  svg.append("g")
+      .attr("class", "y axis")
+      //.call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Degree Celsius");
 
-// 	  svg.append("g")
-// 	      .attr("class", "y axis")
-// 	      .call(yAxis)
-// 	    .append("text")
-// 	      .attr("transform", "rotate(-90)")
-// 	      .attr("y", 6)
-// 	      .attr("dy", ".71em")
-// 	      .style("text-anchor", "end")
-// 	      .text("Degree Celsius");
+  svg.selectAll("bar")
+      .data(data)
+        .enter().append("rect")
+      .style("fill", "steelblue")
+      .attr("x", function(d) { return x(d.year); })
+      .attr("width", x.bandwidth())
+      .attr("y", function(d) { return y(d.metANN); })
+      .attr("height", function(d) { return height - y(d.metANN); });
+    
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
 
-// 	  svg.selectAll("bar")
-// 	      .data(data)
-// 	        .enter().append("rect")
-// 	      .style("fill", "steelblue")
-// 	      .attr("x", function(d) { return x(d.year); })
-// 	      .attr("width", x.rangeBand())
-// 	      .attr("y", function(d) { return y(d.metANN); })
-// 	      .attr("height", function(d) { return height - y(d.metANN); });
-	    
-// 	    var ticks = d3.selectAll(".x .tick text");
-// 	    ticks.attr("class", function(d,i){
-// 	        if(i%5 != 0) d3.select(this).remove();
-// 	    });
-// 	});
-// }
+  // add the y Axis
+  svg.append("g")
+      .call(d3.axisLeft(y));
+    
+    var ticks = d3.selectAll(".tick text");
+    ticks.attr("class", function(d,i){
+        if(i%5 != 0) d3.select(this).remove();
+    });
+});
+
+ }
 
 function load_chart2() {
 
