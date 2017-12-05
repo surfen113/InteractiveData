@@ -29,9 +29,10 @@ function load_chart1() {
             "translate(" + margin.left + "," + margin.top + ")");
 
     d3.csv("data.csv", function (error, data) {
+        if (error) throw error;
 
         data.forEach(function (d) {
-            d.metANN = +d["metANN"];
+            d.metANN = +d["APR"];
             //d.year = parseTime(d.YEAR);
             d.year = +d["YEAR"];
         });
@@ -63,7 +64,7 @@ function load_chart1() {
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("class", "axistext")
-            .text("Mean Annual Temperature (in °C)");
+            .text("Mean Temperature in April (in °C)");
 
         svg.selectAll("bar")
             .data(data)
@@ -91,9 +92,9 @@ function load_chart1() {
         svg.append("g")
             .call(d3.axisLeft(y));
 
-        var ticks = d3.selectAll(".tick text");
+        var ticks = d3.selectAll(".x .tick text");
         ticks.attr("class", function (d, i) {
-            if (i % 5 != 0) d3.select(this).remove();
+            if (i % 10 != 0) d3.select(this).remove();
         });
     });
 
@@ -137,7 +138,7 @@ function load_chart2() {
             d.mean = +d.metANN;
         });
 
-        // Scale the range of the data
+        //@TODO: Is this even getting used?
         avg = d3.mean(data, function (d) {
             if (d.mean < 900) return d.mean; else return 0;
         });

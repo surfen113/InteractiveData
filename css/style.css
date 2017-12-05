@@ -54,8 +54,8 @@
 }
 
 .y text{
-    /*font: 16px Calibri;*/
-    fill: steelblue;
+    font: 16px Calibri;
+    fill: black;
 }
 
 .axistext{
