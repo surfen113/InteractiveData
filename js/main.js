@@ -3,36 +3,24 @@ function load_charts() {
     load_chart2();
 };
 
-
-function load_chart1() {
-
 var margin = {top: 20, right: 20, bottom: 70, left: 70},
     width = 1150 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 
-//var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+function load_chart1() {
 
-//var y = d3.scale.linear().range([height, 0]);
 
+    var parseTime = d3.timeParse("%Y");
+
+    
     var x = d3.scaleBand()
         .range([0, width])
         .padding(0.1);
     var y = d3.scaleLinear()
         .range([height, 0]);
 
-    /*
-     var xAxis = d3.svg.axis()
-     .scale(x)
-     .orient("bottom")
-     .ticks(20);
-
-     var yAxis = d3.svg.axis()
-     .scale(y)
-     .orient("left")
-     .ticks(20);
-     */
-
+    
     var svg = d3.select("#chart1").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -44,6 +32,7 @@ var margin = {top: 20, right: 20, bottom: 70, left: 70},
 
         data.forEach(function (d) {
             d.metANN = +d["metANN"];
+            //d.year = parseTime(d.YEAR);
             d.year = +d["YEAR"];
         });
 
@@ -63,16 +52,18 @@ var margin = {top: 20, right: 20, bottom: 70, left: 70},
             .attr("dx", "-.8em")
             .attr("dy", "-.55em")
             .attr("transform", "rotate(-90)");
-
+        
+        
         svg.append("g")
             .attr("class", "y axis")
             //.call(yAxis)
             .append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Degree Celsius");
+            .attr("y", 0 - margin.left)
+            .attr("x", 0 - (height / 2))
+            .attr("dy", "1em")
+            .attr("class", "axistext")
+            .text("Mean Annual Temperature (in °C)");
 
         svg.selectAll("bar")
             .data(data)
@@ -89,10 +80,13 @@ var margin = {top: 20, right: 20, bottom: 70, left: 70},
                 return height - y(d.metANN);
             });
 
+        // Add the X Axis
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
+            .attr("class", "x")
             .call(d3.axisBottom(x));
-
+        
+        
         // add the y Axis
         svg.append("g")
             .call(d3.axisLeft(y));
@@ -107,18 +101,13 @@ var margin = {top: 20, right: 20, bottom: 70, left: 70},
 
 function load_chart2() {
 
-    // set the dimensions and margins of the graph
-    var margin = {top: 20, right: 20, bottom: 70, left: 70},
-        width = 1150 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
-
-
-    // parse the date / time
-    var parseTime = d3.timeParse("%Y");
 
     // set the ranges
     var x = d3.scaleTime().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
+    
+    var parseTime = d3.timeParse("%Y");
+
 
     // define the line
     var valueline = d3.line()
