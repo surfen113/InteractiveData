@@ -138,17 +138,23 @@ function load_chart2() {
             d.mean = +d.metANN;
         });
 
+        //The average was calculated to substitute for missing values instead of replacing with zero.
+        //It's not used for our case
         //@TODO: Is this even getting used?
-        avg = d3.mean(data, function (d) {
+        //avg = d3.mean(data, function (d) {
+        //    if (d.mean < 900) return d.mean; else return 0;
+        //});
+        min = d3.min(data, function (d) {
             if (d.mean < 900) return d.mean; else return 0;
-        });
+        });        
+        max = d3.max(data, function (d) {
+            if (d.mean < 900) return d.mean; else return 0;
+        });        
 
         x.domain(d3.extent(data, function (d) {
             return d.yr;
         }));
-        y.domain(d3.extent(data, function (d) {
-            if (d.mean < 900) return d.mean; else return 0;
-        }));
+        y.domain([min - 1, max + 1]);
 
         // Add the valueline path.
         svg.append("path")
