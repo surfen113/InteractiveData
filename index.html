@@ -29,24 +29,25 @@
         <ul>
             <li>Data Set Description and Preparation</li>
                 <ul>
-                    <li>Data set was obtained from <a href="https://data.giss.nasa.gov/">National Aeronautics and Space Administration</a></li>
-                    <li>Data set from Kobenhabn stations</li>
-                    <li>Txt format is not suitable for D3, therefore we simply converted it into CSV format</li>
-                    <li>We decided that is would be most suitable to look at the average temperatures for the line chart, as it wouldn't make any sense to display all of the data, which is 12*138 = 1656 data points</li>
-                    <li>For the bar chart we chose to look at the monthly data from Apil</li>
+                    <li>Data set was obtained from <a href="https://data.giss.nasa.gov/">National Aeronautics and Space Administration</a>.</li>
+                    <li>Data set from København station.</li>
+                    <li>Dataset was converted into CSV format for easy and fast reading of the data file.</li>
+                    <li>We decided that is would be most suitable to look at the average temperatures for the line chart, as it wouldn't make any sense to display all of the data, which is 12*138 = 1656 data points.</li>
+                    <li>For the bar chart we chose to look at the monthly data from April.</li>
+                    <li>The data line for the year 2017 was deleted in order to deal with missing values. This is not ideal but for the end visualization to be tidy, this was done.</li>
                 </ul>
             <li>Result, Discussion</li>
                 <ul>
-                    <li>The line chart greatly shows that the average temperature over the 138 years only varies about 4 degrees (6,5 at the lowest to 10,5 at the highest)</li>
-                    <li>The average temperature in April varies a lot more (3-11 degrees)</li>
-                    <li>The everage yearly temperature shows that the climate change might be true</li>
+                    <li>The line chart greatly shows that the average temperature over the 138 years varies about 4 degrees (6,5 at the lowest to 10,5 at the highest).</li>
+                    <li>The average temperature in April varies a lot more (3-11 degrees).</li>
+                    <li>The average yearly temperature shows that the climate change might be true.</li>
                 </ul>
             <li>Conclusions</li>
                 <ul>
-                    <li>Chosen diagramms are more or less suitable</li>
-                    <li>Climate change is visible</li>
-                    <li>Very good dataset, very few missing values, which are clearly indicated</li>
-                    <li>An interactive visualiazation might be even more exciting</li>
+                    <li>Chosen diagrams are more or less suitable.</li>
+                    <li>Climate change is visible.</li>
+                    <li>Very good dataset, very few missing values, which are clearly indicated.</li>
+                    <li>An interactive visualiazation might be even more exciting.</li>
                 </ul>
         </ul>
         
@@ -57,6 +58,13 @@
         <h4>Simona</h4>
         
         <h4>Riddhi</h4>
+        <h5>How big data sets are reasonable to load in d3 visualizations? What types of visualizations does a limit like that exclude? Give examples of visualizations that must be based on large data sets and discuss how they deal with this. Could you have reduced the size of the data sets in this assignment?</h5>
+        <ul>
+            <li>I would say the size of the dataset depends on the type of visualization idiom being used. For example, in our case, we used bar charts for the first visualization and even though it's readable and neat, it's difficult to actually see/find the values of a particular year/month.</li>
+            <li>For line charts, I feel the limit can be higher because mainly the line chart shows a trend of the dataset i.e, how a certain data point changes over time so we're more concerned with how it has changed rather than comparing say the actual values between two years.</li>
+            <li>But for other idioms, the limit could be a lot lower, say e.g, for pie charts, it won't be possible to show 100 different data points in a pie chart without overloading the user with information.</li>
+            <li>The solution to using large data sets with different visual idioms would be making them dynamic and user interactable. E.g. In this dataset, if we have say the option of user choosing the range of years to show the data from or even showing the data 10/20/50 years at a time, it would make for a much cleaner visualization.</li>
+        </ul>
         
         <h4>Julian</h4>
         <h5>So far we've only taught static visualizations. Which dynamic elements or interactions could improve your article?</h5>
