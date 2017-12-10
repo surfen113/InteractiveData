@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <script src="js/main.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Assignment 2</title>
+</head>
+    
+
+
+<body onload="load_charts()">
+    <div id="main">
+        <h1 class="title">Assignment 2</h1>
+        <h3>Part 1 - Visualizations</h3>
+        <p><a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=612061860000&dt=1&ds=14">Link used</a> <br>
+        Converted the txt file to csv.
+        </p>
+
+        <h4>April Average - Station Data: Kobenhavn/ (55.7 N,12.6 E)</h4>
+        <div id="chart1"></div>
+
+        <h4>Yearly Average - Station Data: Kobenhavn/ (55.7 N,12.6 E)</h4>
+        <div id="chart2"></div>
+        
+        
+        <h3>Part 2 - Motivation,Method</h3>
+        <ul>
+            <li>Data Set Description and Preparation</li>
+                <ul>
+                    <li>Data set was obtained from <a href="https://data.giss.nasa.gov/">National Aeronautics and Space Administration</a></li>
+                    <li>Data set from Kobenhabn stations</li>
+                    <li>Txt format is not suitable for D3, therefore we simply converted it into CSV format</li>
+                    <li>We decided that is would be most suitable to look at the average temperatures for the line chart, as it wouldn't make any sense to display all of the data, which is 12*138 = 1656 data points</li>
+                    <li>For the bar chart we chose to look at the monthly data from Apil</li>
+                </ul>
+            <li>Result, Discussion</li>
+                <ul>
+                    <li>The line chart greatly shows that the average temperature over the 138 years only varies about 4 degrees (6,5 at the lowest to 10,5 at the highest)</li>
+                    <li>The average temperature in April varies a lot more (3-11 degrees)</li>
+                    <li>The everage yearly temperature shows that the climate change might be true</li>
+                </ul>
+            <li>Conclusions</li>
+                <ul>
+                    <li>Chosen diagramms are more or less suitable</li>
+                    <li>Climate change is visible</li>
+                    <li>Very good dataset, very few missing values, which are clearly indicated</li>
+                    <li>An interactive visualiazation might be even more exciting</li>
+                </ul>
+        </ul>
+        
+        
+        
+        <h3>Part 3 - Individual Part</h3>
+        
+        <h4>Simona</h4>
+        
+        <h4>Riddhi</h4>
+        
+        <h4>Julian</h4>
+        <h5>So far we've only taught static visualizations. Which dynamic elements or interactions could improve your article?</h5>
+        <ul>
+            <li>Dynamic Hover effects</li>
+            <li>Filter functions, to choose a time frame, specific month, etc.</li>
+            <li>Zoom Functions</li>
+            <li>Temperature Converter (Celsius, Fahrenheit, etc.)</li>
+            <li>Scalability Functions</li>
+            <li>World map, to select different locations dynamically</li>
+            <li>Possibility to show different line diagramms of different years or locations in the same chart, in order to compare them</li>
+            <li>Color picker</li>
+        </ul>
+    </div>
+    
+</body>
+</html>
