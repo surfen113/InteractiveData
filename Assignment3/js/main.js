@@ -10,92 +10,77 @@ var margin = {top: 20, right: 20, bottom: 70, left: 70},
 function load_chart() {
 
 
-    var parseTime = d3.timeParse("%Y");
+// set the dimensions and margins of the diagram
+    var margin = {top: 20, right: 90, bottom: 30, left: 90},
+        width = 660 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
-    
-    var x = d3.scaleBand()
-        .range([0, width])
-        .padding(0.1);
-    var y = d3.scaleLinear()
-        .range([height, 0]);
+// declares a tree layout and assigns the size
+    var treemap = d3.tree()
+        .size([height, width]);
 
-    
-    var svg = d3.select("#chart1").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
-
-    d3.csv("data.csv", function (error, data) {
+// load the external data
+    d3.json("trump_family.json", function (error, treeData) {
         if (error) throw error;
 
-        data.forEach(function (d) {
-            d.metANN = +d["APR"];
-            //d.year = parseTime(d.YEAR);
-            d.year = +d["YEAR"];
+        //  assigns the data to a hierarchy using parent-child relationships
+        var nodes = d3.hierarchy(treeData, function (d) {
+            return d.partners;
         });
 
-        x.domain(data.map(function (d) {
-            return d.year;
-        }));
-        y.domain([0, d3.max(data, function (d) {
-            return d.metANN;
-        })]);
+        // maps the node data to the tree layout
+        nodes = treemap(nodes);
 
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            //.call(xAxis)
-            .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", "-.55em")
-            .attr("transform", "rotate(-90)");
-        
-        
-        svg.append("g")
-            .attr("class", "y axis")
-            //.call(yAxis)
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 0 - margin.left)
-            .attr("x", 0 - (height / 2))
-            .attr("dy", "1em")
-            .attr("class", "axistext")
-            .text("Mean Temperature in April (in °C)");
+        // append the svg object to the body of the page
+        // appends a 'group' element to 'svg'
+        // moves the 'group' element to the top left margin
+        var svg = d3.select("#chart1").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom),
+            g = svg.append("g")
+                .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
 
-        svg.selectAll("bar")
-            .data(data)
-            .enter().append("rect")
-            .style("fill", "steelblue")
-            .attr("x", function (d) {
-                return x(d.year);
-            })
-            .attr("width", x.bandwidth())
-            .attr("y", function (d) {
-                return y(d.metANN);
-            })
-            .attr("height", function (d) {
-                return height - y(d.metANN);
+        // adds the links between the nodes
+        var link = g.selectAll(".link")
+            .data(nodes.descendants().slice(1))
+            .enter().append("path")
+            .attr("class", "link")
+            .attr("d", function (d) {
+                return "M" + d.y + "," + d.x
+                    + "C" + (d.y + d.parent.y) / 2 + "," + d.x
+                    + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
+                    + " " + d.parent.y + "," + d.parent.x;
             });
 
-        // Add the X Axis
-        svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .attr("class", "x")
-            .call(d3.axisBottom(x));
-        
-        
-        // add the y Axis
-        svg.append("g")
-            .call(d3.axisLeft(y));
+        // adds each node as a group
+        var node = g.selectAll(".node")
+            .data(nodes.descendants())
+            .enter().append("g")
+            .attr("class", function (d) {
+                return "node" +
+                    (d.partners ? " node--internal" : " node--leaf");
+            })
+            .attr("transform", function (d) {
+                return "translate(" + d.y + "," + d.x + ")";
+            });
 
-        var ticks = d3.selectAll(".x .tick text");
-        ticks.attr("class", function (d, i) {
-            if (i % 10 != 0) d3.select(this).remove();
-        });
+        // adds the circle to the node
+        node.append("circle")
+            .attr("r", 10);
+
+        // adds the text to the node
+        node.append("text")
+            .attr("dy", ".35em")
+            .attr("x", function (d) {
+                return d.partners ? -13 : 13;
+            })
+            .style("text-anchor", function (d) {
+                return d.partners ? "end" : "start";
+            })
+            .text(function (d) {
+                return d.data.name;
+            });
+
     });
-
 }
-

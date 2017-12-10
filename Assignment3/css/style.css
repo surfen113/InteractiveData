@@ -1,64 +1,17 @@
-#main {
-  width: 90%;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  padding: 10px;
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
 }
 
-.title{
-  text-align: center;
+.node text { font: 12px sans-serif; }
+
+.node--internal text {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
 }
 
-#chart2 {
-  width: 1150px;
-  margin: 0 auto;
-}
-
-
-#chart1 {
-  width: 1150px;
-  margin: 0 auto;
-}
-
-
-.axis {
-  font: 10px sans-serif;
-  fill: steelblue;
-}
-
-.axis path,
-.axis line {
-  fill: steelblue;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.line {
+.link {
   fill: none;
-  stroke: steelblue;
-}
-
-.x line, .x path{
-  stroke: steelblue;
-
-}
-
-.y line, .y path{
-  stroke: steelblue;
-
-}
-
-.x text{
-/*    font: 18px Calibri;*/
-    fill: steelblue;
-}
-
-.y text{
-    font: 16px Calibri;
-    fill: black;
-}
-
-.axistext{
-    text-anchor: middle;
-/*    font: 30px Calibri;*/
+  stroke: #ccc;
+  stroke-width: 2px;
 }
