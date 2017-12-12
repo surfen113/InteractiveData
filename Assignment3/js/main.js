@@ -20,7 +20,7 @@ function load_chart() {
         .size([height, width]);
 
 // load the external data
-    d3.json("trump_family.json", function (error, treeData) {
+    d3.json("trump_original.json", function (error, treeData) {
         if (error) throw error;
 
         //  assigns the data to a hierarchy using parent-child relationships
