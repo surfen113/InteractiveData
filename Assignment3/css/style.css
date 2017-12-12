@@ -15,3 +15,38 @@
   stroke: #ccc;
   stroke-width: 2px;
 }
+
+body {
+    font: 10px sans-serif;
+}
+
+.linage {
+    fill: none;
+    stroke: lightblue;
+}
+
+.marriage {
+    fill: none;
+    stroke: darkblue;
+}
+
+.man {
+    background-color: lightblue;
+}
+
+.woman {
+    background-color: lightblue;
+}
+
+.emphasis {
+    font-style: italic;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.section{
+	font-size: 11px;
+}

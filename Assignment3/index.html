@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-
 <head>
-    <script src="js/main.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.rawgit.com/ErikGartner/dTree/2.0.2/dist/dTree.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <title>Assignment 3</title>
+
 </head>
 
-
-<body onload="loadTree()">
-<div id="main">
+<body>
     <h1 class="title">Assignment 3</h1>
-    <h3>Tree</h3>
+    <h3>Trump Family Tree</h3>
+    <div id="graph"></div>
+    <div class="section">
+    <h3>dTree Library</h3>
 
-
-        <div id="chart1"></div>
-
-    <a href="rumgeteste.html">Link to the dTree try</a>
+    <p>We used the Library <a href="https://github.com/ErikGartner/dTree">dTree</a> for the chart, because the
+        library is relatively easy to use and offers the possibility to visualize trees that have more than one parent
+        <br>
+        Normal D3 trees do not support this feature of course.<br>Another advantage of this specific library is, that it
+        also has the possibility for someone to have more than one spouse, which most of the other libraries we looked
+        at did not support.
+        <br>Also, dTree is based on D3 v4, which makes it very useful for the Interactive Data Exploration Course </p>
+<h3>Incomplete D3 family tree</h3>
+<p>Since family tree is not a normal tree, we chose to use dTree library instead of d3. Because there are two parents to each set of children and sometimes people have multiple partners, it was difficult to create the links between the right nodes. <a href="partial_tree.html">Here</a> can be find a partial implementation of the tree using d3m but incomplete.
 
 
         <h3>"Brief Sections"</h3>
@@ -30,7 +35,24 @@
                 <li>xxx</li>
             </ul>
         </ul>
+</div>
+<script>
+    treeJson = d3.json("trump_family.json", function(error, treeData) {
 
+        dTree.init(treeData, {
+            target: "#graph",
+            debug: true,
+            height: 150,
+            width: 2000,
+            callbacks: {
+                nodeClick: function (name, extra) {
+                    console.log(name);
+                }
+            }
+        });
+    });
 
+</script>
 </body>
+
 </html>
