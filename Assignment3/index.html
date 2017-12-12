@@ -4,38 +4,62 @@
     <script src="https://cdn.rawgit.com/ErikGartner/dTree/2.0.2/dist/dTree.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
     <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/style.css">
 
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body onload="loadTree()">
-    <h1 class="title">Assignment 3</h1>
-    <h3>Trump Family Tree</h3>
+    <center><h1 class="title">Assignment 3</h1> </center><br> <br> 
+    <ul><h2>Trump Family Tree</h2><br></ul>
     <div id="graph"></div>
+    <center><span>Figure 1</span></center><br>
     <div class="section">
-    <h3>dTree Library</h3>
+        <div class="container">
+          <h3>Figure 1 - dTree Library</h3>
+          <div class="panel panel-default">
+            <div class="panel-body">    
+                <p>We used the Library <a href="https://github.com/ErikGartner/dTree">dTree</a> for the chart, because the library is relatively easy to use and offers the possibility to visualize trees that have more than one parent.<br>
+                Normal D3 trees do not support this feature of course.<br>Another advantage of this specific library is, that it also has the possibility for someone to have more than one spouse, which most of the other libraries we looked at did not support.
+                <br>Also, dTree is based on D3 v4, which makes it very useful for the Interactive Data Exploration Course </p>
+            </div>
+          </div>
+        </div>
 
-    <p>We used the Library <a href="https://github.com/ErikGartner/dTree">dTree</a> for the chart, because the
-        library is relatively easy to use and offers the possibility to visualize trees that have more than one parent
-        <br>
-        Normal D3 trees do not support this feature of course.<br>Another advantage of this specific library is, that it
-        also has the possibility for someone to have more than one spouse, which most of the other libraries we looked
-        at did not support.
-        <br>Also, dTree is based on D3 v4, which makes it very useful for the Interactive Data Exploration Course </p>
-<h3>Incomplete D3 family tree</h3>
+        <center><div id="chart1"></div></center>
+        <center><span>Figure 2</span></center>
+        <div class="container">
+          <h3>Figure 2 - d3 Library</h3>
+          <div class="panel panel-default">
+            <div class="panel-body">  
+            <p>Since family tree is not a normal tree, we chose to use dTree library instead of d3.<br> Because there are two parents to each set of children and sometimes people have multiple partners, it was difficult to create the links between the right nodes.<br> Fig.2 represents a partial implementation of the tree using d3 but incomplete.</p>
+            </div>
+          </div>
+        </div>
 
 
-        <div id="chart1"></div>
-<p>Since family tree is not a normal tree, we chose to use dTree library instead of d3. Because there are two parents to each set of children and sometimes people have multiple partners, it was difficult to create the links between the right nodes. <a href="partial_tree.html">Here</a> can be find a partial implementation of the tree using d3m but incomplete.
 
-
-        <h3>Visualization</h3>
+        <ul></br></br><h2>Visualization</h2></br></ul>
+        <div class="container">
+            <h3>Improvements</h3>
+          <div class="panel panel-default">
+            <div class="panel-body">  
         <p>
-                Since the Trump family is quite complex, we thought the best way to differentiate relationships is by color. Marriage is defined by darkblue, while for children we used lightblue. Given the 2 colors, it is much easier to track the connection between the nodes.
-            </p></br>
+                Since the Trump family is quite complex, we thought the best way to differentiate relationships is by color. <br>Marriage is defined by darkblue, while for children we used lightblue.<br> Given the 2 colors, it is much easier to track the connection between the nodes.
+            </p><br> 
             <p>
-                Regarding improvements, the visualization would be a lot much interactive if we would have added dynamic elements. For example, instead of the boc with the name, an avatar of each member could be used. While hovering on the picture, a description box would pop up containing details about that person.
+                For distinguishing the persons more easier, pink boxes were used for women and blue for men
+            </p><br> 
+            <p>
+                Regarding improvements, the visualization would be a lot much interactive if we would have added dynamic elements.<br> For example, instead of the boc with the name, an avatar of each member could be used.<br> While hovering on the picture, a description box would pop up containing details about that person.
             </p>
+            </div>
+          </div>
+        </div>
+
+
 
 </div>
 <script>
