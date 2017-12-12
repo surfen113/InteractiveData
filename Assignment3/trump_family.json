@@ -1,78 +1,113 @@
-{
-  "name": "Donald Trump",
-  "partners": [
-    {
-      "name": "Ivana Trump",
-      "children": [
-        {
-          "name": "Donald Trump Jr.",
-          "partners": [
-            {
-              "name": "Vanessa Trump",
-              "children": [
-                {
-                  "name": "Kai Madison"
-                },
-                {
-                  "name": "Donald III"
-                },
-                {
-                  "name": "Chloe Sophia"
-                },
-                {
-                  "name": "Tristan Milos"
-                },
-                {
-                  "name": "Spencer Frederick"
-                }
-              ]
-            }
-          ]
+[
+  {
+    "name": "Donald Trump",
+    "class": "man",
+    "textClass": "emphasis",
+    "marriages": [
+      {
+        "spouse": {
+          "name": "Melania Trump",
+          "class": "woman"
         },
-        {
-          "name": "Ivanka Trump",
-          "partners": [
-            {
-              "name": "Jared Kushner",
-              "children": [
-                {
-                  "name": "Arabella Rose"
+        "children": [
+          {
+            "name": "Baron Trump",
+            "class": "man"
+          }
+        ]
+      },
+      {
+        "spouse": {
+          "name": "Maria Maples",
+          "class": "woman"
+        },
+        "children": [
+          {
+            "name": "Tiffany Trump",
+            "class": "woman"
+          }
+        ]
+      },
+      {
+        "spouse": {
+          "name": "Ivana Trump",
+          "class": "woman"
+        },
+        "children": [
+          {
+            "name": "Donald Trump Jr.",
+            "class": "man",
+            "marriages": [
+              {
+                "spouse": {
+                  "name": "Vanessa Trump",
+                  "class": "woman"
                 },
-                {
-                  "name": "Joseph Frederick"
+                "children": [
+                  {
+                    "name": "Kai Madison",
+                    "class": "man"
+                  },
+                  {
+                    "name": "Donald III",
+                    "class": "man"
+                  },
+                  {
+                    "name": "Chloe Sophia",
+                    "class": "man"
+                  },
+                  {
+                    "name": "Tristan Milos",
+                    "class": "man"
+                  },
+                  {
+                    "name": "Spencer Frederick",
+                    "class": "woman"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Ivanka Trump",
+            "class": "woman",
+            "marriages": [
+              {
+                "spouse": {
+                  "name": "Jared Kushner",
+                  "class": "man"
                 },
-                {
-                  "name": "Theodore James"
+                "children": [
+                  {
+                    "name": "Arabella Rose",
+                    "class": "woman"
+                  },
+                  {
+                    "name": "Joseph Frederick",
+                    "class": "man"
+                  },
+                  {
+                    "name": "Theodore James",
+                    "class": "man"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Eric Trump",
+            "class": "man",
+            "marriages": [
+              {
+                "spouse": {
+                  "name": "Lara Yunaska",
+                  "class": "woman"
                 }
-              ]
-            }
-          ]
-        },          
-        {
-          "name": "Eric Trump",
-          "partners": [
-            {
-              "name": "Lara Yunaska"
-            }
-          ]
-        }          
-      ]
-    },
-    {
-      "name": "Marla Maples",
-      "children": [
-        {
-          "name": "Tiffany Trump"
-        }
-      ]
-    },
-    {
-      "name": "Melanie Trump",
-      "children": [
-        {
-          "name": "Baron Trump"
-        }
-      ]
-    }    
-  ]
-}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

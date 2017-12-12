@@ -50,113 +50,20 @@
 <script>
 
 
-    treeData = [{
-        "name": "Donald Trump",
-        "class": "man",
-        "textClass": "emphasis",
-        "marriages": [
-            {
-                "spouse": {
-                    "name": "Melania Trump",
-                    "class": "woman"
-                },
-                "children": [{
-                    "name": "Baron Trump",
-                    "class": "man",
 
-                }]
-            },
-            {
-                "spouse": {
-                    "name": "Maria Maples",
-                    "class": "woman"
-                },
-                "children": [{
-                    "name": "Tiffany Trump",
-                    "class": "woman",
+    treeJson = d3.json("trump_family.json", function(error, treeData) {
 
-                }]
-            },
-
-            {
-                "spouse": {
-                    "name": "Ivana Trump",
-                    "class": "woman"
-                },
-                "children": [{
-                    "name": "Donald Trump Jr.",
-                    "class": "man",
-                    "marriages": [{
-                        "spouse": {
-                            "name": "Vanessa Trump",
-                            "class": "woman"
-                        },
-                        "children": [{
-                            "name": "Kai Madison",
-                            "class": "man",
-
-                        }, {
-                            "name": "Donald III",
-                            "class": "man"
-                        }, {
-                            "name": "Chloe Sophia",
-                            "class": "man"
-                        }, {
-                            "name": "Tristan Milos",
-                            "class": "man"
-                        }, {
-                            "name": "Spencer Frederick",
-                            "class": "woman"
-                        }]
-                    }]
-                },
-                    {
-                        "name": "Ivanka Trump",
-                        "class": "woman",
-                        "marriages": [{
-                            "spouse": {
-                                "name": "Jared Kushner",
-                                "class": "man"
-                            },
-                            "children": [{
-                                "name": "Arabella Rose",
-                                "class": "woman",
-
-                            }, {
-                                "name": "Joseph Frederick",
-                                "class": "man"
-                            }, {
-                                "name": "Theodore James",
-                                "class": "man"
-                            }]
-                        }]
-                    },
-                    {
-                        "name": "Eric Trump",
-                        "class": "man",
-                        "marriages": [{
-                            "spouse": {
-                                "name": "Lara Yunaska",
-                                "class": "woman"
-                            }
-                        }]
-                    }]
-
-            }],
-
-    }]
-
-
-    dTree.init(treeData, {
-        target: "#graph",
-        debug: true,
-        height: 800,
-        width: 1800,
-        callbacks: {
-            nodeClick: function (name, extra) {
-                console.log(name);
+        dTree.init(treeData, {
+            target: "#graph",
+            debug: true,
+            height: 800,
+            width: 1800,
+            callbacks: {
+                nodeClick: function (name, extra) {
+                    console.log(name);
+                }
             }
-        }
+        });
     });
 
 
