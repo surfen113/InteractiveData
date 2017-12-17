@@ -1,11 +1,28 @@
 function loadTree() {
     load_chart();
+    load_family_tree();
 };
 
 var margin = {top: 20, right: 20, bottom: 70, left: 70},
     width = 1150 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
+function load_family_tree(){
+        treeJson = d3.json("trump_family.json", function(error, treeData) {
+
+        dTree.init(treeData, {
+            target: "#graph",
+            debug: true,
+            height: 150,
+            width: 2000,
+            callbacks: {
+                nodeClick: function (name, extra) {
+                    console.log(name);
+                }
+            }
+        });
+    });
+}
 
 function load_chart() {
 

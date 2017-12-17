@@ -35,7 +35,7 @@ body {
 }
 
 .woman {
-    background-color: lightblue;
+    background-color: pink;
 }
 
 .emphasis {
@@ -49,4 +49,22 @@ p {
 
 .section{
 	font-size: 11px;
+	line-height: 1.5em;
+}
+
+h2{
+	margin-left: 1%;
+}
+
+.section p{
+	margin-left: 1%;
+}
+
+span {
+	color: grey;
+    font-size: 9px;
+}
+
+ul{
+    list-style-type: circle;
 }
