@@ -75,7 +75,7 @@ function plotPCA() {
                     .duration(200)
                     .style("opacity", .9);
                 div.html("Number: " + i + "<br/>" + (d.x) + "x <br/>" + d.y + "y" )
-                    .style("left", (d3.event.pageX) + "px")
+                    .style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
             .on("mouseout", function (d) {
