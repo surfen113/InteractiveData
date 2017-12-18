@@ -76,15 +76,17 @@ function plotPCA() {
 
             //Add tooltip
             .on("mouseover", function (d, i) {
+                d3.select(this).attr("r", 10).style("fill", "red");
                 i = i + 1;
                 div.transition()
                     .duration(200)
-                    .style("opacity", .9);
+                    .style("opacity", 1);
                 div.html("Number: " + i + "<br/>" + (d.x) + "x <br/>" + d.y + "y")
                     .style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
             .on("mouseout", function (d) {
+                d3.select(this).attr("r", 5.5).style("fill", "#000000");
                 div.transition()
                     .duration(500)
                     .style("opacity", 0);
