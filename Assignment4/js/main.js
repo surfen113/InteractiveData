@@ -63,13 +63,18 @@ function plotPCA() {
             .attr("cy", function (d) {
                 return y(d.y);
             })
-                
+            .text(function (d, i) {
+                i = +i;
+                return "Hand: " + (i + 1);
+            })
+
             //Add tooltip
-            .on("mouseover", function (d) {
+            .on("mouseover", function (d,i) {
+                i = i + 1;
                 div.transition()
                     .duration(200)
                     .style("opacity", .9);
-                div.html((d.x) + "x <br/>" + d.y + "y")
+                div.html("Number: " + i + "<br/>" + (d.x) + "x <br/>" + d.y + "y" )
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
