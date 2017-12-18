@@ -68,13 +68,19 @@ function plotPCA() {
                 return "Hand: " + (i + 1);
             })
 
+            //Draw Hand onClick
+            .on("click", function (d, i) {
+                i = i + 1;
+                plotHand(i);
+            })
+
             //Add tooltip
-            .on("mouseover", function (d,i) {
+            .on("mouseover", function (d, i) {
                 i = i + 1;
                 div.transition()
                     .duration(200)
                     .style("opacity", .9);
-                div.html("Number: " + i + "<br/>" + (d.x) + "x <br/>" + d.y + "y" )
+                div.html("Number: " + i + "<br/>" + (d.x) + "x <br/>" + d.y + "y")
                     .style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
@@ -94,5 +100,10 @@ function plotPCA() {
             .call(d3.axisLeft(y));
 
     });
+}
+
+//The code for plotting the correct hand could go here
+function plotHand(handNumber) {
+    alert(handNumber);
 }
 
