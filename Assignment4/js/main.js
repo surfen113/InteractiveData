@@ -47,7 +47,7 @@ function plotPCA() {
 
 // set the dimensions and margins of the graph
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
-        width = 750 - margin.left - margin.right,
+        width = 550 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
 // set the ranges
@@ -103,16 +103,76 @@ function plotPCA() {
 
         var isClicked = false;
 
+                   d3.select('#outlier31')
+            .on("click", function (d, i) {
+                d3.selectAll("circle").attr("r", 5).style("fill", "black");
+                d3.select(this).attr("r", 10).style("fill", "blue");
+                div.transition()
+                    .duration(200)
+                    .style("opacity", 1);
+                plotHand(30, width, height, g);
+                isClicked = true;
+            })
+            .on("mouseout", function (d) {
+                if(!isClicked) {
+                    d3.select(this).attr("r", 5).style("fill", "black");
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                                            div.html("Hand # " + i)// + "<br/>" + (d.x) + "x <br/>" + d.y + "y")
+                    .style("background-color",  "#ffffff");
+                }
+                                d3.selectAll("circle").attr("r", 5).style("fill", "black");
+                d3.select(this).attr("r", 10).style("fill", "red");
+                i = i + 1;
+                div.transition()
+                    .duration(200)
+                    .style("opacity", 1);
+
+            });
+
+                   d3.select('#outlier26')
+            .on("click", function (d, i) {
+                d3.selectAll("circle").attr("r", 5).style("fill", "black");
+                d3.select(this).attr("r", 10).style("fill", "blue");
+                div.transition()
+                    .duration(200)
+                    .style("opacity", 1);
+
+                plotHand(25, width, height, g);
+                isClicked = true;
+            })
+            .on("mouseout", function (d) {
+                if(!isClicked) {
+                    d3.select(this).attr("r", 5).style("fill", "black");
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                    div.html("Hand # " + i)// + "<br/>" + (d.x) + "x <br/>" + d.y + "y")
+                    .style("background-color",  "#ffffff");
+                }
+                                d3.selectAll("circle").attr("r", 5).style("fill", "black");
+                d3.select(this).attr("r", 10).style("fill", "red");
+                i = i + 1;
+                div.transition()
+                    .duration(200)
+                    .style("opacity", 1);
+
+            });
+
+
         svg.selectAll("dot")
             .data(data)
             .enter().append("circle")
             .attr("r", 5)
+            .attr("id", this)
             .attr("cx", function (d) {
                 return x(d.x);
             })
             .attr("cy", function (d) {
                 return y(d.y);
             })
+
 
             //Draw Hand onClick
             .on("click", function (d, i) {
