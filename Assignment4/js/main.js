@@ -1,7 +1,47 @@
 function loadJS() {
     plotPCA();
-};
+    plotHands();
+}
 
+function plotHands(k, width, height, g) {
+
+    d3.text("hands.csv",
+        function(error, data) {
+            if (error) throw error;
+
+            var hands = d3.csvParseRows(data).map(function (value) {
+                return value.map(function (value2) {
+                    return +value2;
+                })
+            });
+
+            var hand = hands[k];
+
+            var xval = d3.map(hand).values().slice(0, 56);
+            var yval = d3.map(hand).values().slice(56, 112);
+
+            var x = d3.scaleLinear()
+                .range([0,width]);
+
+            var y = d3.scaleLinear()
+                .range([height,0]);
+
+            var final = d3.zip(xval, yval);
+
+            var line = d3.line()
+                .x(function (d) {
+                    return x(d[0]);
+                })
+                .y(function (d) {
+                    return y(d[1]);
+                })
+                .curve(d3.curveCatmullRom);
+
+            console.log(g);
+
+            g.select('path').transition().duration(250).attr('d', line(final));
+        });
+}
 
 function plotPCA() {
 
@@ -21,6 +61,16 @@ function plotPCA() {
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
+
+    var svg_hands = d3.select("#graph2").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom);
+
+    var g = svg_hands.append('g');
+
+    g.append('path')
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("class", "hand");
 
     var div = d3.select("body").append("div")
         .attr("class", "tooltip")
@@ -71,7 +121,8 @@ function plotPCA() {
             //Draw Hand onClick
             .on("click", function (d, i) {
                 i = i + 1;
-                plotHand(i);
+                //plotHand(i);
+                plotHands(i-1, width, height, g);
             })
 
             //Add tooltip
@@ -100,6 +151,8 @@ function plotPCA() {
         // Add the Y Axis
         svg.append("g")
             .call(d3.axisLeft(y));
+
+        plotHands(0, width, height, g);
 
     });
 }
