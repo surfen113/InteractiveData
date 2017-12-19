@@ -114,7 +114,6 @@ function plotPCA() {
 
             //Draw Hand onClick
             .on("click", function (d, i) {
-                svg.selectAll("dot").attr("r", 5).style("fill", "black");
                 d3.select(this).attr("r", 10).style("fill", "red");
                 console.log(this);
                 div.transition()
@@ -131,7 +130,7 @@ function plotPCA() {
             })
             //Add tooltip
             .on("mouseover", function (d, i) {
-                d3.select(this).attr("r", 10).style("fill", "yellow");
+                d3.select(this).style("fill", "orange");
                 i = i + 1;
                 div.transition()
                     .duration(200)
