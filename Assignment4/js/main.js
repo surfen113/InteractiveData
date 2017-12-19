@@ -113,7 +113,6 @@ function plotPCA() {
             .attr("cy", function (d) {
                 return y(d.y);
             })
-            .attr("pointer-events", "all")
 
             //Draw Hand onClick
             .on("click", function (d, i) {
