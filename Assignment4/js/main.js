@@ -101,6 +101,8 @@ function plotPCA() {
 
         // Add the scatterplot
 
+        var isClicked = false;
+
         svg.selectAll("dot")
             .data(data)
             .enter().append("circle")
@@ -111,15 +113,12 @@ function plotPCA() {
             .attr("cy", function (d) {
                 return y(d.y);
             })
+            .attr("pointer-events", "all")
 
             //Draw Hand onClick
             .on("click", function (d, i) {
-                svg.selectAll("dot").attr("r", 5).style("fill", "black");
+                d3.selectAll("circle").attr("r", 5).style("fill", "black");
                 d3.select(this).attr("r", 10).style("fill", "red");
-                console.log(this);
-                div.transition()
-                    .duration(500)
-                    .style("opacity", 0);
                 i = i + 1;
                 div.transition()
                     .duration(200)
@@ -128,10 +127,11 @@ function plotPCA() {
                     .style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY - 18) + "px");
                 plotHand(i-1, width, height, g);
+                isClicked = true;
             })
             //Add tooltip
             .on("mouseover", function (d, i) {
-                d3.select(this).attr("r", 10).style("fill", "yellow");
+                d3.select(this).attr("r", 5).style("fill", "orange");
                 i = i + 1;
                 div.transition()
                     .duration(200)
@@ -139,12 +139,15 @@ function plotPCA() {
                 div.html("Hand # " + i)// + "<br/>" + (d.x) + "x <br/>" + d.y + "y")
                     .style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY - 18) + "px");
+                isClicked = false;
             })
             .on("mouseout", function (d) {
-                d3.select(this).attr("r", 5).style("fill", "black");
-                div.transition()
-                    .duration(500)
-                    .style("opacity", 0);
+                if(!isClicked) {
+                    d3.select(this).attr("r", 5).style("fill", "black");
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                }
             });
 
         // Add the X Axis
