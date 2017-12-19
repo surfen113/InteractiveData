@@ -1,9 +1,9 @@
 function loadJS() {
     plotPCA();
-    plotHands();
+    plotHand();
 }
 
-function plotHands(k, width, height, g) {
+function plotHand(k, width, height, g) {
 
     d3.text("hands.csv",
         function(error, data) {
@@ -54,7 +54,6 @@ function plotPCA() {
     var x = d3.scaleLinear().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
 
-
     var svg = d3.select("#graph1").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -75,7 +74,6 @@ function plotPCA() {
     var div = d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
-
 
     d3.csv("hands_pca.csv", function (error, data) {
 
@@ -113,31 +111,37 @@ function plotPCA() {
             .attr("cy", function (d) {
                 return y(d.y);
             })
-            .text(function (d, i) {
-                i = +i;
-                return "Hand: " + (i + 1);
-            })
 
             //Draw Hand onClick
             .on("click", function (d, i) {
-                i = i + 1;
-                //plotHand(i);
-                plotHands(i-1, width, height, g);
-            })
-
-            //Add tooltip
-            .on("mouseover", function (d, i) {
+                svg.selectAll("dot").attr("r", 5).style("fill", "black");
                 d3.select(this).attr("r", 10).style("fill", "red");
+                console.log(this);
+                div.transition()
+                    .duration(500)
+                    .style("opacity", 0);
                 i = i + 1;
                 div.transition()
                     .duration(200)
                     .style("opacity", 1);
-                div.html("Number: " + i + "<br/>" + (d.x) + "x <br/>" + d.y + "y")
+                div.html("Hand # " + i)// + "<br/>" + (d.x) + "x <br/>" + d.y + "y")
                     .style("left", (d3.event.pageX + 10) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                    .style("top", (d3.event.pageY - 18) + "px");
+                plotHand(i-1, width, height, g);
+            })
+            //Add tooltip
+            .on("mouseover", function (d, i) {
+                d3.select(this).attr("r", 10).style("fill", "yellow");
+                i = i + 1;
+                div.transition()
+                    .duration(200)
+                    .style("opacity", 1);
+                div.html("Hand # " + i)// + "<br/>" + (d.x) + "x <br/>" + d.y + "y")
+                    .style("left", (d3.event.pageX + 10) + "px")
+                    .style("top", (d3.event.pageY - 18) + "px");
             })
             .on("mouseout", function (d) {
-                d3.select(this).attr("r", 5.5).style("fill", "#000000");
+                d3.select(this).attr("r", 5).style("fill", "black");
                 div.transition()
                     .duration(500)
                     .style("opacity", 0);
@@ -152,13 +156,8 @@ function plotPCA() {
         svg.append("g")
             .call(d3.axisLeft(y));
 
-        plotHands(0, width, height, g);
+        plotHand(0, width, height, g);
 
     });
-}
-
-//The code for plotting the correct hand could go here
-function plotHand(handNumber) {
-    alert(handNumber);
 }
 
