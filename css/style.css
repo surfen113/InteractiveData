@@ -1,64 +1,19 @@
-#main {
-  width: 90%;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  padding: 10px;
+html {
+    height:100%;
+    overflow:hidden;
 }
 
-.title{
-  text-align: center;
+body {
+    margin:0;
+    height:100%;
+    overflow:hidden;
 }
 
-#chart2 {
-  width: 1150px;
-  margin: 0 auto;
+svg {
+    width:700px;
+    height:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
 }
 
-
-#chart1 {
-  width: 1150px;
-  margin: 0 auto;
-}
-
-
-.axis {
-  font: 10px sans-serif;
-  fill: steelblue;
-}
-
-.axis path,
-.axis line {
-  fill: steelblue;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-}
-
-.x line, .x path{
-  stroke: steelblue;
-
-}
-
-.y line, .y path{
-  stroke: steelblue;
-
-}
-
-.x text{
-/*    font: 18px Calibri;*/
-    fill: steelblue;
-}
-
-.y text{
- /*   font: 16px Calibri;*/
-    fill: black;
-}
-
-.axistext{
-    text-anchor: middle;
-/*    font: 30px Calibri;*/
-}
