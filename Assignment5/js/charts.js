@@ -92,8 +92,7 @@ function bargraph() {
             .attr("transform", "rotate(-65)");
 
         ;
-
-        svg1.append("text")
+         svg1.append("text")
             .attr("x", (width / 2))
             .attr("y", 0 - (margin.top / 2))
             .attr("text-anchor", "middle")
@@ -203,5 +202,6 @@ function linegraph() {
             .style("font-size", "16px")
             .style("text-decoration", "underline")
             .text("Trend of Crimes during time-of-day");
+
     });
 }
