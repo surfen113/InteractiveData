@@ -9,7 +9,7 @@ function loadJS() {
 
 function bargraph() {
 
-    var margin = {top: 35, right: 20, bottom: 100, left: 40},
+    var margin = {top: 35, right: 20, bottom: 100, left: 50},
         width = 1500 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
