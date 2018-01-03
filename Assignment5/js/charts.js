@@ -91,7 +91,6 @@ function bargraph() {
             .attr("dy", ".15em")
             .attr("transform", "rotate(-65)");
 
-        ;
          svg1.append("text")
             .attr("x", (width / 2))
             .attr("y", 0 - (margin.top / 2))
