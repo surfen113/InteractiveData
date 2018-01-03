@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Heatmaps</title>
 
-        <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-                <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi9D-c3dkOhyvU0arXcqylnTgDwwj2qRM&libraries=visualization&callback=initMap">
+
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi9D-c3dkOhyvU0arXcqylnTgDwwj2qRM&libraries=visualization&callback=initMap">
     </script>
-        <link rel="stylesheet" href="css/style.css">
-         <script src="js/main.js"></script>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/d3-tip.js"></script>
+
+
     <style>
     </style>
-  </head>
+</head>
 
-  <body>
-    <div id="floating-panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
-    </div>
-    <div id="map"></div>
-    <div id="map-canvas"></div>
-    <div id="map2">
-      <center><h2>Crimes in San Francisco</h2></center>
-      <p>asdasd asdasdsa
-      </p>
-    </div>
-    <script>
+<body onload="loadMap()">
+<div id="floating-panel">
+    <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+    <button onclick="changeGradient()">Change gradient</button>
+    <button onclick="changeRadius()">Change radius</button>
+    <button onclick="changeOpacity()">Change opacity</button>
+</div>
+<div id="map"></div>
+<div id="map-canvas"></div>
+<div id="map2">
+    <center><h2>Crimes in San Francisco</h2></center>
+
+</div>
 
 
-    </script>
+<section id="visualiazation">
+    <div style="float: left" id="l1"/>
+    <div style="float: left" id="l2"/>
+    <div style="..." id="l3"/>
+</section>
 
-  </body>
+
+</body>
 </html>
