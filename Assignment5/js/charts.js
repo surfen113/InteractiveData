@@ -92,6 +92,13 @@ function bargraph() {
             .attr("transform", "rotate(-65)");
 
         ;
+         svg1.append("text")
+            .attr("x", (width / 2))
+            .attr("y", 0 - (margin.top / 2))
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("text-decoration", "underline")
+            .text("#Crimes Committed (based on Category)");
 
         // add the y Axis
         svg1.append("g")
@@ -187,6 +194,14 @@ function linegraph() {
         // Add the Y Axis
         svg3.append("g")
             .call(d3.axisLeft(y));
+
+        svg3.append("text")
+            .attr("x", (width / 2))
+            .attr("y", 0 - (margin.top / 2))
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("text-decoration", "underline")
+            .text("Trend of Crimes during time-of-day");
 
     });
 }
