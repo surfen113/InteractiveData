@@ -111,3 +111,7 @@
       stroke: steelblue;
       stroke-width: 2px;
   }
+
+.text-widget{
+    width: 50%;
+}

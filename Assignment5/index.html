@@ -30,7 +30,14 @@
 <div id="map"></div>
 <div id="map-canvas"></div>
 <div id="map2">
-    <center><h2>Crimes in San Francisco</h2></center>
+  <center><h2>Crimes in San Francisco</h2></center>
+      <center><div class="text-widget">
+      <p>We used the sf_crime.geojson as a dataset in order to visualize the crimes in San Francisco. </br>
+      A heatmap is used to depict the intensity of data at geographical points so we chose to use it to visualize the areas prone to crimes. We used the Google Maps JavaScript API to render the heatmap. </br>
+      Since we have the coordinates, each crime represents a data point on a map. The heatmap colors are dynamically scaled according to the greatest concentration of points. Areas of higher intensity are colored red, and areas of lower intensity appear green. </br>
+      Change radius button modifies the radius of influence for each data point to be lower than the default value. At a lower intensity, it can be clearly noted that the NE of San Francisco is the most targeted area regarding crimes.
+      </p>        
+      </div></center>
 
 </div>
 
