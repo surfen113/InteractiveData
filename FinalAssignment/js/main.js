@@ -6,7 +6,14 @@
 //d3.select(window).on('load', loadJS);
 
 
-d3.select(window).on("resize", throttle);
+//d3.select(window).on("resize", throttle);
+
+
+function loadJS() {
+    throttle();
+}
+
+
 
 var zoom = d3.zoom()
 //.extent([1,9])
