@@ -6,21 +6,35 @@
     <title>Diseases around the world</title>
     <meta name="author" content="Simona Toader, Riddhi Raj, Julian Ritter"/>
 
-    <link rel="stylesheet" type="text/css" href="libraries/jQueryFullPage/javascript.fullPage.css"/>
-    <link rel="stylesheet" type="text/css" href="libraries/bootstrap/bootstrap.min.css"/>
+
+    <!-- Custom styles + Custom Code -->
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
 
 
+    <!-- Jquery Full Page -->
     <script type="text/javascript" src="libraries/jQueryFullPage/javascript.fullPage.js"></script>
+    <link rel="stylesheet" type="text/css" href="libraries/jQueryFullPage/javascript.fullPage.css"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="libraries/bootstrap/bootstrap.min.css"/>
+
+
+    <!--D3 -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
 
-
-
-
+    <!--DataMaps stuff -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
     <script src="libraries/datamaps.world.min.js"></script>
+
+
+    <!-- JQuery RangeSlider stuff -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="libraries/jQueryRangeSlider/jQRangeSlider-min.js"></script>
+    <link rel="stylesheet" href="libraries/jQueryRangeSlider/iThing.css" type="text/css" />
 
 
 </head>
@@ -83,9 +97,8 @@
 
 
             <div id="container" style="position: relative; width: 1400px; height: 900px;"></div>
-            <script>
-                var map = new Datamap({element: document.getElementById('container')});
-            </script>
+            <div id="yearSlider" style="width:600px;margin-left:500px"></div>
+
 
         </div>
     </div>
@@ -100,7 +113,6 @@
 
 </script>
 
-<script src="js/main.js" defer></script>
 
 
 </body>
