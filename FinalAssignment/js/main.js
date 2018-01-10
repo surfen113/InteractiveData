@@ -2,6 +2,8 @@
 
 var map = new Datamap({
     element: document.getElementById('container'),
+    projection: 'mercator',
+
     fills: {
         HIGH: '#afafaf',
         LOW: '#123456',
@@ -24,6 +26,7 @@ var map = new Datamap({
 //draw a legend for this map
 map.legend();
 
+
 map.updateChoropleth({
     USA: {fillKey: 'LOW'},
     CAN: '#0fa0fa'
@@ -32,6 +35,7 @@ map.updateChoropleth({
 
 function redrawMap(min, max, modus) {
     console.log("Min: " + min + "  Max: " + max + "  Modus: " + modus);
+
 }
 
 
