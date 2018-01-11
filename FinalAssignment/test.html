@@ -8,6 +8,15 @@
     <script src="http://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js" type="text/javascript"></script>
 
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+
+
+
+
+    <!-- JQuery RangeSlider stuff -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="libraries/jQueryRangeSlider/jQRangeSlider-min.js"></script>
+    <link rel="stylesheet" href="libraries/jQueryRangeSlider/iThing.css" type="text/css" />
     <style>
         #chartdiv {
             width: 100%;
@@ -18,9 +27,12 @@
 </head>
 <body>
 
-<input type="button" value="Select dataset #1" onclick="setDataset(0);"/>
+<input type="button" value="Select dataset #1" onclick="filterData(0,0,0);"/>
 <input type="button" value="Select dataset #2" onclick="setDataset(1);"/>
 <input type="button" value="Select dataset #3" onclick="setDataset(2);"/>
+
+<div id="yearSlider" style="width:600px; margin-left:500px"></div>
+
 
 <div id="chartdiv"></div>
 <script>
@@ -28,6 +40,20 @@
 
     var map;
     var dataSets;
+    var mapData;
+
+    $("#yearSlider").rangeSlider({
+        bounds: {min: 2010, max: 2017},
+        defaultValues: {min: 2011, max: 2016},
+        step: 1
+    });
+
+    $("#yearSlider").bind("valuesChanging", function(e, data){
+        console.log("Values just changed. min: " + data.values.min + " max: " + data.values.max);
+        filterData(data.values.min, data.values.max, null);
+    });
+
+
 
 
     AmCharts.addInitHandler(function (chart) {
@@ -91,7 +117,10 @@
         /**
          * Parse loaded CSV
          */
-        var mapData = AmCharts.parseCSV(response, {
+
+
+
+        mapData = AmCharts.parseCSV(response, {
             "separator": ",",
             "useColumnNames": true,
             "numberFields": ["value"]
@@ -205,6 +234,35 @@
     function setDataset(index) {
         map.dataProvider.areas = dataSets[Number(index)];
         map.validateData();
+    }
+
+
+    function filterData(from, to, mode) {
+        var areas = [];
+        for (var i = 0; i < mapData.length; i++) {
+            var dataItem = mapData[i];
+            var value = dataItem[from];
+            var id = dataItem.ISO2;
+            var log = 0;
+            if (value > 0) {
+                log = Math.log(value);
+            }
+            else {
+                log = 20.5;
+            }
+
+            console.log(id + " " + log);
+            areas.push({
+                id: id,
+                value: log,
+                //color: "#000000"
+            })
+        }
+
+        map.dataProvider.areas = areas;
+        map.validateData();
+
+
     }
 
 
