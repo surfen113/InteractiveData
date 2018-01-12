@@ -27,11 +27,11 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-var mySlider = $("#ex2").bootstrapSlider();
+    var mySlider = $("#ex2").bootstrapSlider();
 // Call a method on the slider
     var value = mySlider.bootstrapSlider('getValue');
 // For non-getter methods, you can chain together commands
-   console.log(value);
+    console.log(value);
 });
 
 
