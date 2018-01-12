@@ -109,7 +109,8 @@ p {
 /* Section 2
  * --------------------------------------- */
 #section1 {
-    background-color: #2EBE21;
+    /*background-color: #2EBE21;*/
+    background-color: #fff !important;
 }
 
 #section1 h1 {
@@ -118,6 +119,16 @@ p {
 
 #section1 p {
     opacity: 0.8;
+}
+
+#canvas-holder{
+    float: right;
+    margin-right: 10%;
+}
+
+#slide0-content{
+    width: 50%;
+float: left;
 }
 
 /* Section 3
@@ -134,4 +145,11 @@ p {
     opacity: 0.6;
 }
 
+.fp-controlArrow.fp-prev{
+    border-color: transparent #eee  transparent transparent !important;
+}
 
+.fp-controlArrow.fp-next {
+    border-width: 38.5px 0 38.5px 34px;
+    border-color: transparent transparent transparent #eee  !important;
+}

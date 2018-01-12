@@ -6,6 +6,15 @@
     <title>Diseases around the world</title>
     <meta name="author" content="Simona Toader, Riddhi Raj, Julian Ritter"/>
 
+    <!--D3 -->
+        <script src="js/diseases_pie.js" defer></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.2.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+        <script src="http://www.chartjs.org/dist/2.7.1/Chart.bundle.js"></script>
+
+
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
@@ -58,7 +67,7 @@
     </style>
 
 </head>
-<body>
+<body onload="getTotalCases()">
 
 
 <ul id="menu">
@@ -81,7 +90,11 @@
         <div class="slide" id="slide1">
             <div class="intro">
                 <h1>Slider </h1>
-                <p>
+                    <div id="canvas-holder" style="width:40%">
+        <canvas id="myChart" />
+    </div>
+                <div id="slide0-content"></div>
+<!--                 <p>
                     The aim of our project is to display the distribution of different diseases all around the world. We
                     therefore used <a href="">datasets</a> from the <a href="">World Health Organization</a> which
                     delivers us the total number of cases for each country and every year for the diseases xx,yy,zz. We
@@ -97,7 +110,7 @@
                     show
                     the trend over the years, there is a possibility to use a time picker to only show the data of
                     specific years.
-                </p>
+                </p> -->
 
             </div>
             <div class="slide">

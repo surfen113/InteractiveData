@@ -1,0 +1,155 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <title>Doughnut Chart</title>
+    <!-- Custom styles + Custom Code -->
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    <script src="./js/diseases_pie.js" defer></script>
+
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.2.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+   <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+  
+  <script src="http://www.chartjs.org/dist/2.7.1/Chart.bundle.js"></script>
+
+    <style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
+</head>
+
+<body  onload="getTotalCases()">
+    <div id="canvas-holder" style="width:40%">
+        <canvas id="myChart" />
+    </div>
+
+    <div id="slide0-content"></div>
+<!--    
+
+   <script type="text/javascript">
+       var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
+    };
+
+    var config = {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [
+                    10,10,10,10,10,
+    
+                ],
+                backgroundColor: [
+                    "rgb(205, 65, 65)",
+                    "rgb(205, 65, 65)",
+                    "rgb(205, 65, 65)",
+                    "rgb(205, 65, 65)",
+                    "rgb(205, 65, 65)",
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                "Red",
+                "Orange",
+                "Yellow",
+                "Green",
+                "Blue"
+            ]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Doughnut Chart'
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myDoughnut = new Chart(ctx, config);
+    };
+
+    document.getElementById('randomizeData').addEventListener('click', function() {
+        config.data.datasets.forEach(function(dataset) {
+            dataset.data = dataset.data.map(function() {
+                return randomScalingFactor();
+            });
+        });
+
+        window.myDoughnut.update();
+    });
+
+    var colorNames = Object.keys(window.chartColors);
+    document.getElementById('addDataset').addEventListener('click', function() {
+        var newDataset = {
+            backgroundColor: [],
+            data: [],
+            label: 'New dataset ' + config.data.datasets.length,
+        };
+
+        for (var index = 0; index < config.data.labels.length; ++index) {
+            newDataset.data.push(randomScalingFactor());
+
+            var colorName = colorNames[index % colorNames.length];;
+            var newColor = window.chartColors[colorName];
+            newDataset.backgroundColor.push(newColor);
+        }
+
+        config.data.datasets.push(newDataset);
+        window.myDoughnut.update();
+    });
+
+    document.getElementById('addData').addEventListener('click', function() {
+        if (config.data.datasets.length > 0) {
+            config.data.labels.push('data #' + config.data.labels.length);
+
+            var colorName = colorNames[config.data.datasets[0].data.length % colorNames.length];;
+            var newColor = window.chartColors[colorName];
+
+            config.data.datasets.forEach(function(dataset) {
+                dataset.data.push(randomScalingFactor());
+                dataset.backgroundColor.push(newColor);
+            });
+
+            window.myDoughnut.update();
+        }
+    });
+
+    document.getElementById('removeDataset').addEventListener('click', function() {
+        config.data.datasets.splice(0, 1);
+        window.myDoughnut.update();
+    });
+
+    document.getElementById('removeData').addEventListener('click', function() {
+        config.data.labels.splice(-1, 1); // remove the label first
+
+        config.data.datasets.forEach(function(dataset) {
+            dataset.data.pop();
+            dataset.backgroundColor.pop();
+        });
+
+        window.myDoughnut.update();
+    });
+   </script> -->
+</body>
+
+</html>
+
+
+
