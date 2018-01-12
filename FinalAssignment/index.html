@@ -6,15 +6,32 @@
     <title>Diseases around the world</title>
     <meta name="author" content="Simona Toader, Riddhi Raj, Julian Ritter"/>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
 
-    <!-- Custom styles + Custom Code -->
-    <link rel="stylesheet" href="css/styles.css">
+    <!--RangeSlider stuff -->
+    <script src="libraries/jQueryRangeSlider/jQRangeSlider-min.js"></script>
+    <link rel="stylesheet" href="libraries/jQueryRangeSlider/iThing.css" type="text/css"/>
+
+    <!-- JQuery FullPage -->
+    <link rel="stylesheet" type="text/css" href="libraries/jQueryFullPage/jquery.fullPage.css"/>
+    <script type="text/javascript" src="libraries/jQueryFullPage/jquery.fullPage.js"></script>
+
+    <!-- AmCharts -->
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js" type="text/javascript"></script>
+
+
+    <!-- Own Code + style -->
     <script src="js/main.js" defer></script>
+    <script src="js/map.js" defer></script>
 
+    <link rel="stylesheet" href="css/styles.css">
 
-    <!-- Jquery Full Page -->
-    <script type="text/javascript" src="libraries/jQueryFullPage/javascript.fullPage.js"></script>
-    <link rel="stylesheet" type="text/css" href="libraries/jQueryFullPage/javascript.fullPage.css"/>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="libraries/bootstrap/bootstrap.min.css"/>
@@ -23,40 +40,46 @@
     <!--D3 -->
     <script src="https://d3js.org/topojson.v1.min.js"></script>
 
-    <!--DataMaps stuff -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-    <script src="libraries/datamaps.world.hires.min.js"></script>
 
+    <!--[if IE]>
+    <script type="text/javascript">
+        var console = {
+            log: function () {
+            }
+        };
+    </script>
+    <![endif]-->
 
-    <!-- JQuery RangeSlider stuff -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-    <script src="libraries/jQueryRangeSlider/jQRangeSlider-min.js"></script>
-    <link rel="stylesheet" href="libraries/jQueryRangeSlider/iThing.css" type="text/css" />
-
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
 
 </head>
 <body>
 
 
+<ul id="menu">
+    <li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+    <li data-menuanchor="4thpage"><a href="#4thpage">Map</a></li>
+</ul>
+
+
 <div id="fullpage">
     <div class="section " id="section0">
-        <div class="content">
-            <h1>Diseases around the world</h1>
-            <p>Final project - Interactive Data Exploration 2017</p>
-            <p>Simona Toader, Riddhi Raj, Julian Ritter</p>
-        </div>
-
-
-
-
-
-
+        <h1>Diseases around the world</h1>
+        <p>Final project - Interactive Data Exploration 2017</p>
+        <p>Simona Toader, Riddhi Raj, Julian Ritter</p>
     </div>
-    <div class="section" id="section1">
+
+
+    <div class="section active" id="section1">
         <div class="slide" id="slide1">
-            <div class="content">
+            <div class="intro">
                 <h1>Slider </h1>
                 <p>
                     The aim of our project is to display the distribution of different diseases all around the world. We
@@ -77,43 +100,45 @@
                 </p>
 
             </div>
-        </div>
-        <div class="slide" id="slide2">
-            <div class="content">
-                <h1>Slides two!</h1>
+            <div class="slide">
+                <div class="intro">
+                    <h1>Simple</h1>
+                    <p>Easy to use. Configurable and customizable.</p>
+                </div>
             </div>
-        </div>
-        <div class="slide" id="slide3">
-            <div class="content">
-                <h1>Slide three</h1>
+            <div class="slide">
+                <div class="intro">
+                    <h1>Cool</h1>
+                    <p>It just looks cool. Impress everybody with a simple and modern web design!</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="intro">
+                    <h1>Compatible</h1>
+                    <p>Working in modern and old browsers too! IE 8 users don't have the fault of using that horrible
+                        browser! Lets give them a chance to see your site in a proper way!</p>
+                </div>
             </div>
         </div>
     </div>
+
     <div class="section" id="section2">
-        <div class="content">
+        <div class="intro">
+            <h1>Example</h1>
+            <p>HTML markup example to define 4 sections.</p>
+        </div>
+    </div>
+
+
+    <div class="section" id="section3">
+        <div class="intro">
             <h1>Map</h1>
-            <p>Explain the map here</p>
-
-
-            <div id="container" style="width: 1000px; height: 650px;"></div>
             <div id="yearSlider" style="width:600px; margin-left:500px"></div>
+            <div id="chartdiv"></div>
 
 
         </div>
     </div>
-</div>
-
-<script type="text/javascript">
-    fullpage.initialize('#fullpage', {
-        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-        menu: '#menu',
-        css3: true
-    });
-
-</script>
-
-
 
 </body>
-
 </html>
