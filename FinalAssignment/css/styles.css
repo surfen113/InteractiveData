@@ -1,3 +1,14 @@
+.slider.slider-horizontal {
+    width: 500px;
+    height: 20px;
+}
+
+
+
+/*
+    From here on the styles were copied from other libraries!!!!!
+ */
+
 #myMenu {
     position: fixed;
     top: 0;
