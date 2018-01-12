@@ -36,8 +36,11 @@ $(document).ready(function() {
 
 
 $("#ex2").on("slide", function(slideEvt) {
+    filterData(slideEvt.value[0], slideEvt.value[1])
+});
 
-    filterData(slideEvt.value[0], slideEvt.value[1], null)
+$("input[name='disease']").change(function (radioChanged) {
+    changeDisease(radioChanged.currentTarget.value)
 });
 // Without JQuery
 //var slider = new Slider('#ex2', {});

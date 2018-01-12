@@ -40,7 +40,8 @@
     <script src="js/diseases_pie.js" defer></script>
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- Bootstrap -->
+
+     <!--Bootstrap -->
     <link rel="stylesheet" type="text/css" href="libraries/bootstrap/bootstrap.min.css"/>
 
 
@@ -126,9 +127,25 @@
             <div id="chartdiv" style="margin-bottom:50px"></div>
 
 
+            <p>
             Filter by Years: <b>1980</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="1980"
                                                 data-slider-max="2016" data-slider-step="1"
-                                                data-slider-value="[2000,2001]" style="margin-top:20px"/> <b>2016</b>
+                                                data-slider-value="[2015,2016]" style="margin-top:20px"/> <b>2016</b>
+            </p>
+
+            <form style="margin-top:80px">
+                <input type="radio" name="disease" value="CRS" checked> CRS
+                <input type="radio" name="disease" value="diphtheria"> Diphtheria
+                <input type="radio" name="disease" value="JapEnc"> Japanese Encephalitis
+                <input type="radio" name="disease" value="measles"> Measles
+                <input type="radio" name="disease" value="mumps"> Mumps<br>
+                <input type="radio" name="disease" value="ntetanus"> Neonatal tetanus
+                <input type="radio" name="disease" value="pertussis"> Pertussis
+                <input type="radio" name="disease" value="polio"> Polio
+                <input type="radio" name="disease" value="Rubella"> Rubella
+                <input type="radio" name="disease" value="ttetanus"> Tetanus
+                <input type="radio" name="disease" value="yfever"> Hay Fever
+            </form>
 
         </div>
     </div>
