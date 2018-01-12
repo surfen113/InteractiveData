@@ -96,7 +96,6 @@ AmCharts.loadFile("data/rubella_2.csv", {}, function (response) {
             log = 20.5;
         }
 
-        console.log(id + " " + log);
         areas.push({
             id: id,
             value: log,
@@ -204,7 +203,6 @@ function filterData(from, to, mode) {
             log = 20.5;
         }
 
-        console.log(id + " " + log);
         areas.push({
             id: id,
             value: log,
