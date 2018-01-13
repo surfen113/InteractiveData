@@ -63,8 +63,8 @@ function loadMap(areas) {
 
             "valueLegend": {
                 right: 10,
-                minValue: "little",
-                maxValue: "a lot!"
+                minValue: 10,
+                showAsGradient: true
             }
         });
     }
@@ -121,8 +121,6 @@ function readData()
         }
     }
     loadMap(areas);
-
-    console.log(diseaseData);
 }
 
 
