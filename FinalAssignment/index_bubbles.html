@@ -53,7 +53,7 @@
                 });
             }
 
-            dataset.children[index].Count = Math.log(total);
+            dataset.children[index].Count = (Math.log(total));
 
         });
 
@@ -69,6 +69,18 @@
             .attr("width", diameter)
             .attr("height", diameter)
             .attr("class", "bubble");
+
+        var tooltip = d3.select("body")
+            .append("div")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("visibility", "hidden")
+            .style("color", "white")
+            .style("padding", "8px")
+            .style("background-color", "rgba(0, 0, 0, 0.75)")
+            .style("border-radius", "6px")
+            .style("font", "12px sans-serif")
+            .text("tooltip");
 
         var nodes = d3.hierarchy(dataset)
             .sum(function(d) { return d.Count; });
@@ -96,7 +108,23 @@
             })
             .style("fill", function(d,i) {
                 return color(i);
-            });
+            })
+            .on("mouseover", function(d) {
+                tooltip.text("yay");
+                d3.select(this).transition()
+
+                    .attr("r", d.r*1.5);
+                tooltip.style("visibility", "visible");
+            })
+            .on("mousemove", function() {
+                return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+            })
+            .on("mouseout", function(d){
+                d3.select(this).transition()
+
+                    .attr("r", d.r);
+                return tooltip.style("visibility", "hidden");});
+        ;
 
         node.append("text")
             .attr("dy", ".2em")
