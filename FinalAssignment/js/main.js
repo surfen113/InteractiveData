@@ -31,7 +31,6 @@ $(document).ready(function() {
 // Call a method on the slider
     var value = mySlider.bootstrapSlider('getValue');
 // For non-getter methods, you can chain together commands
-    console.log(value);
 });
 
 

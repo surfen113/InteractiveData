@@ -43,7 +43,7 @@ function loadMap(areas) {
                 "zoomLevel": 4,
 
                 "zoomControlEnabled": true,
-                left:100,
+                left: 100,
                 homeButtonEnabled: false
             },
 
@@ -112,41 +112,46 @@ function readData() {
     var diseaseData = mapData.filter(function (data) {
         return data.Disease === disease;
     });
-    console.log("Showing " + disease + " from " + fromYr + " to " + toYr);
     var areas = [];
     for (var i = 0; i < diseaseData.length; i++) {
         var dataItem = diseaseData[i];
         //if (dataItem.Disease === disease)
         {
 
-            for(var year=fromYr;year<=toYr;year++) {
-                
+            var sum = 0;
+            for (var year = fromYr; year <= toYr; year++) {
+                value = +dataItem[year];
+
+                if (value != null && value > 0) {
+                    sum = sum + value;
+                }
+
             }
 
-            var value = dataItem[fromYr];
+            //var value = dataItem[fromYr];
             var id = dataItem.ISO2;
             var option = -1;
-            if (value >= 10) {
+            if (sum >= 10) {
                 option = 0;
             }
             else {
                 option = 1;
             }
-            if (!value) {
+            if (!sum) {
                 option = 2;
             }
             switch (option) {
                 case 0:
                     areas.push({
                         id: id,
-                        description: value.toString(),
-                        value: Math.log(value)
+                        description: sum.toString(),
+                        value: Math.log(sum)
                     });
                     break;
                 case 1:
                     areas.push({
                         id: id,
-                        description: value.toString(),
+                        description: sum.toString(),
                         value: 0,
                         color: "#008000"
                     });
@@ -164,19 +169,16 @@ function readData() {
     }
     loadMap(areas);
 
-    console.log(diseaseData);
 }
 
 
 function filterData(from, to) {
-    console.log("filterData");
     fromYr = from;
     toYr = to;
     readData();
 }
 
 function changeDisease(diseaseName) {
-    console.log("changeDisease")
     disease = diseaseName;
     readData();
 }
