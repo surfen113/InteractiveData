@@ -30,14 +30,22 @@ function loadMap(areas) {
     }
     else {
 
+
         map = AmCharts.makeChart("chartdiv", {
 
             "type": "map",
             //"theme": "light",
-            "projection": "miller",
+            "projection": "equirectangular",
             "colorSteps": 10,
             "preventDragOut": "false",
             "zoomDuration": 0.3,
+            "zoomControl": {
+                "zoomLevel": 4,
+
+                "zoomControlEnabled": true,
+                left:100,
+                homeButtonEnabled: false
+            },
 
             // "dataProvider": dataProvider,
             "dataProvider": {
@@ -96,6 +104,7 @@ function loadMap(areas) {
 
             }
         });
+
     }
 }
 
@@ -109,6 +118,11 @@ function readData() {
         var dataItem = diseaseData[i];
         //if (dataItem.Disease === disease)
         {
+
+            for(var year=fromYr;year<=toYr;year++) {
+                
+            }
+
             var value = dataItem[fromYr];
             var id = dataItem.ISO2;
             var option = -1;
@@ -155,12 +169,14 @@ function readData() {
 
 
 function filterData(from, to) {
+    console.log("filterData");
     fromYr = from;
     toYr = to;
     readData();
 }
 
 function changeDisease(diseaseName) {
+    console.log("changeDisease")
     disease = diseaseName;
     readData();
 }
