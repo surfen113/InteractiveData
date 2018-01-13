@@ -24,19 +24,28 @@ AmCharts.loadFile("data/data.csv", {}, function (response) {
 
 function loadMap(areas) {
 
-    if(map)
-    {
+    if (map) {
         map.dataProvider.areas = areas;
         map.validateData();
     }
     else {
 
+
         map = AmCharts.makeChart("chartdiv", {
 
             "type": "map",
             //"theme": "light",
-            "projection": "miller",
+            "projection": "equirectangular",
             "colorSteps": 10,
+            "preventDragOut": "false",
+            "zoomDuration": 0.3,
+            "zoomControl": {
+                "zoomLevel": 4,
+
+                "zoomControlEnabled": true,
+                left:100,
+                homeButtonEnabled: false
+            },
 
             // "dataProvider": dataProvider,
             "dataProvider": {
@@ -61,17 +70,45 @@ function loadMap(areas) {
                 "position": "bottom-right"
             },
 
-            "valueLegend": {
-                right: 10,
-                minValue: 10,
-                showAsGradient: true
+            "legend": {
+                width: "100%",
+                divId: "legenddiv",
+                marginRight: 27,
+                marginLeft: 27,
+                equalWidths: false,
+                backgroundAlpha: 0.5,
+                backgroundColor: "#FFFFFF",
+                borderColor: "#ffffff",
+                borderAlpha: 1,
+                top: 450,
+                left: 0,
+                horizontalGap: 10,
+                data: [{
+                    title: "No data",
+                    color: "#dddddd"
+                }, {
+
+                    title: "Very Low",
+                    color: "#008000"
+                },
+                    {
+                        title: "Low",
+                        color: "#d8a64f"
+                    }, {
+                        title: "Medium",
+                        color: "#b36d37"
+                    }, {
+                        title: "High",
+                        color: "#82261a"
+                    }]
+
             }
         });
+
     }
 }
 
-function readData()
-{
+function readData() {
     var diseaseData = mapData.filter(function (data) {
         return data.Disease === disease;
     });
@@ -81,6 +118,11 @@ function readData()
         var dataItem = diseaseData[i];
         //if (dataItem.Disease === disease)
         {
+
+            for(var year=fromYr;year<=toYr;year++) {
+                
+            }
+
             var value = dataItem[fromYr];
             var id = dataItem.ISO2;
             var option = -1;
@@ -121,16 +163,20 @@ function readData()
         }
     }
     loadMap(areas);
+
+    console.log(diseaseData);
 }
 
 
 function filterData(from, to) {
+    console.log("filterData");
     fromYr = from;
     toYr = to;
     readData();
 }
 
 function changeDisease(diseaseName) {
+    console.log("changeDisease")
     disease = diseaseName;
     readData();
 }
