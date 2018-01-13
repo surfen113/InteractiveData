@@ -8,6 +8,28 @@
     height: 500px;
 }
 
+#legenddiv {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#legenddiv svg {
+    width:500px !important;
+}
+
+/* Hide Box when Clicking on a country */
+.ammapDescriptionWindow {
+    display: none;
+
+}
+
+.amcharts-export-menu {
+    display:none;
+}
+
+.amcharts-small-map {
+    display:none;
+}
 
 
 /*
@@ -137,14 +159,14 @@ p {
     opacity: 0.8;
 }
 
-#canvas-holder{
+#canvas-holder {
     float: right;
     margin-right: 10%;
 }
 
-#slide0-content{
+#slide0-content {
     width: 50%;
-float: left;
+    float: left;
 }
 
 /* Section 3
@@ -161,11 +183,11 @@ float: left;
     opacity: 0.6;
 }
 
-.fp-controlArrow.fp-prev{
-    border-color: transparent #eee  transparent transparent !important;
+.fp-controlArrow.fp-prev {
+    border-color: transparent #eee transparent transparent !important;
 }
 
 .fp-controlArrow.fp-next {
     border-width: 38.5px 0 38.5px 34px;
-    border-color: transparent transparent transparent #eee  !important;
+    border-color: transparent transparent transparent #eee !important;
 }
