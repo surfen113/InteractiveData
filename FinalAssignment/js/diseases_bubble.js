@@ -68,7 +68,7 @@ function DataIsReady(label_disease, color) {
     // };
 
     var items = [
-            {text: crs_label, count: 20000},
+            {text: crs_label, count: 20000, test: "lalalalaa more Text...."},
             {text: diphtheria_label, count: diphtheria_total},
             {text: JapEnc_label, count: 20000},
             {text: measles_label, count: measles_total},
@@ -103,7 +103,7 @@ function DataIsReady(label_disease, color) {
           {
             name: "central-click",
             options: {
-              text: "(See more detail)",
+              //text: "(See more detail)",
               style: {
                 "font-size": "12px",
                 "font-style": "italic",
@@ -116,7 +116,7 @@ function DataIsReady(label_disease, color) {
               centralClick: function() {
                                  $("#slide0-content").empty();
             $disease_description = '<div><span><p>' + "aaaa" + '</p></span></div>'
-         
+
             $('#slide0-content').append($disease_description);
                 // alert("Here is more details!!");
               }
@@ -155,7 +155,24 @@ function DataIsReady(label_disease, color) {
                     x: function (d) {return d.cx;},
                     y: function (d) {return d.cy;}
                   },
-                }
+                },
+                  {// Line #2
+                      textField: "test",
+                      classed: {text: true},
+                      style: {
+                          "font-size": "0px",
+                          "font-family": "Source Sans Pro, sans-serif",
+                          "text-anchor": "middle",
+                          //"display" : "none",
+                          fill: "white"
+                      },
+                      attr: {
+                          dy: "40px",
+                          x: function (d) {return d.cx;},
+                          y: function (d) {return d.cy;}
+                      },
+                  }
+
               ],
               centralFormat: [
                 {// Line #0
@@ -165,7 +182,11 @@ function DataIsReady(label_disease, color) {
                 {// Line #1
                   style: {"font-size": "30px"},
                   attr: {dy: "40px"}
-                }
+                },
+                  {// Line #2
+                      style: {"font-size": "15px"},
+                      attr: {dy: "60px"}
+                  }
               ]
             }
           }]
