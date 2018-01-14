@@ -131,14 +131,15 @@ var colorGaps = [
     "#FF5500",
     "#FF3800",
     "#FF1C00",
-    "#FF0000"
+    "#FF0000",
+    "#dddddd"
 ];
 var areas = [];
 
 function putColor(id, sum, percentageText, color) {
     areas.push({
         id: id,
-        description: "Incidences: " + sum + "<br>Percentage: " + percentageText + " %",
+        description: "Incidences: " + sum + "<br>Percentage: " + percentageText,
         //value: sum,
         color: colorGaps[color]
     });
@@ -147,6 +148,8 @@ function putColor(id, sum, percentageText, color) {
 function getTotal(dataset, id) {
 
     var total = 0;
+
+    var dataPresent = false;
 
     if (id != 0) {
         var countryData = dataset.filter(function (data) {
@@ -157,11 +160,23 @@ function getTotal(dataset, id) {
 
     for (var year = fromYr; year <= toYr; year++) {
         total += d3.sum(dataset, function (number) {
-            return +number[year];
+            if(number[year])
+                dataPresent = !dataPresent || true;
+            else
+                dataPresent = dataPresent || false;
+            return number[year];
         });
     }
 
-    return total;
+    console.log(id + ": " + dataPresent);
+
+    if(dataPresent)
+        return total;
+    else
+    {
+        return null;
+    }
+
 }
 
 function readData() {
@@ -178,11 +193,14 @@ function readData() {
         var dataItem = diseaseData[i];
         var id = dataItem.ISO2;
         var sum = getTotal(diseaseData, id);
-        var percentage = (sum / total * 100)
-        var percentageText = percentage.toFixed(4);
+        var percentage = (sum / total * 100);
+        var percentageText = percentage.toFixed(4) + " %";
 
         switch (true) {
-            case percentage <= percentGaps[0]:
+            case sum === null:
+                putColor(id, "No Data", "No Data", 11);
+                break;
+            case percentage === percentGaps[0]:
                 putColor(id, sum, percentageText, 0);
                 break;
             case percentage <= percentGaps[1]:
@@ -215,7 +233,6 @@ function readData() {
             case percentage > percentGaps[10]:
                 putColor(id, sum, percentageText, 10);
                 break;
-
         }
     }
     loadMap(areas);
