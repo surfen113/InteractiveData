@@ -287,3 +287,16 @@ label::before {
   -o-transition: .25s all ease;
   transition: .25s all ease;
 }
+
+
+
+    .bubbleChart {
+      min-width: 100px;
+      max-width: 700px;
+      height: 700px;
+    float: right !important;
+    margin-right: 10%;
+    }
+    .bubbleChart svg{
+/*      background: #000000;*/
+    }
