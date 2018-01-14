@@ -39,7 +39,7 @@ $("#ex2").on("slide", function(slideEvt) {
 });
 
 $("input[name='rb']").change(function (radioChanged) {
-    changeDisease(radioChanged.currentTarget.id)
+    changeDisease(radioChanged.currentTarget.value)
 });
 // Without JQuery
 //var slider = new Slider('#ex2', {});
