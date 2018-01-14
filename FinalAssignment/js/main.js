@@ -31,13 +31,14 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
+
     var fancySlider = document.getElementById('slider');
 
     noUiSlider.create(fancySlider, {
         start: [ 1996, 2000 ],
         connect: true,
         behaviour: 'drag-tap',
-        tooltips: true,
+        tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
         padding: 5,
         //step: 1,
         range: {
@@ -47,6 +48,7 @@ $(document).ready(function() {
     });
 
     fancySlider.noUiSlider.on('update', function(){
+        document.getElementsByClassName("noUi-tooltip").innerHTML = "blub";
         var minmax = fancySlider.noUiSlider.get();
         filterData(parseInt(minmax[0]), parseInt(minmax[1]));
     });
