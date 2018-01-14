@@ -39,7 +39,7 @@ $(document).ready(function() {
         behaviour: 'drag-tap',
         tooltips: true,
         padding: 5,
-        step: 1,
+        //step: 1,
         range: {
             'min': 1975,
             'max': 2021
