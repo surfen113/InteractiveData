@@ -139,7 +139,7 @@ function putColor(id, sum, percentageText, color) {
     areas.push({
         id: id,
         description: "Incidences: " + sum + "<br>Percentage: " + percentageText + " %",
-        value: sum,
+        //value: sum,
         color: colorGaps[color]
     });
 }
@@ -163,8 +163,6 @@ function getTotal(dataset, id) {
 
     return total;
 }
-
-
 
 function readData() {
 
