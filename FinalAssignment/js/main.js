@@ -41,5 +41,9 @@ $("#ex2").on("slide", function(slideEvt) {
 $("input[name='rb']").change(function (radioChanged) {
     changeDisease(radioChanged.currentTarget.value)
 });
+
+$("input[name='mode']").change(function (radioChanged) {
+    changeMode(radioChanged.currentTarget.value)
+});
 // Without JQuery
 //var slider = new Slider('#ex2', {});

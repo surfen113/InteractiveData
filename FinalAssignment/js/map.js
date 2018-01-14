@@ -4,9 +4,10 @@
 
 var map;
 var mapData;
-var fromYr = 2008;
-var toYr = 2014;
-var disease = "CRS";
+var fromYr = 1996;
+var toYr = 2016;
+var disease = "polio";
+var mode="total";
 
 AmCharts.loadFile("data/data.csv", {}, function (response) {
     /**
@@ -21,6 +22,47 @@ AmCharts.loadFile("data/data.csv", {}, function (response) {
 
     readData();
 });
+
+
+AmCharts.loadFile("data/income2.csv", {}, function (response) {
+
+    inhabitantData = AmCharts.parseCSV(response, {
+        "separator": ",",
+        "useColumnNames": true,
+        "numberFields": ["value"]
+    });
+
+    //readInhabitantData();
+});
+
+
+function filterInhabitants(from, to, country) {
+    var sum = 0;
+
+    var thisData = inhabitantData.filter(function (data) {
+        return data.ISO2 === country;
+    });
+    var areas = [];
+    for (var i = 0; i < thisData.length; i++) {
+        var dataItem = thisData[i];
+        //if (dataItem.Disease === disease)
+        {
+
+            for (var year = from; year <= to; year++) {
+                value = +dataItem[year];
+
+                if (value != null && value > 0) {
+                    sum = sum + value;
+                }
+
+            }
+
+
+            //console.log("Country: "+country + " :" + sum);
+        }
+    }
+    return sum;
+}
 
 function loadMap(areas) {
 
@@ -107,17 +149,29 @@ function loadMap(areas) {
 }
 
 var percentGaps = [
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+];
+
+var percentGaps2 = [
+    0,
+    0.0001,
+    0.0002,
+    0.0004,
+    0.0006,
+    0.0008,
+    0.001,
+    0.002,
+    0.004,
+    0.006
 ];
 
 var colorGaps = [
@@ -131,14 +185,24 @@ var colorGaps = [
     "#FF5500",
     "#FF3800",
     "#FF1C00",
-    "#FF0000"
+    "#FF0000",
+    "#dddddd"
 ];
 var areas = [];
 
 function putColor(id, sum, percentageText, color) {
     areas.push({
         id: id,
-        description: "Incidences: " + sum + "<br>Percentage: " + percentageText + " %",
+        description: "Incidences: " + sum + "<br>Percentage: " + percentageText,
+        //value: sum,
+        color: colorGaps[color]
+    });
+}
+
+function putColorInhabitants(id, sum, percentageText, oneOutOf, color) {
+    areas.push({
+        id: id,
+        description: "Incidences: " + sum + "<br>Percentage: " + percentageText + "<br>" + oneOutOf,
         //value: sum,
         color: colorGaps[color]
     });
@@ -147,6 +211,8 @@ function putColor(id, sum, percentageText, color) {
 function getTotal(dataset, id) {
 
     var total = 0;
+
+    var dataPresent = false;
 
     if (id != 0) {
         var countryData = dataset.filter(function (data) {
@@ -157,11 +223,23 @@ function getTotal(dataset, id) {
 
     for (var year = fromYr; year <= toYr; year++) {
         total += d3.sum(dataset, function (number) {
-            return +number[year];
+            if(number[year])
+                dataPresent = !dataPresent || true;
+            else
+                dataPresent = dataPresent || false;
+            return number[year];
         });
     }
 
-    return total;
+    //console.log(id + ": " + dataPresent);
+
+    if(dataPresent)
+        return total;
+    else
+    {
+        return null;
+    }
+
 }
 
 function readData() {
@@ -177,44 +255,100 @@ function readData() {
     for (var i = 0; i < diseaseData.length; i++) {
         var dataItem = diseaseData[i];
         var id = dataItem.ISO2;
-        var sum = getTotal(diseaseData, id);
-        var percentage = (sum / total * 100)
-        var percentageText = percentage.toFixed(4);
 
-        switch (true) {
-            case percentage <= percentGaps[0]:
-                putColor(id, sum, percentageText, 0);
-                break;
-            case percentage <= percentGaps[1]:
-                putColor(id, sum, percentageText, 1);
-                break;
-            case percentage <= percentGaps[2]:
-                putColor(id, sum, percentageText, 2);
-                break;
-            case percentage <= percentGaps[3]:
-                putColor(id, sum, percentageText, 3);
-                break;
-            case percentage <= percentGaps[4]:
-                putColor(id, sum, percentageText, 4);
-                break;
-            case percentage <= percentGaps[5]:
-                putColor(id, sum, percentageText, 5);
-                break;
-            case percentage <= percentGaps[6]:
-                putColor(id, sum, percentageText, 6);
-                break;
-            case percentage <= percentGaps[7]:
-                putColor(id, sum, percentageText, 7);
-                break;
-            case percentage <= percentGaps[8]:
-                putColor(id, sum, percentageText, 8);
-                break;
-            case percentage > percentGaps[9]:
-                putColor(id, sum, percentageText, 9);
-                break;
-            case percentage > percentGaps[10]:
-                putColor(id, sum, percentageText, 10);
-                break;
+        if(mode == "inhabitants") {
+            var inhabitants = filterInhabitants(fromYr, toYr, id);
+
+            var sum = getTotal(diseaseData, id);
+            var percentage = (sum / inhabitants * 100);
+            var oneOutOf = Math.round(percentage * 1000000).toString() + " case(s) per million" ;
+            var percentageText = percentage.toFixed(4) + " %";
+
+            switch (true) {
+                case sum === null:
+                    putColorInhabitants(id, "No Data", "No Data", "No Data", 11);
+                    break;
+                case percentage === percentGaps2[0]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 0);
+                    break;
+                case percentage <= percentGaps2[1]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 1);
+                    break;
+                case percentage <= percentGaps2[2]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 2);
+                    break;
+                case percentage <= percentGaps2[3]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 3);
+                    break;
+                case percentage <= percentGaps2[4]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 4);
+                    break;
+                case percentage <= percentGaps2[5]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 5);
+                    break;
+                case percentage <= percentGaps2[6]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 6);
+                    break;
+                case percentage <= percentGaps2[7]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 7);
+                    break;
+                case percentage <= percentGaps2[8]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 8);
+                    break;
+                case percentage <= percentGaps2[9]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 9);
+                    break;
+                case percentage > percentGaps2[9]:
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 10);
+                    break;
+            }
+
+        }
+        else {
+            var sum = getTotal(diseaseData, id);
+            var percentage = (sum / total * 100);
+            console.log(id + ": " + percentage);
+            var percentageText = percentage.toFixed(4) + " %";
+
+            switch (true) {
+                case sum === null:
+                    putColor(id, "No Data", "No Data", 11);
+                    break;
+                case percentage === percentGaps[0]:
+                    putColor(id, sum, percentageText, 0);
+                    break;
+                case percentage <= percentGaps[1]:
+                    putColor(id, sum, percentageText, 1);
+                    break;
+                case percentage <= percentGaps[2]:
+                    putColor(id, sum, percentageText, 2);
+                    break;
+                case percentage <= percentGaps[3]:
+                    putColor(id, sum, percentageText, 3);
+                    break;
+                case percentage <= percentGaps[4]:
+                    putColor(id, sum, percentageText, 4);
+                    break;
+                case percentage <= percentGaps[5]:
+                    putColor(id, sum, percentageText, 5);
+                    break;
+                case percentage <= percentGaps[6]:
+                    putColor(id, sum, percentageText, 6);
+                    break;
+                case percentage <= percentGaps[7]:
+                    putColor(id, sum, percentageText, 7);
+                    break;
+                case percentage <= percentGaps[8]:
+                    putColor(id, sum, percentageText, 8);
+                    break;
+                case percentage <= percentGaps[9]:
+                    putColor(id, sum, percentageText, 9);
+                    break;
+                case percentage > percentGaps[9]:
+                    putColor(id, sum, percentageText, 10);
+                    break;
+            }
+
 
         }
     }
@@ -229,5 +363,10 @@ function filterData(from, to) {
 
 function changeDisease(diseaseName) {
     disease = diseaseName;
+    readData();
+}
+
+function changeMode(modeName) {
+    mode = modeName;
     readData();
 }

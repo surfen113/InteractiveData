@@ -138,6 +138,15 @@
     <div class="section" id="section3">
         <div class="intro">
             <h1>Map</h1>
+
+            <div class="special-radio-buttons">
+                <input type="radio" name="mode" id="mode1" value="Total" checked/>
+                <label for="mode1">Total</label>
+                <input type="radio" name="mode" id="mode2" value="inhabitants"/>
+                <label for="mode2">Per Inhabitant</label>
+            </div>
+
+
             <div class="chartwrapper">
                 <div id="chartdiv" class="chartdiv"></div>
             </div>
@@ -145,30 +154,30 @@
 
 
             <p>
-            <small>1980</small> <input id="ex2" type="text" class="span2" value="" data-slider-min="1980"
+            <small style="padding-right: 10px">1980</small> <input id="ex2" type="text" class="span2" value="" data-slider-min="1980"
                                                 data-slider-max="2016" data-slider-step="1"
-                                                data-slider-value="[2008,2014]" /> <small>2016</small>
+                                                data-slider-value="[1996,2016]" /> <small style="padding-left: 10px">2016</small>
             </p>
 
             
            <center>
                 <form style="margin-top:80px">
                     <div class="special-radio-buttons">
-                        <input type="radio" name="rb" id="rb1" value="CRS" checked/>
+                        <input type="radio" name="rb" id="rb1" value="CRS"/>
                         <label for="rb1">CRS</label>
                         <input type="radio" name="rb" id="rb2" value="diphtheria"/>
                         <label for="rb2">Diphtheria</label>
                         <input type="radio" name="rb" id="rb3" value="JapEnc"/>
-                        <label for="rb3">JapEnc</label>
+                        <label for="rb3">Japanese Encephalitis</label>
                         <input type="radio" name="rb" id="rb4" value="measles"/>
                         <label for="rb4">Measles</label>
                         <input type="radio" name="rb" id="rb5" value="Mumps"/>
                         <label for="rb5">Mumps</label>
                         <input type="radio" name="rb" id="rb6" value="ntetanus"/>
-                        <label for="rb6">Neonatal tetanus</label>                   
+                        <label for="rb6">Neonatal Tetanus</label>
                         <input type="radio" name="rb" id="rb7" value="pertussis"/>
                         <label for="rb7">Pertussis</label>   
-                        <input type="radio" name="rb" id="rb8" value="polio"/>
+                        <input type="radio" name="rb" id="rb8" value="polio" checked/>
                         <label for="rb8">Polio</label> 
                         <input type="radio" name="rb" id="rb9" value="Rubella"/>
                         <label for="rb9">Rubella</label>   
