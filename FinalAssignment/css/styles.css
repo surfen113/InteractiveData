@@ -3,6 +3,23 @@
     height: 20px;
 }
 
+.slider-track{
+    box-shadow: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.slider-selection{
+    background-image: none !important;
+    background-color: #ddd;
+    box-shadow: none !important;
+}
+
+.slider-handle{
+    background-image: none !important;
+    background-color: #ccc !important;
+    box-shadow: none !important;
+}
+
 .chartwrapper {
     width: 100%;
     position: relative;
@@ -28,6 +45,8 @@
 
 #legenddiv svg {
     width:500px !important;
+    margin:0 auto !important;
+    position: inherit !important;
 }
 
 /* Hide Box when Clicking on a country */
@@ -203,4 +222,68 @@ p {
 .fp-controlArrow.fp-next {
     border-width: 38.5px 0 38.5px 34px;
     border-color: transparent transparent transparent #eee !important;
+}
+
+
+
+/* radio buttons 
+ * --------------------------------------- */
+
+.special-radio-buttons {
+  transform: translate(0%,-50%);
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+label {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+  line-height: 36px;
+  cursor: pointer;
+}
+
+label::before {
+  content: " ";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  display: block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #8e44ad;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+input[type="radio"] + label::before {
+  border-radius: 11px;
+}
+
+/* Checked */
+input[type="radio"]:checked + label {
+  padding-left: 10px;
+  color: #fff;
+}
+
+input[type="radio"]:checked + label::before {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #8e44ad;
+}
+
+/* Transition */
+label,
+label::before {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
 }
