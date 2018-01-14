@@ -4,9 +4,9 @@
 
 var map;
 var mapData;
-var fromYr = 2008;
-var toYr = 2014;
-var disease = "CRS";
+var fromYr = 1999;
+var toYr = 2016;
+var disease = "Polio";
 var mode="total";
 
 AmCharts.loadFile("data/data.csv", {}, function (response) {
@@ -201,6 +201,15 @@ function putColor(id, sum, percentageText, color) {
     });
 }
 
+function putColorInhabitants(id, sum, percentageText, oneOutOf, color) {
+    areas.push({
+        id: id,
+        description: "Incidences: " + sum + "<br>Percentage: " + percentageText + "<br>1 out of " + oneOutOf,
+        //value: sum,
+        color: colorGaps[color]
+    });
+}
+
 function getTotal(dataset, id) {
 
     var total = 0;
@@ -254,44 +263,45 @@ function readData() {
 
             var sum = getTotal(diseaseData, id);
             var percentage = (sum / inhabitants * 100);
+            var oneOutOf = inhabitants/sum;
             var percentageText = percentage.toFixed(4) + " %";
 
             switch (true) {
                 case sum === null:
-                    putColor(id, "No Data", "No Data", 11);
+                    putColorInhabitants(id, "No Data", "No Data", "No Data", 11);
                     break;
                 case percentage === percentGaps2[0]:
-                    putColor(id, sum, percentageText, 0);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 0);
                     break;
                 case percentage <= percentGaps2[1]:
-                    putColor(id, sum, percentageText, 1);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 1);
                     break;
                 case percentage <= percentGaps2[2]:
-                    putColor(id, sum, percentageText, 2);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 2);
                     break;
                 case percentage <= percentGaps2[3]:
-                    putColor(id, sum, percentageText, 3);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 3);
                     break;
                 case percentage <= percentGaps2[4]:
-                    putColor(id, sum, percentageText, 4);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 4);
                     break;
                 case percentage <= percentGaps2[5]:
-                    putColor(id, sum, percentageText, 5);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 5);
                     break;
                 case percentage <= percentGaps2[6]:
-                    putColor(id, sum, percentageText, 6);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 6);
                     break;
                 case percentage <= percentGaps2[7]:
-                    putColor(id, sum, percentageText, 7);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 7);
                     break;
                 case percentage <= percentGaps2[8]:
-                    putColor(id, sum, percentageText, 8);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 8);
                     break;
                 case percentage > percentGaps2[9]:
-                    putColor(id, sum, percentageText, 9);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 9);
                     break;
                 case percentage > percentGaps2[10]:
-                    putColor(id, sum, percentageText, 10);
+                    putColorInhabitants(id, sum, percentageText, oneOutOf, 10);
                     break;
             }
 
