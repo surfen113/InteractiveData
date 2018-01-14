@@ -26,17 +26,36 @@ $(document).ready(function() {
 
 });
 
+
+//https://refreshless.com/nouislider/
+
 $(document).ready(function() {
-    var mySlider = $("#ex2").bootstrapSlider();
-// Call a method on the slider
-    var value = mySlider.bootstrapSlider('getValue');
-// For non-getter methods, you can chain together commands
+
+    var fancySlider = document.getElementById('slider');
+
+    noUiSlider.create(fancySlider, {
+        start: [ 1996, 2000 ],
+        connect: true,
+        behaviour: 'drag-tap',
+        tooltips: true,
+        padding: 5,
+        step: 1,
+        range: {
+            'min': 1975,
+            'max': 2021
+        }
+    });
+
+    fancySlider.noUiSlider.on('update', function(){
+        var minmax = fancySlider.noUiSlider.get();
+        filterData(parseInt(minmax[0]), parseInt(minmax[1]));
+    });
 });
 
 
-$("#ex2").on("slide", function(slideEvt) {
-    filterData(slideEvt.value[0], slideEvt.value[1])
-});
+// $("#ex2").on("slide", function(slideEvt) {
+//     filterData(slideEvt.value[0], slideEvt.value[1])
+// });
 
 $("input[name='rb']").change(function (radioChanged) {
     changeDisease(radioChanged.currentTarget.value)

@@ -307,7 +307,6 @@ function readData() {
         else {
             var sum = getTotal(diseaseData, id);
             var percentage = (sum / total * 100);
-            console.log(id + ": " + percentage);
             var percentageText = percentage.toFixed(4) + " %";
 
             switch (true) {
