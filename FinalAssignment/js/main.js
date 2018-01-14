@@ -38,7 +38,7 @@ $("#ex2").on("slide", function(slideEvt) {
     filterData(slideEvt.value[0], slideEvt.value[1])
 });
 
-$("input[name='disease']").change(function (radioChanged) {
+$("input[name='rb']").change(function (radioChanged) {
     changeDisease(radioChanged.currentTarget.value)
 });
 // Without JQuery

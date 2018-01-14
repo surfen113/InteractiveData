@@ -128,28 +128,44 @@
             <div class="chartwrapper">
                 <div id="chartdiv" class="chartdiv"></div>
             </div>
-            <div id="legenddiv"></div>
+            <center><div id="legenddiv"></div></center>
 
 
             <p>
-            Filter by Years: <b>1980</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="1980"
+            <small>1980</small> <input id="ex2" type="text" class="span2" value="" data-slider-min="1980"
                                                 data-slider-max="2016" data-slider-step="1"
-                                                data-slider-value="[2008,2014]" /> <b>2016</b>
+                                                data-slider-value="[2008,2014]" /> <small>2016</small>
             </p>
 
-            <form style="margin-top:80px">
-                <input type="radio" name="disease" value="CRS" checked> CRS
-                <input type="radio" name="disease" value="diphtheria"> Diphtheria
-                <input type="radio" name="disease" value="JapEnc"> Japanese Encephalitis
-                <input type="radio" name="disease" value="measles"> Measles
-                <input type="radio" name="disease" value="Mumps"> Mumps<br>
-                <input type="radio" name="disease" value="ntetanus"> Neonatal tetanus
-                <input type="radio" name="disease" value="pertussis"> Pertussis
-                <input type="radio" name="disease" value="polio"> Polio
-                <input type="radio" name="disease" value="Rubella"> Rubella
-                <input type="radio" name="disease" value="ttetanus"> Tetanus
-                <input type="radio" name="disease" value="yfever"> Hay Fever
-            </form>
+            
+           <center>
+                <form style="margin-top:80px">
+                    <div class="special-radio-buttons">
+                        <input type="radio" name="rb" id="rb1" value="CRS" checked/>
+                        <label for="rb1">CRS</label>
+                        <input type="radio" name="rb" id="rb2" value="diphtheria"/>
+                        <label for="rb2">Diphtheria</label>
+                        <input type="radio" name="rb" id="rb3" value="JapEnc"/>
+                        <label for="rb3">JapEnc</label>
+                        <input type="radio" name="rb" id="rb4" value="measles"/>
+                        <label for="rb4">Measles</label>
+                        <input type="radio" name="rb" id="rb5" value="Mumps"/>
+                        <label for="rb5">Mumps</label>
+                        <input type="radio" name="rb" id="rb6" value="ntetanus"/>
+                        <label for="rb6">Neonatal tetanus</label>                   
+                        <input type="radio" name="rb" id="rb7" value="pertussis"/>
+                        <label for="rb7">Pertussis</label>   
+                        <input type="radio" name="rb" id="rb8" value="polio"/>
+                        <label for="rb8">Polio</label> 
+                        <input type="radio" name="rb" id="rb9" value="Rubella"/>
+                        <label for="rb9">Rubella</label>   
+                        <input type="radio" name="rb" id="rb10" value="ttetanus"/>
+                        <label for="rb10">Tetanus</label>   
+                        <input type="radio" name="rb" id="rb11" value="yfever"/>
+                        <label for="rb11">Hay Fever</label>                                           
+                    </div>
+                </form>
+            </center>
 
         </div>
     </div>
