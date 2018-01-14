@@ -4,8 +4,8 @@
 
 var map;
 var mapData;
-var fromYr = 2015;
-var toYr = 2016;
+var fromYr = 2008;
+var toYr = 2014;
 var disease = "CRS";
 
 AmCharts.loadFile("data/data.csv", {}, function (response) {
@@ -30,7 +30,6 @@ function loadMap(areas) {
     }
     else {
 
-
         map = AmCharts.makeChart("chartdiv", {
 
             "type": "map",
@@ -47,7 +46,6 @@ function loadMap(areas) {
                 homeButtonEnabled: false
             },
 
-            // "dataProvider": dataProvider,
             "dataProvider": {
                 "map": "worldLow",
                 "getAreasFromMap": false,
@@ -58,9 +56,9 @@ function loadMap(areas) {
 
             "areasSettings": {
                 // "autoZoom": false,
-                "balloonText": "<strong>[[title]]</strong><br />Incidences: [[description]]",
-                "color": "#f8cd46",
-                "colorSolid": "#8d1b10",
+                "balloonText": "<strong>[[title]]</strong><br />[[description]]",
+                // "color": "#f8cd46",
+                // "colorSolid": "#8d1b10",
                 "unlistedAreasAlpha": 1,
                 "selectedColor": undefined
             },
@@ -108,69 +106,102 @@ function loadMap(areas) {
     }
 }
 
+var colorGaps = [
+    "#00ff00",
+    "#2bff00",
+    "#55ff00",
+    "#80ff00",
+    "#aaff00",
+    "#d5ff00",
+    "#ffff00",
+    "#ffaa00",
+    "#ff5500",
+    "#ff0000"
+];
+var areas = [];
+
+function putColor(id, sum, percentageText, color) {
+    areas.push({
+        id: id,
+        description: "Incidences: " + sum + "<br>Percentage: " + percentageText + " %",
+        value: sum,
+        color: colorGaps[color]
+    });
+}
+
+function getTotal(dataset, id) {
+
+    var total = 0;
+
+    if (id != 0) {
+        var countryData = dataset.filter(function (data) {
+            return data.ISO2 === id;
+        });
+        dataset = countryData;
+    }
+
+    for (var year = fromYr; year <= toYr; year++) {
+        total += d3.sum(dataset, function (number) {
+            return +number[year];
+        });
+    }
+
+    return total;
+}
+
 function readData() {
+
+    areas = [];
+
     var diseaseData = mapData.filter(function (data) {
         return data.Disease === disease;
     });
-    var areas = [];
+
+    var total = getTotal(diseaseData, 0);
+
     for (var i = 0; i < diseaseData.length; i++) {
         var dataItem = diseaseData[i];
-        //if (dataItem.Disease === disease)
-        {
+        var id = dataItem.ISO2;
+        var sum = getTotal(diseaseData, id);
+        var percentage = (sum / total * 100)
+        var percentageText = percentage.toFixed(4);
 
-            var sum = 0;
-            for (var year = fromYr; year <= toYr; year++) {
-                value = +dataItem[year];
+        switch (true) {
+            case percentage <= 0.5:
+                putColor(id, sum, percentageText, 0);
+                break;
+            case percentage <= 1:
+                putColor(id, sum, percentageText, 1);
+                break;
+            case percentage <= 2:
+                putColor(id, sum, percentageText, 2);
+                break;
+            case percentage <= 3:
+                putColor(id, sum, percentageText, 3);
+                break;
+            case percentage <= 6:
+                putColor(id, sum, percentageText, 4);
+                break;
+            case percentage <= 9:
+                putColor(id, sum, percentageText, 5);
+                break;
+            case percentage <= 15:
+                putColor(id, sum, percentageText, 6);
+                break;
+            case percentage <= 24:
+                putColor(id, sum, percentageText, 7);
+                break;
+            case percentage <= 39:
+                putColor(id, sum, percentageText, 8);
+                break;
+            case percentage > 39:
+                putColor(id, sum, percentageText, 9);
+                break;
 
-                if (value != null && value > 0) {
-                    sum = sum + value;
-                }
-
-            }
-
-            //var value = dataItem[fromYr];
-            var id = dataItem.ISO2;
-            var option = -1;
-            if (sum >= 10) {
-                option = 0;
-            }
-            else {
-                option = 1;
-            }
-            if (!sum) {
-                option = 2;
-            }
-            switch (option) {
-                case 0:
-                    areas.push({
-                        id: id,
-                        description: sum.toString(),
-                        value: Math.log(sum)
-                    });
-                    break;
-                case 1:
-                    areas.push({
-                        id: id,
-                        description: sum.toString(),
-                        value: 0,
-                        color: "#008000"
-                    });
-                    break;
-                case 2:
-                    areas.push({
-                        id: id,
-                        description: "No data",
-                        value: -1,
-                        color: "#dddddd"
-                    });
-                    break;
-            }
         }
     }
     loadMap(areas);
-
 }
-
 
 function filterData(from, to) {
     fromYr = from;
