@@ -4,9 +4,9 @@
 
 var map;
 var mapData;
-var fromYr = 1999;
-var toYr = 2016;
-var disease = "polio";
+var fromYr = 2008;
+var toYr = 2014;
+var disease = "CRS";
 
 AmCharts.loadFile("data/data.csv", {}, function (response) {
     /**
@@ -168,6 +168,8 @@ function getTotal(dataset, id) {
         });
     }
 
+    console.log(id + ": " + dataPresent);
+
     if(dataPresent)
         return total;
     else
@@ -187,15 +189,12 @@ function readData() {
 
     var total = getTotal(diseaseData, 0);
 
-    for (var i = 0; i < diseaseData.length; i++)
-    {
+    for (var i = 0; i < diseaseData.length; i++) {
         var dataItem = diseaseData[i];
         var id = dataItem.ISO2;
         var sum = getTotal(diseaseData, id);
         var percentage = (sum / total * 100);
         var percentageText = percentage.toFixed(4) + " %";
-
-        console.log(id + ": " + percentage);
 
         switch (true) {
             case sum === null:
@@ -228,7 +227,7 @@ function readData() {
             case percentage <= percentGaps[8]:
                 putColor(id, sum, percentageText, 8);
                 break;
-            case percentage <= percentGaps[9]:
+            case percentage > percentGaps[9]:
                 putColor(id, sum, percentageText, 9);
                 break;
             case percentage > percentGaps[10]:
@@ -236,7 +235,6 @@ function readData() {
                 break;
         }
     }
-    //console.log(areas);
     loadMap(areas);
 }
 
