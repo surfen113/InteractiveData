@@ -106,17 +106,32 @@ function loadMap(areas) {
     }
 }
 
+var percentGaps = [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10
+];
+
 var colorGaps = [
-    "#00ff00",
-    "#2bff00",
-    "#55ff00",
-    "#80ff00",
-    "#aaff00",
-    "#d5ff00",
-    "#ffff00",
-    "#ffaa00",
-    "#ff5500",
-    "#ff0000"
+    "#8eee8e",
+    "#f3f300",
+    "#FFE200",
+    "#FFC600",
+    "#FFAA00",
+    "#FF8D00",
+    "#FF7100",
+    "#FF5500",
+    "#FF3800",
+    "#FF1C00",
+    "#FF0000"
 ];
 var areas = [];
 
@@ -149,6 +164,8 @@ function getTotal(dataset, id) {
     return total;
 }
 
+
+
 function readData() {
 
     areas = [];
@@ -167,35 +184,38 @@ function readData() {
         var percentageText = percentage.toFixed(4);
 
         switch (true) {
-            case percentage <= 0.5:
+            case percentage <= percentGaps[0]:
                 putColor(id, sum, percentageText, 0);
                 break;
-            case percentage <= 1:
+            case percentage <= percentGaps[1]:
                 putColor(id, sum, percentageText, 1);
                 break;
-            case percentage <= 2:
+            case percentage <= percentGaps[2]:
                 putColor(id, sum, percentageText, 2);
                 break;
-            case percentage <= 3:
+            case percentage <= percentGaps[3]:
                 putColor(id, sum, percentageText, 3);
                 break;
-            case percentage <= 6:
+            case percentage <= percentGaps[4]:
                 putColor(id, sum, percentageText, 4);
                 break;
-            case percentage <= 9:
+            case percentage <= percentGaps[5]:
                 putColor(id, sum, percentageText, 5);
                 break;
-            case percentage <= 15:
+            case percentage <= percentGaps[6]:
                 putColor(id, sum, percentageText, 6);
                 break;
-            case percentage <= 24:
+            case percentage <= percentGaps[7]:
                 putColor(id, sum, percentageText, 7);
                 break;
-            case percentage <= 39:
+            case percentage <= percentGaps[8]:
                 putColor(id, sum, percentageText, 8);
                 break;
-            case percentage > 39:
+            case percentage > percentGaps[9]:
                 putColor(id, sum, percentageText, 9);
+                break;
+            case percentage > percentGaps[10]:
+                putColor(id, sum, percentageText, 10);
                 break;
 
         }
