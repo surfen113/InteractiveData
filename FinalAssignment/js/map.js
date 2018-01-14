@@ -4,8 +4,8 @@
 
 var map;
 var mapData;
-var fromYr = 2015;
-var toYr = 2016;
+var fromYr = 2008;
+var toYr = 2014;
 var disease = "CRS";
 
 AmCharts.loadFile("data/data.csv", {}, function (response) {
@@ -30,7 +30,6 @@ function loadMap(areas) {
     }
     else {
 
-
         map = AmCharts.makeChart("chartdiv", {
 
             "type": "map",
@@ -47,7 +46,6 @@ function loadMap(areas) {
                 homeButtonEnabled: false
             },
 
-            // "dataProvider": dataProvider,
             "dataProvider": {
                 "map": "worldLow",
                 "getAreasFromMap": false,
@@ -58,9 +56,9 @@ function loadMap(areas) {
 
             "areasSettings": {
                 // "autoZoom": false,
-                "balloonText": "<strong>[[title]]</strong><br />Incidences: [[description]]",
-                "color": "#f8cd46",
-                "colorSolid": "#8d1b10",
+                "balloonText": "<strong>[[title]]</strong><br />[[description]]",
+                // "color": "#f8cd46",
+                // "colorSolid": "#8d1b10",
                 "unlistedAreasAlpha": 1,
                 "selectedColor": undefined
             },
@@ -108,69 +106,120 @@ function loadMap(areas) {
     }
 }
 
+var percentGaps = [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10
+];
+
+var colorGaps = [
+    "#8eee8e",
+    "#f3f300",
+    "#FFE200",
+    "#FFC600",
+    "#FFAA00",
+    "#FF8D00",
+    "#FF7100",
+    "#FF5500",
+    "#FF3800",
+    "#FF1C00",
+    "#FF0000"
+];
+var areas = [];
+
+function putColor(id, sum, percentageText, color) {
+    areas.push({
+        id: id,
+        description: "Incidences: " + sum + "<br>Percentage: " + percentageText + " %",
+        //value: sum,
+        color: colorGaps[color]
+    });
+}
+
+function getTotal(dataset, id) {
+
+    var total = 0;
+
+    if (id != 0) {
+        var countryData = dataset.filter(function (data) {
+            return data.ISO2 === id;
+        });
+        dataset = countryData;
+    }
+
+    for (var year = fromYr; year <= toYr; year++) {
+        total += d3.sum(dataset, function (number) {
+            return +number[year];
+        });
+    }
+
+    return total;
+}
+
 function readData() {
+
+    areas = [];
+
     var diseaseData = mapData.filter(function (data) {
         return data.Disease === disease;
     });
-    var areas = [];
+
+    var total = getTotal(diseaseData, 0);
+
     for (var i = 0; i < diseaseData.length; i++) {
         var dataItem = diseaseData[i];
-        //if (dataItem.Disease === disease)
-        {
+        var id = dataItem.ISO2;
+        var sum = getTotal(diseaseData, id);
+        var percentage = (sum / total * 100)
+        var percentageText = percentage.toFixed(4);
 
-            var sum = 0;
-            for (var year = fromYr; year <= toYr; year++) {
-                value = +dataItem[year];
+        switch (true) {
+            case percentage <= percentGaps[0]:
+                putColor(id, sum, percentageText, 0);
+                break;
+            case percentage <= percentGaps[1]:
+                putColor(id, sum, percentageText, 1);
+                break;
+            case percentage <= percentGaps[2]:
+                putColor(id, sum, percentageText, 2);
+                break;
+            case percentage <= percentGaps[3]:
+                putColor(id, sum, percentageText, 3);
+                break;
+            case percentage <= percentGaps[4]:
+                putColor(id, sum, percentageText, 4);
+                break;
+            case percentage <= percentGaps[5]:
+                putColor(id, sum, percentageText, 5);
+                break;
+            case percentage <= percentGaps[6]:
+                putColor(id, sum, percentageText, 6);
+                break;
+            case percentage <= percentGaps[7]:
+                putColor(id, sum, percentageText, 7);
+                break;
+            case percentage <= percentGaps[8]:
+                putColor(id, sum, percentageText, 8);
+                break;
+            case percentage > percentGaps[9]:
+                putColor(id, sum, percentageText, 9);
+                break;
+            case percentage > percentGaps[10]:
+                putColor(id, sum, percentageText, 10);
+                break;
 
-                if (value != null && value > 0) {
-                    sum = sum + value;
-                }
-
-            }
-
-            //var value = dataItem[fromYr];
-            var id = dataItem.ISO2;
-            var option = -1;
-            if (sum >= 10) {
-                option = 0;
-            }
-            else {
-                option = 1;
-            }
-            if (!sum) {
-                option = 2;
-            }
-            switch (option) {
-                case 0:
-                    areas.push({
-                        id: id,
-                        description: sum.toString(),
-                        value: Math.log(sum)
-                    });
-                    break;
-                case 1:
-                    areas.push({
-                        id: id,
-                        description: sum.toString(),
-                        value: 0,
-                        color: "#008000"
-                    });
-                    break;
-                case 2:
-                    areas.push({
-                        id: id,
-                        description: "No data",
-                        value: -1,
-                        color: "#dddddd"
-                    });
-                    break;
-            }
         }
     }
     loadMap(areas);
-
 }
-
 
 function filterData(from, to) {
     fromYr = from;
