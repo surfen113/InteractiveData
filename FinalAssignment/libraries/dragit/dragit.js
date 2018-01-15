@@ -111,17 +111,17 @@
             vars.gDragit.classed("focus", true);
         }
 
-        dragit.lineTrajectory = vars.gDragit.selectAll(".lineTrajectory")
-            .data([dragit.data[i]])
-            .enter().append("path")
-            .attr("class", "lineTrajectory")
-            .attr("d", vars.svgLine.interpolate(dragit.custom.line[vars.custom_trajectory].interpolate))
+        // dragit.lineTrajectory = vars.gDragit.selectAll(".lineTrajectory")
+        //     .data([dragit.data[i]])
+        //     .enter().append("path")
+        //     .attr("class", "lineTrajectory")
+        //     .attr("d", vars.svgLine.interpolate(dragit.custom.line[vars.custom_trajectory].interpolate))
 
-        dragit.pointTrajectory  = vars.gDragit.selectAll(".pointTrajectory")
-            .data(dragit.data[i])
-            .enter().append(dragit.custom.point[vars.custom_focus].mark)
-            .attr("class", "pointTrajectory")
-            .attr(dragit.custom.point[vars.custom_focus].attr);
+        // dragit.pointTrajectory  = vars.gDragit.selectAll(".pointTrajectory")
+        //     .data(dragit.data[i])
+        //     .enter().append(dragit.custom.point[vars.custom_focus].mark)
+        //     .attr("class", "pointTrajectory")
+        //     .attr(dragit.custom.point[vars.custom_focus].attr);
 
         return dragit.trajectory.displayUpdate(d, i);
     }
