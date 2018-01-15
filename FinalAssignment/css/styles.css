@@ -289,6 +289,19 @@ label::before {
   transition: .25s all ease;
 }
 
+/* slider*/
+.noUi-handle {
+    box-shadow: none !important;
+    border-radius: 6px !important;
+}
+
+.noUi-target{
+   box-shadow: none !important;
+}
+
+.noUi-connect {
+    background: #ccc !important;
+}
 
 
     .bubbleChart {

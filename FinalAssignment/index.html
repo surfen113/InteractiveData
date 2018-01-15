@@ -129,24 +129,22 @@
         <div class="intro">
             <h1>Map</h1>
 
-            <div class="special-radio-buttons">
-                <input type="radio" name="mode" id="mode1" value="Total" checked/>
-                <label for="mode1">Total</label>
-                <input type="radio" name="mode" id="mode2" value="inhabitants"/>
-                <label for="mode2">Per Inhabitant</label>
-            </div>
-
 
             <div class="chartwrapper">
                 <div id="chartdiv" class="chartdiv"></div>
             </div>
             <center><div id="legenddiv"></div></center>
 
-            <div id="slider" style="margin-left:35%; margin-right:35%"> </div>
-
+            <div id="slider" style="margin-left:35%; margin-right:35%; margin-top: 3%;"> </div>
 
            <center>
-                <form style="margin-top:80px">
+                <form>
+                    <div class="special-radio-buttons" style="margin-top:60px">
+                        <input type="radio" name="mode" id="mode1" value="Total" checked/>
+                        <label for="mode1">Total</label>
+                        <input type="radio" name="mode" id="mode2" value="inhabitants"/>
+                        <label for="mode2">Per Inhabitant</label>
+                    </div>
                     <div class="special-radio-buttons">
                         <input type="radio" name="rb" id="rb1" value="CRS"/>
                         <label for="rb1">CRS</label>
