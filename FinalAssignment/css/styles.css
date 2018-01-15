@@ -303,14 +303,45 @@ label::before {
     background: #ccc !important;
 }
 
+/* menu buttons */
+/*#menu li {
+    display: inline-block;
+    margin: 10px;
+    color: #666;
+    border: 1px solid #ccc;
+  }
 
-    .bubbleChart {
-      min-width: 100px;
-      max-width: 700px;
-      height: 700px;
+#menu li.active {
+    background: #ddd;
+    color: #fff !important;
+}
+
+#menu li.active a{
+    color: #fff !important;
+}
+
+
+#menu li:hover {
+    background: #ddd;
+    color: #666;
+}
+
+#menu li a {
+    color: #666 !important;
+}
+*/
+
+
+
+
+.bubbleChart {
+    min-width: 100px;
+    max-width: 700px;
+    height: 700px;
     float: right !important;
     margin-right: 10%;
-    }
-    .bubbleChart svg{
+}
+
+.bubbleChart svg{
 /*      background: #000000;*/
-    }
+}
