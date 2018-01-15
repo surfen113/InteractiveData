@@ -244,6 +244,8 @@ function getTotal(dataset, id) {
 
 function readData() {
 
+    if(mapData){
+
     areas = [];
 
     var diseaseData = mapData.filter(function (data) {
@@ -352,6 +354,7 @@ function readData() {
         }
     }
     loadMap(areas);
+}
 }
 
 function filterData(from, to) {
