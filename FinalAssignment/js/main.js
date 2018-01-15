@@ -35,7 +35,7 @@ $(document).ready(function() {
     var fancySlider = document.getElementById('slider');
 
     noUiSlider.create(fancySlider, {
-        start: [ 1996, 2000 ],
+        start: [ 1993, 2003 ],
         connect: true,
         behaviour: 'drag-tap',
         tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],

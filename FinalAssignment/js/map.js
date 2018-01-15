@@ -4,8 +4,8 @@
 
 var map;
 var mapData;
-var fromYr = 1996;
-var toYr = 2016;
+var fromYr = 1993;
+var toYr = 2003;
 var disease = "polio";
 var mode="total";
 
