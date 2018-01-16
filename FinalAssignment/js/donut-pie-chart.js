@@ -1,5 +1,5 @@
 (function ( $ ) {
- 	
+
 	var DonutPie = function($self, options) {
 		this.$self = $self;
 		this.settings = $.extend( $.fn.donutpie.defaults, options );
@@ -28,9 +28,16 @@
 		  .outerRadius(radius * 0.8)
 		  .innerRadius(radius * 0.4);
 
+        this.arcHover = d3.svg.arc()
+            .innerRadius(radius*0.4)
+            .outerRadius(radius*0.9);
+
 		this.outerArc = d3.svg.arc()
-		  .innerRadius(radius * 0.9)
+		  .innerRadius(radius * 0.3)
 		  .outerRadius(radius * 0.9);
+
+
+
 
 		this.svg.attr("transform", "translate(" + radius + "," + radius + ")");
 
@@ -48,6 +55,8 @@
 
 	};
 
+
+
 	DonutPie.prototype.update = function(data) {
 		
 		// check if all the items has colors.
@@ -60,6 +69,7 @@
 		var tooltip = this.settings.tooltip;
 		var tpClass = "." + this.settings.tooltipClass;
 		var arc = this.arc;
+		var arcHover = this.arcHover;
 		var slice = this.svg.select(".slices").selectAll("path.slice")
 		    .data(this.pie(data));
 
@@ -69,8 +79,14 @@
 		    .attr("title", function(d) { return d.data.name + " " + Math.round(d.value) + "%"; })
 		    .attr("class", "slice")
 		    .on("mouseover", function (d) {
+                d3.select(this).transition()
+                    .duration(300)
+                    .attr("d", arcHover);
+
 	    	if (tooltip) {
 		    	if (d.id != "none") {
+		    		//console.log(slice);
+		    		//this.attr("r", 10);
 			        $(tpClass).html( d.data.name + " " + Math.round(d.value) + "%" );
 			        $(tpClass).css("visibility", "visible");
 			    }
@@ -84,6 +100,9 @@
 			}
 	    })
 		.on("mouseout", function () {
+            d3.select(this).transition()
+                .duration(200)
+                .attr("d", arc);
 			if (tooltip) {		
 		    	$(tpClass).html("");
 		        $(tpClass).css("visibility", "hidden");
