@@ -21,65 +21,92 @@
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
 
-    var myData = null;
-    var dataset = null;
-    var year = 2016;
-    var disease = "CRS";
-    $(function () {
-
-        d3.csv("data/top_Global2.csv")
-            .row(function (d) {
-                return d;
-            })
-            .get(function (error, rows) {
-                // console.log(rows);
-                myData = rows;// Now you can assign it
-                //DataIsReady(label_disease)// Now you can draw it
-
-                myData = myData.filter(function (row) {
-                    return row['Disease'] === disease;
-                });
-
-                dataset = new Array();
+    var year = 1980;
+    var disease = "polio";
 
 
-                var data = new Array();
-                var total = 0;
-
-                for (var j = 0; j < myData.length; j++) {
-                    //var value = Math.random()*10*(3);
-                    console.log(myData[j][year])
-                    var value = +myData[j][year];
-
-                    total += value;
-                    data.push({
-                        "cat": myData[j]["region"],
-                        "val": value
-                    });
-                }
-
-                dataset.push({
-                    "type": myData[0]["Disease"],
-                    "unit": " Cases",
-                    "data": data,
-                    "total": total
-                });
-                ready();
-            });
+    var mapData=[];
+    var data = [];
+    var dataset=[];
+    var update = false;
+    var total = 0;
 
 
-        $('#refresh-btn').on('click', function refresh() {
-            donuts.update(genData);
+    d3.csv('data/top_Global.csv', function (data) {
+
+        mapData = data.filter(function (values) {
+            return values["region"] != "world";
         });
 
+        readData(disease, year);
     });
 
-    function ready() {
-        var donutData = myData;
+    function readData(disease, year) {
 
-        var donuts = new DonutCharts();
-        donuts.create(dataset);
+        data = [];
+        dataset = [];
+
+        var tempData = mapData.filter(function (diseaseData) {
+            return diseaseData["Disease"] == disease;
+        });
+
+
+        tempData.forEach(function (value) {
+            total += +value[year];
+            data.push({
+                cat: value["region"],
+                val: +value[year]
+                //color: colorGaps[color]
+            })
+        });
+
+        dataset.push({
+            "type": "polio",
+            "unit": " Cases",
+            "data": data,
+            "total": total
+        });
+
+        ready();
+
     }
+
+    // var myVar =  setInterval(function (d) {
+    //     year += 1;
+    //     console.log(year);
+    //     if(year<2017)
+    //         readData("polio", year);
+    //     else
+    //         clearTimeout(myVar);
+    // }, 250);
+
+
+    $('#refresh-btn').on('click', function refresh() {
+        year += 1;
+        readData("polio", year);
+
+    });
+    var donuts = new DonutCharts();
+
+    function ready() {       //var donutData = myData;
+
+        console.log(data);
+        console.log(dataset);
+
+
+        if (year != 1980)
+        {
+
+            donuts.update(dataset);
+
+            console.log("UPDATING");
+        }else{
+
+            donuts.create(dataset);
+        }
+    }
+
+
 
 
     function DonutCharts() {
@@ -343,38 +370,5 @@
         }
     }
 
-
-    /*
-     * Returns a json-like object.
-     */
-    function genData() {
-        var type = ['Users', 'Avg Upload', 'Avg Files Shared'];
-        var unit = ['M', 'GB', ''];
-        var cat = ['Google Drive', 'Dropbox', 'iCloud', 'OneDrive', 'Box'];
-
-        var dataset = new Array();
-
-        for (var i = 0; i < type.length; i++) {
-            var data = new Array();
-            var total = 0;
-
-            for (var j = 0; j < cat.length; j++) {
-                var value = Math.random() * 10 * (3 - i);
-                total += value;
-                data.push({
-                    "cat": cat[j],
-                    "val": value
-                });
-            }
-
-            dataset.push({
-                "type": type[i],
-                "unit": unit[i],
-                "data": data,
-                "total": total
-            });
-        }
-        return dataset;
-    }
 </script>
 </body>

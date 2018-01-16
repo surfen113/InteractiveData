@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="libraries/jquery-3.2.1.min.js"></script>
+    <script src="js/donut-pie-chart.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="exp"></div>
+
+<script>
+
+
+    $(".exp").donutpie({
+        radius: 500,
+        tooltip : true,
+        tooltipClass : "donut-pie-tooltip-bubble"
+    });
+
+    var mapData=[];
+    var data = [];
+
+    var disease = "polio";
+
+    var year = 1980;
+
+    d3.csv('data/top_Global.csv', function (data) {
+
+        mapData = data.filter(function (values) {
+            return values["region"] != "world";
+        });
+
+        readData(disease, year);
+    });
+
+    function readData(disease, year) {
+
+        data = [];
+
+        var tempData = mapData.filter(function (diseaseData) {
+            return diseaseData["Disease"] == disease;
+        });
+
+
+        tempData.forEach(function (value) {
+            data.push({
+                name: value["region"],
+                hvalue: +value[year]
+                //color: colorGaps[color]
+            })
+        });
+
+        $(".exp").donutpie('update', data);
+
+    }
+
+
+    var myVar =  setInterval(function (d) {
+        year += 1;
+        console.log(year);
+        if(year<2017)
+            readData("polio", year);
+        else
+            clearTimeout(myVar);
+    }, 250);
+
+    $(".exp").on('click', function (d) {
+        clearTimeout(myVar);
+    });
+
+
+</script>
+</body>
+</html>

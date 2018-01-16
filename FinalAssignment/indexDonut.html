@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reusable Donut Chart in D3 v4</title>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/styledonut.css">
+    <script src="js/donut.js"></script>
+</head>
+<body>
+
+<div id="chart"></div>
+
+<script>
+    var timerInterval = 1500;
+
+    var donut = donutChart()
+        .width(960)
+        .height(500)
+        //.transTime(750) // length of transitions in ms
+        .cornerRadius(3) // sets how rounded the corners are on each slice
+        .padAngle(0.015) // effectively dictates the gap between slices
+        .variable('2016')
+        .category('region');
+
+    var i = 0;
+
+    d3.csv('data/top_Global.csv', function(error, data) {
+        if (error) throw error;
+
+        data = data.filter(function (d) {
+            return d["Disease"] == "diphtheria" && d["region"] != "world";
+        });
+
+
+        d3.select('#chart')
+            .datum(data)
+            .call(donut);
+
+        data = data.filter(function (d) {
+            return d["Disease"] == "diphtheria" && d["region"] != "world";
+        });
+
+        donut.variable('2015');
+        donut.data(data);
+
+        // // group entries together by timestamp to simulate  receiving real-time data
+        // var nestData = d3.nest()
+        //     .key(function(d) { return d["2016"]; }) // collects entries with the same time value
+        //     .entries(data);
+        //
+        // console.log(nestData);
+        //
+        // // timer to update chart with new data every timeInterval milliseconds.
+        // var timer = setInterval(function() {
+        //     if (i === nestData.length - 1) { clearInterval(timer); }
+        //     donut.data(nestData[i].values);
+        //     if (i === 0) { // if first time receiving data...
+        //         i++;
+        //         d3.select('#chart')
+        //             .call(donut); // draw chart in div
+        //     }
+        //     i++;
+        // }, timerInterval);
+    });
+</script>
+
+</body>
+</html>

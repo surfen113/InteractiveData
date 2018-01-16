@@ -13,17 +13,17 @@
 <script>
     // sample data array
     var sample_data = [
-        {"value": 100, "name": "jtj", "group": "group"},
-        {"value": 70, "name": "jej", "group": "group"},
-        {"value": 40, "name": "dgh", "group": "group"},
-        {"value": 15, "name": "tebx", "group": "group"},
-        {"value": 50, "name": "363", "group": "group"},
-        {"value": 110, "name": "gerg", "group": "group"},
-        {"value": 95, "name": "eve", "group": "group"},
-        {"value": 35, "name": "wers", "group": "group"},
-        {"value": 48, "name": "rjy", "group": "group"},
-        {"value": 55, "name": "dfg", "group": "group"},
-        {"value": 158, "name": "wr", "group": "group"}
+        {"log": 8, "value": 2808, "name": "CRS", "group": "Diseases"},
+        {"log": 14,"value": 867099, "name": "Diphtheria", "group": "Diseases"},
+        {"log": 11,"value": 55856, "name": "Japanese Enchephalitis", "group": "Diseases"},
+        {"log": 18,"value": 45453293, "name": "Measles", "group": "Diseases"},
+        {"log": 16,"value": 9576719, "name": "Mumps", "group": "Diseases"},
+        {"log": 13,"value": 481895, "name": "Neonatal Tetanus", "group": "Diseases"},
+        {"log": 16,"value": 16827910, "name": "Pertussis", "group": "Diseases"},
+        {"log": 13,"value": 537164, "name": "Polio", "group": "Diseases"},
+        {"log": 15,"value": 5385818, "name": "Rubella", "group": "Diseases"},
+        {"log": 14,"value": 1536230, "name": "Tetanus", "group": "Diseases"},
+        {"log": 10.5,"value": 38671, "name": "Hay Fever", "group": "Diseases"}
     ]
     // instantiate d3plus
     var visualization = d3plus.viz()
@@ -34,8 +34,8 @@
             "value": ["group", "name", "value"]
     })
         .depth(1)              // 0-based depth
-        .size("value")         // key name to size bubbles
-        .color("group")        // color by each group
+        .size("log") // key name to size bubbles)
+        .color("name")        // color by each group
         .mouse({
             "move": function(d){console.log(d.name + " Moved Over")},
             "out": function(d){console.log(d.name + " Moved Out")},
