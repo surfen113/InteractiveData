@@ -99,7 +99,7 @@
 
 <div id="chart" style="margin:0px"></div>
 <span id="min-time">1980</span>
-<input type="range" name="points" min="0" max="208" step="1" value="0" id="slider-time" style="width:900px">
+<input type="range" name="points" min="0" max="36" step="1" value="0" id="slider-time" style="width:900px">
 <span id="max-time">2016</span>
 <br>
 
@@ -133,8 +133,8 @@
         width = 960 - margin.right,
         height = 500 - margin.top - margin.bottom;
     // Various scales. These domains make assumptions of data, naturally.
-    var xScale = d3.scale.log().domain([300, 1e5]).range([0, width]),
-        yScale = d3.scale.linear().domain([10, 85]).range([height, 0]),
+    var xScale = d3.scale.linear().domain([0, 2e5]).range([0, width]),
+        yScale = d3.scale.linear().domain([-10, 1000]).range([height, 0]),
         radiusScale = d3.scale.sqrt().domain([0, 5e8]).range([0, 40]),
         colorScale = d3.scale.category10();
     // The x & y axes.
@@ -146,7 +146,7 @@
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        .attr("class", "gRoot")
+        .attr("class", "gRoot");
     // Add the x-axis.
     svg.append("g")
         .attr("class", "x axis")
@@ -193,10 +193,10 @@
         d3.csv("data/gdp.csv", function (data2) {
             //console.log(nations);
 
-            console.log(nations);
             nations = nations.filter(function (row) {
-                return row['Disease'] == 'Mumps';
+                return row['Disease'] === 'polio';
             });
+            console.log(nations);
 
 
             // A bisector since many nation's data is sparsely-defined.
@@ -214,7 +214,7 @@
                     return colorScale(color(d));
                 })
                 .call(position)
-                .on("mousedow", function (d, i) {
+                .on("mousedown", function (d, i) {
                 })
                 //                .on("mouseup", function (d, i) {
                 //                    dot.classed("selected", false);
@@ -264,11 +264,13 @@
                     //console.log(xScale(x(d)));
                     //console.log(x(d));
 
-                    return /*xScale(x(d)) */ x(d);
+                    //return /*xScale(x(d)) */ x(d);
+                    return xScale(x(d));
                 })
                     .attr("cy", function (d) {
-                        //console.log(y(d));
-                        return /* yScale(y(d)) */ y(d);
+                        //console.log(yScale(y(d)));
+                        //return /* yScale(y(d)) */ y(d);
+                        return yScale(y(d));
                     })
                     .attr("r", function (d) {
                         return /* radiusScale(radius(d)) */ 5;

@@ -40,7 +40,7 @@ $(document).ready(function() {
         behaviour: 'drag-tap',
         tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
         padding: 1,
-        //step: 1,
+        step: 1,
         range: {
             'min': 1979,
             'max': 2017
