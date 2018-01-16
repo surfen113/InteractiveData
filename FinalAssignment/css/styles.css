@@ -386,6 +386,10 @@ label::before {
     /*transform: scale(1.05);*/
 }
 
+*:focus {
+    outline: 0 !important;
+}
+
 .container{
   float: left !important;
 width: 40% !important;
