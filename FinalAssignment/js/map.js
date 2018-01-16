@@ -24,7 +24,7 @@ AmCharts.loadFile("data/data.csv", {}, function (response) {
 });
 
 
-AmCharts.loadFile("data/income2.csv", {}, function (response) {
+AmCharts.loadFile("data/inhabitants.csv", {}, function (response) {
 
     inhabitantData = AmCharts.parseCSV(response, {
         "separator": ",",
