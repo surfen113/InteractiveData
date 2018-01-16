@@ -107,16 +107,21 @@
 <script>
     // Various accessors that specify the four dimensions of data to visualize.
     function x(d) {
-        console.log("GDP: " + d.gdp + ", incidents: " + d.cases);
+        //console.log("GDP: " + d.gdp + ", incidents: " + d.cases);
         if (d.gdp > 0) {
             return d.gdp;
         }
         else {
-            return 0;
+            return 0.01;
         }
     }
     function y(d) {
-        return d.cases;
+        if (d.cases > 0) {
+            return d.cases;
+        }
+        else {
+            return 0.01;
+        }
         // return Math.floor((Math.random() * 100) + 1);
     }
     function radius(d) {
@@ -126,15 +131,15 @@
         return d.region;
     }
     function key(d) {
-        return d.WHO_REGION;
+        return d.Cname;
     }
     // Chart dimensions.
     var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
         width = 960 - margin.right,
         height = 500 - margin.top - margin.bottom;
     // Various scales. These domains make assumptions of data, naturally.
-    var xScale = d3.scale.linear().domain([0, 2e5]).range([0, width]),
-        yScale = d3.scale.linear().domain([-10, 1000]).range([height, 0]),
+    var xScale = d3.scale.log().domain([100, 2e5]).range([0, width]),
+        yScale = d3.scale.log().domain([0.01, 300000]).range([height, 0]),
         radiusScale = d3.scale.sqrt().domain([0, 5e8]).range([0, 40]),
         colorScale = d3.scale.category10();
     // The x & y axes.
@@ -191,12 +196,10 @@
     // Load the data.
     d3.csv("data/data.csv", function (nations) {
         d3.csv("data/gdp.csv", function (data2) {
-            //console.log(nations);
 
             nations = nations.filter(function (row) {
-                return row['Disease'] === 'polio';
+                return row['Disease'] === 'Mumps';
             });
-            console.log(nations);
 
 
             // A bisector since many nation's data is sparsely-defined.
@@ -229,9 +232,7 @@
                         d.income = 120;
                         d.lifeExpectancy = 28.05;
                         d.population = 12444;
-                        //console.log(d);
 
-                        // console.log(i);
                         //dragit.trajectory.display(d, i)
                         //dragit.utils.animateTrajectory(dragit.trajectory.display(d, i), dragit.time.current, 1000)
                         countrylabel.text(d.name);
@@ -259,41 +260,41 @@
                 .ease("linear")
             // Positions the dots based on data.
             function position(dot) {
-                //console.log("position");
                 dot.attr("cx", function (d) {
-                    //console.log(xScale(x(d)));
-                    //console.log(x(d));
-
                     //return /*xScale(x(d)) */ x(d);
                     return xScale(x(d));
                 })
                     .attr("cy", function (d) {
-                        //console.log(yScale(y(d)));
                         //return /* yScale(y(d)) */ y(d);
                         return yScale(y(d));
                     })
                     .attr("r", function (d) {
-                        return /* radiusScale(radius(d)) */ 5;
+                        if (d.cases > 0) {
+                            return Math.log(d.cases) * 2;
+                        }
+                        else {
+                            return 2;
+                        }
+                        //return /* radiusScale(radius(d)) */ 5;
                     });
             }
 
             // Defines a sort order so that the smallest dots are drawn on top.
-//            function order(a, b) {
-//                return radius(b) - radius(a);
-//            }
+            function order(a, b) {
+                return radius(b) - radius(a);
+            }
 
             // Updates the display to show the specified year.
-//            function displayYear(year) {
-//                dot.data(interpolateData(year + dragit.time.min), key).call(position).sort(order);
-//                label.text(dragit.time.min + Math.round(year));
-//            }
+            function displayYear(year) {
+                dot.data(interpolateData(year + dragit.time.min)).call(position).sort(order); //ATTENTION: Deletef key here in data function, we need to check what that does now!!
+                var newOne = dragit.time.min + Math.round(year);
+                label.text(dragit.time.min + Math.round(year));
+            }
 
             // Interpolates the dataset for the given (fractional) year.
             function interpolateData(year) {
-                console.log(nations);
 
                 return nations.map(function (d) {
-                    //console.log(d);
                     return {
                         name: d.Cname,
                         region: d.WHO_REGION,
@@ -301,9 +302,10 @@
                         //population: interpolateValues(d.population, year),
                         //lifeExpectancy: interpolateValues(d.lifeExpectancy, year)
                         //income: interpolateValues(d["2016"], year),
-                        cases: +d[year],
+                        //cases: +d[year],
+                        cases: getCases(year, d.ISO2),
                         //test: data2.ISO2,
-                        gdp: getGdp(2010, d.ISO2),
+                        gdp: getGdp(year, d.ISO2),
 
                     };
                 });
@@ -319,7 +321,19 @@
                 else {
                     return 0;
                 }
+            }
 
+
+            function getCases(year, country) {
+                cases = nations.filter(function (row) {
+                    return row['ISO2'] == country;
+                });
+                if (cases.length > 0) {
+                    return cases[0][year];
+                }
+                else {
+                    return 0;
+                }
             }
 
             // Finds (and possibly interpolates) the value for the specified year.
@@ -336,34 +350,34 @@
 
             init();
             function update(v, duration) {
-//                dragit.time.current = v || dragit.time.current;
-//                displayYear(dragit.time.current)
-//                d3.select("#slider-time").property("value", dragit.time.current);
+                dragit.time.current = v || dragit.time.current;
+                displayYear(dragit.time.current)
+                d3.select("#slider-time").property("value", dragit.time.current);
             }
 
             function init() {
-//                dragit.init(".gRoot");
-//                dragit.time = {min: 1980, max: 2016, step: 1, current: 1980}
-//                dragit.data = d3.range(nations.length).map(function () {
-//                    return Array();
-//                })
+                dragit.init(".gRoot");
+                dragit.time = {min: 1980, max: 2016, step: 1, current: 1980}
+                dragit.data = d3.range(nations.length).map(function () {
+                    return Array();
+                })
 //                for (var yy = 1980; yy < 2016; yy++) {
 //                    interpolateData(yy).filter(function (d, i) {
 //                        dragit.data[i][yy - dragit.time.min] = [xScale(x(d)), yScale(y(d))];
 //                    })
 //                }
-//                dragit.evt.register("update", update);
-//                //d3.select("#slider-time").property("value", dragit.time.current);
-//                d3.select("#slider-time")
-//                    .on("mousemove", function () {
-//                        update(parseInt(this.value), 500);
-//                        //clear_demo();
-//                    })
-//                var end_effect = function () {
-//                    countrylabel.text("");
-//                    dot.style("opacity", 1)
-//                }
-//                dragit.evt.register("dragend", end_effect)
+                dragit.evt.register("update", update);
+                //d3.select("#slider-time").property("value", dragit.time.current);
+                d3.select("#slider-time")
+                    .on("mousemove", function () {
+                        update(parseInt(this.value), 500);
+                        //clear_demo();
+                    })
+                var end_effect = function () {
+                    countrylabel.text("");
+                    dot.style("opacity", 1)
+                }
+                dragit.evt.register("dragend", end_effect)
             }
 
 
