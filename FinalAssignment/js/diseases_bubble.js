@@ -47,26 +47,6 @@ function DataIsReady(label_disease, color) {
     data = [20000, diphtheria_total , 20000 , measles_total , mumps_total , ntetanus_total , pertussis_total , polio_total , rubella_total , ttetanus_total , yfever_total];
   
 
-    // var data = {
-    //   datasets: [{
-    //     data: data,
-    //     backgroundColor: [
-    //       "#F7464A",
-    //       "#46BFBD",
-    //       "#FDB45C",
-    //        "#FF5733",
-    //       "#E7FF33",
-    //        "#8AFF33",
-    //       "#33E8FF",
-    //        "#3354FF",
-    //       "#CB33FF", 
-    //       "#FF33C7",
-    //       "#FBD8D8",
-    //     ]
-    //   }],
-    //   labels: labels
-    // };
-
     var items = [
             {text: crs_label, count: 20000, test: "lalalalaa more Text...."},
             {text: diphtheria_label, count: diphtheria_total},
@@ -82,141 +62,9 @@ function DataIsReady(label_disease, color) {
           ];
 
     $(document).ready(function () {
-      var bubbleChart = new d3.svg.BubbleChart({
-        supportResponsive: true,
-        //container: => use @default
-        size: 600,
-        //viewBoxSize: => use @default
-        innerRadius: 600 / 3.5,
-        //outerRadius: => use @default
-        radiusMin: 50,
-        //radiusMax: use @default
-        //intersectDelta: use @default
-        //intersectInc: use @default
-        //circleColor: use @default
-        data: {
-          items: items,
-          eval: function (item) {  return item.count;},
-          classed: function (item) { return item.text.split(" ").join("");}
-        },
-        plugins: [
-          {
-            name: "central-click",
-            options: {
-              //text: "(See more detail)",
-              style: {
-                "font-size": "12px",
-                "font-style": "italic",
-                "font-family": "Source Sans Pro, sans-serif",
-                //"font-weight": "700",
-                "text-anchor": "middle",
-                "fill": "white"
-              },
-              attr: {dy: "65px"},
-              centralClick: function() {
-                                 $("#slide0-content").empty();
-            $disease_description = '<div><span><p>' + "aaaa" + '</p></span></div>'
-
-            $('#slide0-content').append($disease_description);
-                // alert("Here is more details!!");
-              }
-            }
-          },
-          {
-            name: "lines",
-            options: {
-              format: [
-                {// Line #0
-                  textField: "count",
-                  classed: {count: true},
-                  style: {
-                    "font-size": "28px",
-                    "font-family": "Source Sans Pro, sans-serif",
-                    "text-anchor": "middle",
-                    fill: "white"
-                  },
-                  attr: {
-                    dy: "0px",
-                    x: function (d) {return d.cx;},
-                    y: function (d) {return d.cy;}
-                  }
-                },
-                {// Line #1
-                  textField: "text",
-                  classed: {text: true},
-                  style: {
-                    "font-size": "14px",
-                    "font-family": "Source Sans Pro, sans-serif",
-                    "text-anchor": "middle",
-                    fill: "white"
-                  },
-                  attr: {
-                    dy: "20px",
-                    x: function (d) {return d.cx;},
-                    y: function (d) {return d.cy;}
-                  },
-                },
-                  {// Line #2
-                      textField: "test",
-                      classed: {text: true},
-                      style: {
-                          "font-size": "0px",
-                          "font-family": "Source Sans Pro, sans-serif",
-                          "text-anchor": "middle",
-                          //"display" : "none",
-                          fill: "white"
-                      },
-                      attr: {
-                          dy: "40px",
-                          x: function (d) {return d.cx;},
-                          y: function (d) {return d.cy;}
-                      },
-                  }
-
-              ],
-              centralFormat: [
-                {// Line #0
-                  style: {"font-size": "50px"},
-                  attr: {}
-                },
-                {// Line #1
-                  style: {"font-size": "30px"},
-                  attr: {dy: "40px"}
-                },
-                  {// Line #2
-                      style: {"font-size": "15px"},
-                      attr: {dy: "60px"}
-                  }
-              ]
-            }
-          }]
-      });
+        document.getElementById("CRS").click();
+        document.getElementById('CRS').style.backgroundColor = "#eee";
     });
-
-    //   var canvas = document.getElementById("bubbles");
-    //           canvas.onclick = function(evt) {
-    //             console.log(this);
-    //       // var activePoints = bubbleChart.getElementsAtEvent(evt);
-    //       // if (activePoints[0]) {
-    //       //   var chartData = activePoints[0]['_chart'].config.data;
-    //       //   var idx = activePoints[0]['_index'];
-
-    //       //   var label = chartData.labels[idx];
-    //       //   var value = chartData.datasets[0].data[idx];
-    //       //   console.log(label)
-    //       //    $("#slide0-content").empty();
-    //       //   $disease_description = '<div><span><p>' + label + '</p></span></div>'
-    //       //   $('#slide0-content').append($disease_description);
-    //       //   // $disease_description = getDescription(label)
-    //       //   // $disease_description_html = '<div><span><p>' + $disease_description + '</p></span></div>'
-    //       //   // $('#slide0-content').append($disease_description_html);
-
-  
-    //       // }
-    //     };
-
-    // });
-
 
 };
 
@@ -308,36 +156,42 @@ function getTotalCases(){
  
 }
 
-function addSlider1HTML()
-{
+var default_value = true;
+
+function populateHTML(disease_label){
+  if(default_value){
+    document.getElementById('CRS').style.backgroundColor = "#fff";
+  }
     $("#slide0-content").empty();
-    $disease_description = '<div><span><p>' + "Ïnsert disease description" + '</p></span></div>'
+    $disease_description = '<p>' + myFunction(disease_label) + '</p>'
     $('#slide0-content').append($disease_description);
 }
 
-// getDescription(label){
-//     switch (row["Disease"]) {
-//         case "CRS":
-//             return "asdad sdadas asdasd";
-//         case "diphtheria":
-//             return "aaaaaaaaaaa";
-//         case "JapEnc":
-//             return "aaaaaaaaaaa";
-//         case "measles":
-//             return "aaaaaaaaaaa";
-//         case "Mumps":
-//             return "aaaaaaaaaaa";
-//         case "ntetanus":
-//            return "aaaaaaaaaaa";
-//         case "pertussis":
-//             return "aaaaaaaaaaa";
-//         case "polio":
-//             return "aaaaaaaaaaa";
-//         case "Rubella":
-//             return "aaaaaaaaaaa";
-//         case "ttetanus":
-//            return "aaaaaaaaaaa";
-//         case "yfever":
-//             return "aaaaaaaaaaa";
-//     }
-// }
+function myFunction(opt) 
+{
+    switch (opt) 
+    {
+        case "CRS":
+            return "<h1>Congenital rubella syndrome</h1></br></br>Congenital rubella syndrome (CRS) is an illness in infants that results from maternal infection with rubella virus during pregnancy. When rubella infection occurs during early pregnancy, serious consequences–such as miscarriages, stillbirths, and a constellation of severe birth defects in infants–can result. The risk of congenital infection and defects is highest during the first 12 weeks of gestation and decreases after the 12th week of gestation; defects are rare after infection in the 20th week (or later) of gestation. Common congenital defects of CRS include cataracts, congenital heart disease, hearing impairment, and developmental delay. Infants with CRS often present with more than 1 sign or symptom consistent with congenital rubella infection. However, infants may present with a single defect, with hearing impairment being the most common single defect.";
+        case "diphtheria":
+            return "<h1>Diphtheria</h1></br></br>Diphtheria is an infection caused by the bacterium Corynebacterium diphtheriae. Signs and symptoms may vary from mild to severe. They usually start two to five days after exposure. Symptoms often come on fairly gradually, beginning with a sore throat and fever. In severe cases, a grey or white patch develops in the throat. This can block the airway and create a barking cough as in croup. The neck may swell in part due to enlarged lymph nodes. A form of diphtheria that involves the skin, eyes, or genitals also exists. Complications may include myocarditis, inflammation of nerves, kidney problems, and bleeding problems due to low levels of platelets. Myocarditis may result in an abnormal heart rate and inflammation of the nerves may result in paralysis.";
+        case "JapEnc":
+            return "JapEnc";
+        case "measles":
+            return "measles";
+        case "Mumps":
+            return "Mumps";
+        case "ntetanus":
+           return "ntetanus";
+        case "pertussis":
+            return "pertussis";
+        case "polio":
+            return "polio";
+        case "Rubella":
+            return "Rubella";
+        case "ttetanus":
+           return "ttetanus";
+        case "yfever":
+            return "yfever";
+    }    
+}

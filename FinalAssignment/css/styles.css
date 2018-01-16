@@ -185,7 +185,7 @@ p {
 }
 
 #section1 h1 {
-    color: #fff;
+    color: #666;
 }
 
 #section1 p {
@@ -200,6 +200,7 @@ p {
 #slide0-content {
     width: 50%;
     float: left;
+    padding-right: 8% !important;
 }
 
 /* Section 3
@@ -217,7 +218,7 @@ p {
 }
 
 .fp-controlArrow.fp-prev {
-    border-color: transparent #eee transparent transparent !important;
+    border-color: transparent #eee transparent transparent !important; 
 }
 
 .fp-controlArrow.fp-next {
@@ -366,3 +367,50 @@ label::before {
 .bubbleChart svg{
 /*      background: #000000;*/
 }
+
+
+.btn-default {
+  border-radius: 50% !important;
+  width: 100px !important; 
+  height:100px !important;
+/*background-color: white !important;*/
+  margin: 0.5%;
+  border: 1px solid #64C7CC !important;
+  color: #64C7CC !important;
+
+}
+
+.btn-default:hover {
+    background-color: #64C7CC !important; /* Green */
+    color: white  !important;
+    /*transform: scale(1.05);*/
+}
+
+.container{
+  float: left !important;
+width: 40% !important;
+float: left !important;
+margin-left: 8% !important;
+
+}
+
+.row{
+  margin-bottom: 2% !important;
+}
+
+
+.intro p {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 1em;
+}
+
+/*border-radius: 50%;
+height: 100px;
+width: 100px;*/
+/*
+.hexagon:hover{
+   background-color:#64C7CC;
+}
+
+*/
