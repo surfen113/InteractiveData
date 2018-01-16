@@ -6,6 +6,8 @@
     <title>Diseases around the world</title>
     <meta name="author" content="Simona Toader, Riddhi Raj, Julian Ritter"/>
 
+
+
     <!--D3 -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
@@ -56,6 +58,7 @@
     <script src="https://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
     <script src="https://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
     <script src="https://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+
     <script src="js/diseases_bubble.js" defer></script>
 
 
@@ -83,14 +86,28 @@
     <div class="section" id="section1">
         <div class="slide" id="slide1">
             <div class="intro">
-                <h1>Slider </h1>
-<!--                 <div id="canvas-holder" style="width:40%">
-                    <canvas id="myChart"/>
-                </div> -->
-                <div class="bubbleChart" id="bubbles"/></div>
-                <div id="slide0-content"></div>
-
+                <div class="container">
+                    <div class="row" >
+                        <button type="button hexagon" class="btn btn-default" id="CRS" onclick="populateHTML(this.id)">CRS</button>
+                        <button type="button hexagon" class="btn btn-default" id="diphtheria" onclick="populateHTML(this.id)">diphtheria</button>
+                        <button type="button hexagon" class="btn btn-default" id="JapEnc" onclick="populateHTML(this.id)">Japanese <br /> encephalitis</button>
+                    </div>
+                    <div class="row">
+                        <button type="button hexagon" class="btn btn-default" id="measles" onclick="populateHTML(this.id)">measles</button>
+                        <button type="button hexagon" class="btn btn-default" id="Mumps" onclick="populateHTML(this.id)">Mumps</button>
+                        <button type="button hexagon" class="btn btn-default" id="ntetanus" onclick="populateHTML(this.id)">ntetanus</button>
+                         <button type="button hexagon" class="btn btn-default" id="pertussis" onclick="populateHTML(this.id)">pertussis</button>
+                        <button type="button hexagon" class="btn btn-default" id="polio" onclick="populateHTML(this.id)">polio</button>
+                    </div>
+                    <div class="row">
+                        <button type="button hexagon" class="btn btn-default" id="Rubella" onclick="populateHTML(this.id)">Rubella</button>
+                        <button type="button hexagon" class="btn btn-default" id="ttetanus" onclick="populateHTML(this.id)">ttetanus</button>
+                        <button type="button hexagon" class="btn btn-default" id="yfever" onclick="populateHTML(this.id)">yfever</button>
+                    </div>
+                </div>
+                <div id="slide0-content"></div> 
             </div>
+
             <div class="slide">
                 <div class="intro">
                     <h1>Simple</h1>
@@ -187,6 +204,5 @@
 
         </div>
     </div>
-
 </body>
 </html>
