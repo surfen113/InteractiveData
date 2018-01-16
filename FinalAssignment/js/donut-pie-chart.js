@@ -85,8 +85,6 @@
 
 	    	if (tooltip) {
 		    	if (d.id != "none") {
-		    		//console.log(slice);
-		    		//this.attr("r", 10);
 			        $(tpClass).html( d.data.name + " " + Math.round(d.value) + "%" );
 			        $(tpClass).css("visibility", "visible");
 			    }
