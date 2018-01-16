@@ -66,5 +66,20 @@ $("input[name='rb']").change(function (radioChanged) {
 $("input[name='mode']").change(function (radioChanged) {
     changeMode(radioChanged.currentTarget.value)
 });
+
+
+
+$(document).on('click', '#crsDescription', function(){
+    drawPieChart("CRS");
+    $.fn.fullpage.moveTo('secondPage', 1);
+});
+
+
+
+function drawPieChart(selectedDisease) {
+    //alert(selectedDisease);
+}
+
+
 // Without JQuery
 //var slider = new Slider('#ex2', {});
