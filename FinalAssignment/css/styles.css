@@ -411,7 +411,10 @@ margin-left: 8% !important;
     font-size: 1em;
 }
 
+@font-face { font-family: Roboto; src: url('./fonts/roboto/Roboto-Regular.TTF'); } 
+@font-face { font-family: Lato; src: url('./fonts/lato/Lato-Light.TTF'); } 
+
 body{
+    font-family: Roboto !important;
     font-size: 12px !important;
 }
-
