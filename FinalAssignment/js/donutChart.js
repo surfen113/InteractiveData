@@ -45,11 +45,8 @@ function readThisData(disease, year) {
         return diseaseData["Disease"] == disease;
     });
 
-    console.log(disease);
-    console.log(tempData);
     var sum = 0;
     tempData.forEach(function (value) {
-        console.log(sum);
         sum = sum + (+value[year]);
     });
 
@@ -63,7 +60,6 @@ function readThisData(disease, year) {
     });
 
     ready(data, sum, year);
-    console.log(data);
     //$("#donutChart").donutpie('update', data);
 
 }
@@ -71,7 +67,6 @@ function readThisData(disease, year) {
 function ready(data, sum, year) {
 
     if (animate) {
-
         $(".exp").donutpie('update', data, sum, year);
 
         year = 1980;
