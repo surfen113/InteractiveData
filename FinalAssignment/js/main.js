@@ -78,6 +78,7 @@ $(document).on('click', '#crsDescription', function(){
 
 function drawPieChart(selectedDisease) {
     //alert(selectedDisease);
+    //changeDiseaseForPieChart(selectedDisease);
 }
 
 
