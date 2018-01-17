@@ -8,23 +8,63 @@
     <title>Title</title>
 </head>
 <body>
+
+<div id="selectDiseaseDonutChart">
+    <form>
+
+        <div class="special-radio-buttons disease">
+            <input type="radio" name="selectPie" id="rb1" value="CRS"/>
+            <label for="rb1">CRS</label>
+            <input type="radio" name="selectPie" id="rb2" value="diphtheria"/>
+            <label for="rb2">Diphtheria</label>
+            <input type="radio" name="selectPie" id="rb3" value="JapEnc"/>
+            <label for="rb3">Japanese Encephalitis</label>
+            <input type="radio" name="selectPie" id="rb4" value="measles"/>
+            <label for="rb4">Measles</label>
+            <input type="radio" name="selectPie" id="rb5" value="Mumps"/>
+            <label for="rb5">Mumps</label>
+            <input type="radio" name="selectPie" id="rb6" value="ntetanus"/>
+            <label for="rb6">Neonatal Tetanus</label>
+            <input type="radio" name="selectPie" id="rb7" value="pertussis"/>
+            <label for="rb7">Pertussis</label>
+            <input type="radio" name="selectPie" id="rb8" value="polio" checked/>
+            <label for="rb8">Polio</label>
+            <input type="radio" name="selectPie" id="rb9" value="Rubella"/>
+            <label for="rb9">Rubella</label>
+            <input type="radio" name="selectPie" id="rb10" value="ttetanus"/>
+            <label for="rb10">Tetanus</label>
+            <input type="radio" name="selectPie" id="rb11" value="yfever"/>
+            <label for="rb11">Hay Fever</label>
+        </div>
+    </form>
+</div>
+
 <div class="exp"></div>
 
 <script>
 
+    $("input[name='selectPie']").change(function (radioChanged) {
+        changeDiseaseForPieChart(radioChanged.currentTarget.value)
+    });
+
+    function changeDiseaseForPieChart(diseaseName) {
+        disease = diseaseName;
+        readData(disease, 1980);
+    }
+
 
     $(".exp").donutpie({
         radius: 500,
-        tooltip : true,
-        tooltipClass : "donut-pie-tooltip-bubble"
+        tooltip: true,
+        tooltipClass: "donut-pie-tooltip-bubble"
     });
 
-    var mapData=[];
+    var mapData = [];
     var data = [];
 
     var disease = "polio";
 
-    var year = 1980;
+    var year = 2014;
 
     d3.csv('data/top_Global.csv', function (data) {
 
@@ -38,29 +78,41 @@
     function readData(disease, year) {
 
         data = [];
-
         var tempData = mapData.filter(function (diseaseData) {
             return diseaseData["Disease"] == disease;
         });
 
+        var sum = 0;
+        tempData.forEach(function (value) {
+            console.log(sum);
+            sum = sum + (+value[year]);
+        });
 
         tempData.forEach(function (value) {
             data.push({
                 name: value["region"],
-                hvalue: +value[year]
+                hvalue: getPercentage(+value[year], sum),
                 //color: colorGaps[color]
             })
         });
-
         $(".exp").donutpie('update', data);
 
     }
 
+    function getPercentage(data, sum) {
+        if (sum > 0) {
+            return data / sum * 100;
+        }
+        else {
+            return 0;
+        }
+    }
 
-    var myVar =  setInterval(function (d) {
+
+    var myVar = setInterval(function (d) {
         year += 1;
         console.log(year);
-        if(year<2017)
+        if (year < 2017)
             readData("polio", year);
         else
             clearTimeout(myVar);
@@ -72,5 +124,7 @@
 
 
 </script>
+
+
 </body>
 </html>
