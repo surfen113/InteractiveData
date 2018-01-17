@@ -72,13 +72,13 @@ function ready(animate, data, sum, year) {
     if (animate) {
         $(".exp2").donutpie('update', data, sum, year);
 
-        year = 1980;
+        //year = 1980;
         var myVar = setInterval(function (d) {
-            //console.log(year);
             if (year < 2017) {
+                console.log(year);
                 $(".exp2").donutpie('update', data, sum, year);
-                readThisData(disease, year, true);
                 year += 1;
+                readThisData(disease, year, true);
             }
             else
                 year = 1980;
