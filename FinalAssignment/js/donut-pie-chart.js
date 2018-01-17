@@ -17,7 +17,31 @@
 
 		this.svg.append("g")
 			.attr("class", "slices");
-		
+
+		this.svg.append("svg:circle")
+            .attr("r", radius * 0.6)
+            .style("fill", "#E7E7E7");
+            //.on(eventObj);
+
+        this.svg.append('text')
+            .attr('class', 'center-txt')
+            .attr('id', 'region')
+            .attr('y', radius * -0.16)
+            .attr('text-anchor', 'middle')
+            .style('font-weight', 'bold');
+
+        this.svg.append('text')
+            .attr('class', 'center-txt value')
+            .attr('id', 'cases')
+            .attr('text-anchor', 'middle');
+
+        this.svg.append('text')
+            .attr('class', 'center-txt percentage')
+            .attr('id', 'percentage')
+            .attr('y', radius * 0.16)
+            .attr('text-anchor', 'middle')
+            .style('fill', '#A2A2A2');
+
 		this.pie = d3.layout.pie()
 			.sort(null)
 			.value(function(d){
@@ -37,8 +61,6 @@
 		  .outerRadius(radius * 0.9);
 
 
-
-
 		this.svg.attr("transform", "translate(" + radius + "," + radius + ")");
 
 		var tpClass = this.settings.tooltipClass;
@@ -55,10 +77,17 @@
 
 	};
 
+	function center_text(region, year, cases, percentage) {
+
+        d3.select("#region").text("Total Cases in " + region + " in " + year);
+        d3.select("#cases").text(cases);
+        d3.select("#percentage").text(percentage  + " %");
+    }
 
 
-	DonutPie.prototype.update = function(data) {
-		
+
+	DonutPie.prototype.update = function(data, total, year) {
+
 		// check if all the items has colors.
 		var colors = d3.scale.category20().range();
 		for (var i = 0; i < data.length; i++) {
@@ -73,7 +102,10 @@
 		var slice = this.svg.select(".slices").selectAll("path.slice")
 		    .data(this.pie(data));
 
-		slice.enter()
+		center_text("World", year, total, 100);
+
+
+        slice.enter()
 		    .insert("path")
 		    .style("fill", function(d) { return d.data.color; })
 		    .attr("title", function(d) { return d.data.name + " " + Math.round(d.value) + "%"; })
@@ -85,8 +117,11 @@
 
 	    	if (tooltip) {
 		    	if (d.id != "none") {
-			        $(tpClass).html( d.data.name + " " + Math.round(d.value) + "%" );
-			        $(tpClass).css("visibility", "visible");
+
+                    center_text( d.data.name, year, d.data.cases, Math.round(d.value));
+                    // $(tpClass).html( d.data.name + " " + Math.round(d.value) + "%" );
+                    // $(tpClass).css("visibility", "visible");
+
 			    }
 		    }
 		})
@@ -94,6 +129,7 @@
 			if (tooltip) {
 		    	if (d.id != "none") {
 		    		$(tpClass).css("top",(d3.event.pageY-10)+"px").css("left",(d3.event.pageX+10)+"px");
+
 			    }
 			}
 	    })
@@ -101,10 +137,14 @@
             d3.select(this).transition()
                 .duration(200)
                 .attr("d", arc);
-			if (tooltip) {		
-		    	$(tpClass).html("");
-		        $(tpClass).css("visibility", "hidden");
-			}
+
+
+            center_text("World", year, total, 100);
+
+			// if (tooltip) {
+		    	// $(tpClass).html("");
+		     //    $(tpClass).css("visibility", "hidden");
+			// }
 		});
 
 		slice   
