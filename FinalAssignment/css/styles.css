@@ -24,7 +24,7 @@
 .chartwrapper {
     width: 100%;
     position: relative;
-    padding-bottom: 30%;
+    padding-bottom: 35%;
     box-sizing: border-box;
 }
 
@@ -233,6 +233,8 @@ p {
 
 .special-radio-buttons {
   transform: translate(0%,-50%);
+    margin-top:2%;
+    margin-bottom: -5px;
 }
 
 input[type="radio"] {

@@ -104,7 +104,9 @@ function loadMap(areas) {
                 "unlistedAreasAlpha": 1,
                 "selectedColor": undefined
             },
-            "smallMap": {},
+            "smallMap": {
+                enabled: false,
+            },
             "export": {
                 "enabled": true,
                 "position": "bottom-right"
