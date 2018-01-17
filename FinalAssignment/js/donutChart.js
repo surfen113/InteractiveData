@@ -49,7 +49,6 @@ function readThisData(disease, year, animate) {
     //console.log(tempData);
     var sum = 0;
     tempData.forEach(function (value) {
-        console.log(sum);
         sum = sum + (+value[year]);
     });
 
@@ -72,16 +71,17 @@ function readThisData(disease, year, animate) {
 function ready(animate, data, sum, year) {
 
     if (animate) {
+        $(".exp").donutpie('update', data, sum, year);
 
-        var year2 = year;
+        year = 1980;
         var myVar = setInterval(function (d) {
-            readThisData(disease, year2, true);
+            console.log(year);
             if (year < 2017) {
-                $(".exp2").donutpie('update', data, sum, year2);
-                year2 += 1;
+                $(".exp2").donutpie('update', data, sum, year);
+                year += 1;
             }
             else
-                year2 = year;
+                year = 1980;
         }, 250);
     }
     else
