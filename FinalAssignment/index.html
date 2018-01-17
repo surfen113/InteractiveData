@@ -6,14 +6,9 @@
     <title>Diseases around the world</title>
     <meta name="author" content="Simona Toader, Riddhi Raj, Julian Ritter"/>
 
-
-
     <!--D3 -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-
-    <!-- ChartJs -->
-    <script src="libraries/chartJs/utils.js"></script>
-    <script src="libraries/chartJs/Chart.bundle.js"></script>
+    <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -26,41 +21,23 @@
     <!-- AmCharts -->
     <script src="libraries/amMap/ammap.js"></script>
     <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
     <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js" type="text/javascript"></script>
+    <!--<script src="https://www.amcharts.com/lib/3/themes/none.js"></script>-->
+    <!--<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>-->
 
-    <!-- Bootstrap Slider -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.js"></script>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css">
-
+    <!-- Slider -->
+    <script src="libraries/noUiSlider/nouislider.min.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="css/nouislider.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.min.js"></script>
 
     <!-- Own Code + style -->
     <script src="js/main.js" defer></script>
     <script src="js/map.js" defer></script>
-    <!-- <script src="js/diseases_pie.js" defer></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.min.js"></script>
-    <script src="libraries/noUiSlider/nouislider.min.js" defer></script>
     <link rel="stylesheet" href="css/styles.css">
-
-
-     <!--Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="libraries/bootstrap/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/nouislider.min.css"/>
-
-    <script src="https://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
-    <script src="https://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
-    <script src="https://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
-    <script src="https://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
-    <script src="https://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
-    <script src="https://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
-    <script src="https://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
-    <script src="https://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
-    <script src="https://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
-
     <script src="js/diseases_bubble.js" defer></script>
 
+    <!--Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="libraries/bootstrap/bootstrap.min.css"/>
 
 
 </head>
@@ -78,7 +55,7 @@
 <div id="fullpage">
     <div class="section active" id="section0">
         <h1>Diseases around the world</h1>
-        <p>Final project - Interactive Data Exploration 2017</p>
+        <p>Final project - Interactive Data Exploration 2017/18</p>
         <p>Simona Toader, Riddhi Raj, Julian Ritter</p>
     </div>
 
@@ -87,25 +64,47 @@
         <div class="slide" id="slide1">
             <div class="intro">
                 <div class="container">
-                    <div class="row" >
-                        <button type="button hexagon" class="btn btn-default" id="CRS" onclick="populateHTML(this.id)">CRS</button>
-                        <button type="button hexagon" class="btn btn-default" id="diphtheria" onclick="populateHTML(this.id)">diphtheria</button>
-                        <button type="button hexagon" class="btn btn-default" id="JapEnc" onclick="populateHTML(this.id)">Japanese <br /> encephalitis</button>
+                    <div class="row">
+                        <button type="button hexagon" class="btn btn-default" id="CRS" onclick="populateHTML(this.id)">
+                            CRS
+                        </button>
+                        <button type="button hexagon" class="btn btn-default" id="diphtheria"
+                                onclick="populateHTML(this.id)">diphtheria
+                        </button>
+                        <button type="button hexagon" class="btn btn-default" id="JapEnc"
+                                onclick="populateHTML(this.id)">Japanese <br/> encephalitis
+                        </button>
                     </div>
                     <div class="row">
-                        <button type="button hexagon" class="btn btn-default" id="measles" onclick="populateHTML(this.id)">measles</button>
-                        <button type="button hexagon" class="btn btn-default" id="Mumps" onclick="populateHTML(this.id)">Mumps</button>
-                        <button type="button hexagon" class="btn btn-default" id="ntetanus" onclick="populateHTML(this.id)">ntetanus</button>
-                         <button type="button hexagon" class="btn btn-default" id="pertussis" onclick="populateHTML(this.id)">pertussis</button>
-                        <button type="button hexagon" class="btn btn-default" id="polio" onclick="populateHTML(this.id)">polio</button>
+                        <button type="button hexagon" class="btn btn-default" id="measles"
+                                onclick="populateHTML(this.id)">measles
+                        </button>
+                        <button type="button hexagon" class="btn btn-default" id="Mumps"
+                                onclick="populateHTML(this.id)">Mumps
+                        </button>
+                        <button type="button hexagon" class="btn btn-default" id="ntetanus"
+                                onclick="populateHTML(this.id)">ntetanus
+                        </button>
+                        <button type="button hexagon" class="btn btn-default" id="pertussis"
+                                onclick="populateHTML(this.id)">pertussis
+                        </button>
+                        <button type="button hexagon" class="btn btn-default" id="polio"
+                                onclick="populateHTML(this.id)">polio
+                        </button>
                     </div>
                     <div class="row">
-                        <button type="button hexagon" class="btn btn-default" id="Rubella" onclick="populateHTML(this.id)">Rubella</button>
-                        <button type="button hexagon" class="btn btn-default" id="ttetanus" onclick="populateHTML(this.id)">ttetanus</button>
-                        <button type="button hexagon" class="btn btn-default" id="yfever" onclick="populateHTML(this.id)">yfever</button>
+                        <button type="button hexagon" class="btn btn-default" id="Rubella"
+                                onclick="populateHTML(this.id)">Rubella
+                        </button>
+                        <button type="button hexagon" class="btn btn-default" id="ttetanus"
+                                onclick="populateHTML(this.id)">ttetanus
+                        </button>
+                        <button type="button hexagon" class="btn btn-default" id="yfever"
+                                onclick="populateHTML(this.id)">yfever
+                        </button>
                     </div>
                 </div>
-                <div id="slide0-content"></div> 
+                <div id="slide0-content"></div>
             </div>
 
             <div class="slide">
@@ -114,19 +113,7 @@
                     <p>Easy to use. Configurable and customizable.</p>
                 </div>
             </div>
-            <div class="slide">
-                <div class="intro">
-                    <h1>Cool</h1>
-                    <p>It just looks cool. Impress everybody with a simple and modern web design!</p>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="intro">
-                    <h1>Compatible</h1>
-                    <p>Working in modern and old browsers too! IE 8 users don't have the fault of using that horrible
-                        browser! Lets give them a chance to see your site in a proper way!</p>
-                </div>
-            </div>
+
         </div>
     </div>
 
@@ -154,20 +141,19 @@
     </div>
 
 
-
     <div class="section" id="section3">
-        <div class="intro">
-            <h1>Map</h1>
-
+            <!--<h1>Map</h1>-->
 
             <div class="chartwrapper">
                 <div id="chartdiv" class="chartdiv"></div>
             </div>
-            <center><div id="legenddiv"></div></center>
+            <center>
+                <div id="legenddiv"></div>
+            </center>
 
-            <div id="slider" style="margin-left:35%; margin-right:35%; margin-top: 3%;"> </div>
+            <div id="slider" style="margin-left:35%; margin-right:35%; margin-top: 3%;"></div>
 
-           <center>
+            <center>
                 <form>
                     <div class="special-radio-buttons mode" style="margin-top:60px">
                         <input type="radio" name="mode" id="mode1" value="Total" checked/>
@@ -189,20 +175,19 @@
                         <input type="radio" name="rb" id="rb6" value="ntetanus"/>
                         <label for="rb6">Neonatal Tetanus</label>
                         <input type="radio" name="rb" id="rb7" value="pertussis"/>
-                        <label for="rb7">Pertussis</label>   
+                        <label for="rb7">Pertussis</label>
                         <input type="radio" name="rb" id="rb8" value="polio" checked/>
-                        <label for="rb8">Polio</label> 
+                        <label for="rb8">Polio</label>
                         <input type="radio" name="rb" id="rb9" value="Rubella"/>
-                        <label for="rb9">Rubella</label>   
+                        <label for="rb9">Rubella</label>
                         <input type="radio" name="rb" id="rb10" value="ttetanus"/>
-                        <label for="rb10">Tetanus</label>   
+                        <label for="rb10">Tetanus</label>
                         <input type="radio" name="rb" id="rb11" value="yfever"/>
-                        <label for="rb11">Hay Fever</label>                                           
+                        <label for="rb11">Hay Fever</label>
                     </div>
                 </form>
             </center>
 
-        </div>
     </div>
 </body>
 </html>
