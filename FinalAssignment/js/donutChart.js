@@ -36,17 +36,17 @@ d3.csv('data/top_Global.csv', function (data) {
         return values["region"] != "world";
     });
 
-    readThisData(disease, year);
+    readThisData(disease, year, false);
 });
 
-function readThisData(disease, year) {
+function readThisData(disease, year, animate) {
     data = [];
     var tempData = donutMapData.filter(function (diseaseData) {
         return diseaseData["Disease"] == disease;
     });
 
-    console.log(disease);
-    console.log(tempData);
+    //console.log(disease);
+    //console.log(tempData);
     var sum = 0;
     tempData.forEach(function (value) {
         console.log(sum);
@@ -62,29 +62,33 @@ function readThisData(disease, year) {
         })
     });
 
-    ready(data, sum, year);
-    console.log(data);
+    ready(animate, data, sum, year);
+
+    //console.log(data);
     //$("#donutChart").donutpie('update', data);
 
 }
 
-function ready(data, sum, year) {
+function ready(animate, data, sum, year) {
 
     if (animate) {
 
-        $(".exp").donutpie('update', data, sum, year);
-
-        year = 1980;
+        var year2 = year;
         var myVar = setInterval(function (d) {
-            console.log(year);
+            readThisData(disease, year2, true);
             if (year < 2017) {
-                $(".exp2").donutpie('update', data, sum, year);
-                year += 1;
+                $(".exp2").donutpie('update', data, sum, year2);
+                year2 += 1;
             }
             else
-                year = 1980;
+                year2 = year;
         }, 250);
     }
+    else
+    {
+        $(".exp").donutpie('update', data, sum, year);
+        ready(true, data, sum, year)
+}
 }
 
 
