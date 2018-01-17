@@ -77,11 +77,11 @@
 
 	};
 
-	function center_text(region, year, cases, percentage) {
+	function center_text(element, region, year, cases, percentage) {
 
-        d3.select("#region").text("Total Cases in " + region + " in " + year);
-        d3.select("#cases").text(cases);
-        d3.select("#percentage").text(percentage  + " %");
+        element.select("#region").text("Total Cases in " + region + " in " + year);
+        element.select("#cases").text(cases);
+        element.select("#percentage").text(percentage  + " %");
     }
 
 
@@ -102,7 +102,9 @@
 		var slice = this.svg.select(".slices").selectAll("path.slice")
 		    .data(this.pie(data));
 
-		center_text("World", year, total, 100);
+		var element = this.svg;
+
+		center_text(element, "World", year, total, 100);
 
 
         slice.enter()
@@ -118,7 +120,7 @@
 	    	if (tooltip) {
 		    	if (d.id != "none") {
 
-                    center_text( d.data.name, year, d.data.cases, Math.round(d.value));
+                    center_text(element, d.data.name, year, d.data.cases, Math.round(d.value));
                     // $(tpClass).html( d.data.name + " " + Math.round(d.value) + "%" );
                     // $(tpClass).css("visibility", "visible");
 
@@ -139,7 +141,7 @@
                 .attr("d", arc);
 
 
-            center_text("World", year, total, 100);
+            center_text(element, "World", year, total, 100);
 
 			// if (tooltip) {
 		    	// $(tpClass).html("");

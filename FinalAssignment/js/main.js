@@ -20,7 +20,7 @@ $(document).ready(function() {
         behaviour: 'drag-tap',
         tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
         padding: 1,
-        step: 1,
+        //step: 1,
         range: {
             'min': 1979,
             'max': 2017
@@ -28,7 +28,7 @@ $(document).ready(function() {
     });
 
     fancySlider.noUiSlider.on('update', function(){
-        document.getElementsByClassName("noUi-tooltip").innerHTML = "blub";
+        document.getElementsByClassName("noUi-tooltip").innerHTML = "";
         var minmax = fancySlider.noUiSlider.get();
         filterData(parseInt(minmax[0]), parseInt(minmax[1]));
     });
@@ -50,11 +50,11 @@ $("input[name='mode']").change(function (radioChanged) {
 
 
 $(document).on('click', '#crsDescription', function(){
-    drawPieChart("CRS");
+    drawDonutChart("CRS");
     $.fn.fullpage.moveTo('secondPage', 1);
 });
 
-function drawPieChart(selectedDisease) {
+function drawDonutChart(selectedDisease) {
     //alert(selectedDisease);
     //changeDiseaseForPieChart(selectedDisease);
 }
