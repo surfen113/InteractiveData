@@ -9,7 +9,6 @@ function changeDiseaseForPieChart(diseaseName) {
     disease = diseaseName;
     readThisData(disease, 1980);
 }
-var animate = true;
 
 
 $("#donutChart").donutpie({
@@ -71,12 +70,13 @@ function readThisData(disease, year, animate) {
 function ready(animate, data, sum, year) {
 
     if (animate) {
-        $(".exp").donutpie('update', data, sum, year);
+        $(".exp2").donutpie('update', data, sum, year);
 
         year = 1980;
         var myVar = setInterval(function (d) {
-            console.log(year);
+            //console.log(year);
             if (year < 2017) {
+                readThisData(disease, year, true);
                 $(".exp2").donutpie('update', data, sum, year);
                 year += 1;
             }
