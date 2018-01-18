@@ -92,7 +92,7 @@ d3.csv("data/data.csv", function(error, data) {
 
         svg.append("g")
             .attr("class", "y axis")
-            .style("fill", "steelblue")
+            .style("fill", "red")
             .call(yAxisLeft)
             .append("text")
             .attr("fill", "#000")
@@ -119,7 +119,7 @@ d3.csv("data/data.csv", function(error, data) {
             .data(data3.filter(function(d) { return d; }))
             .enter().append("circle")
             .attr("class", "dot")
-            .style("fill", "steelblue")
+            .style("fill", "red")
             .attr("cx", valueline.x())
             .attr("cy", valueline.y())
             .attr("r", 3.5);
