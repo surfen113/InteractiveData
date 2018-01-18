@@ -66,6 +66,7 @@ $("input[name='selectPie']").change(function (radioChanged) {
     //populateHTML(radioChanged.currentTarget.value);
     populateHTML(radioChanged.currentTarget.value);
     changeDiseaseForPieChart(radioChanged.currentTarget.value, $("label[for='"+radioChanged.currentTarget.id+"']").text());
+    chekstuff();
     changeDisease(radioChanged.currentTarget.value);
 
     var country = $('.selectpicker').find("option:selected").val();
@@ -92,41 +93,33 @@ $(document).on('click', '#donutBackButton', function () {
  }
 
 var playing = true;
-function Changeicon(){
-    if(playing){
-        document.getElementById("play").classList.remove('fa-pause');
-        document.getElementById("play").classList.add('fa-play');
-        playing = false;
-    }
-    else{
-        document.getElementById("play").classList.remove('fa-play');
-        document.getElementById("play").classList.add('fa-pause');
-        playing = true;
-    }
-
-// document.getElementById("MyElement").classList.remove('MyClass');
-}
-
-
-// var PauseClass = true;
-function ChangeToPlay(){
-    if(playing){
-        document.getElementById("play").classList.remove('fa-pause');
-        document.getElementById("play").classList.add('fa-play');
-        playing = false;
-    }
-    else{
-        
-    }
-}
-//     if(PauseClass){
+//
+// function Changeicon(playing){
+//
+//     if(playing){
 //         document.getElementById("play").classList.remove('fa-pause');
 //         document.getElementById("play").classList.add('fa-play');
-//         PauseClass = false;
+//         playing = false;
 //     }
 //     else{
 //         document.getElementById("play").classList.remove('fa-play');
 //         document.getElementById("play").classList.add('fa-pause');
-//         PauseClass = true;
+//         playing = true;
 //     }
+// // document.getElementById("MyElement").classList.remove('MyClass');
 // }
+
+var PauseClass = true;
+function ChangeToPlay(){
+
+    // if(PauseClass){
+        document.getElementById("play").classList.remove('fa-pause');
+        document.getElementById("play").classList.add('fa-play');
+        // PauseClass = false;
+    // }
+    // else{
+    //     document.getElementById("play").classList.remove('fa-play');
+    //     document.getElementById("play").classList.add('fa-pause');
+    //     PauseClass = true;
+    // }
+}

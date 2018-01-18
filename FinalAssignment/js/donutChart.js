@@ -46,6 +46,7 @@ d3.csv('data/top_Global.csv', function (data) {
 });
 
 function readThisData(disease, year, animate) {
+
     data = [];
     var tempData = donutMapData.filter(function (diseaseData) {
         return diseaseData["Disease"] == disease;
@@ -141,6 +142,13 @@ function ready2(animate, data, sum, year) {
     }
 }
 
+function chekstuff() {
+    if (!playState)
+        playState = true;
+    document.getElementById("play").classList.remove('fa-play');
+    document.getElementById("play").classList.add('fa-pause');
+}
+
 
     function getPercentage(data, sum) {
         if (sum > 0) {
@@ -156,10 +164,14 @@ function ready2(animate, data, sum, year) {
         if (playState == true) {
             clearTimeout(timeout);
             playState = false;
+            document.getElementById("play").classList.remove('fa-pause');
+            document.getElementById("play").classList.add('fa-play');
         }
         else {
             readThisData(disease, currentYear, true);
             playState = true;
+            document.getElementById("play").classList.remove('fa-play');
+            document.getElementById("play").classList.add('fa-pause');
         }
     });
 
