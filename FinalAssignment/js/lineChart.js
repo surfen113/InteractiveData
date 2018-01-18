@@ -83,18 +83,37 @@ d3.csv("data/data.csv", function(error, data) {
         svg.append("g")            // Add the X Axis
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .call(xAxis)
+            .append("text")      // text label for the x axis
+            .attr("x", 400 )
+            .attr("y",  30 )
+            .style("text-anchor", "middle")
+            .text("Date");
 
         svg.append("g")
             .attr("class", "y axis")
             .style("fill", "steelblue")
-            .call(yAxisLeft);
+            .call(yAxisLeft)
+            .append("text")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end")
+            .text("No. of Cases");
 
         svg.append("g")
             .attr("class", "y axis2")
             .attr("transform", "translate(" + width + " ,0)")
             .style("fill", "darkblue")
-            .call(yAxisRight);
+            .call(yAxisRight)
+            .append("text")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end")
+            .text("GDP per Capita");
 
         svg.selectAll(".dot")
             .data(data3.filter(function(d) { return d; }))
