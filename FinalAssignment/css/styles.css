@@ -141,6 +141,11 @@
 .legend .sear { background-color: #4f9d3e; }
 .legend .wpr { background-color: #a7dc92; }
 
+.legend2 li { float: right; margin-right: 10%; }
+.legend2 span { border: 1.5px solid #ccc; float: right; width: 16px; height: 16px; margin: 2px; }
+.legend2 .gdp { background-color: #ff0000; }
+.legend2 .cases { background-color: #6f257f; }
+
 #donutCharts {
     position: relative;
     margin-bottom: 30px;
