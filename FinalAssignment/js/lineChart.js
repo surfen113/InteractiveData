@@ -1,6 +1,6 @@
 var margin = {top: 50, right: 100, bottom: 50, left: 100},
-    width = 1000 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 900 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
 
 var transition = 150;
 
