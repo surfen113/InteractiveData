@@ -613,17 +613,17 @@ margin-left: 8% !important;
     font-size: 1em;
 }
 
-@font-face { font-family: Font; src: url('https://surfen113.github.io/InteractiveData/FinalAssignment/fonts/NotoSans-Regular.ttf'); }
+@font-face { font-family: displayFont; src: url('https://surfen113.github.io/InteractiveData/FinalAssignment/fonts/NotoSans-Regular.ttf'); }
 /*@font-face { font-family: Roboto; src: url('fonts/roboto/Roboto-Regular.TTF'); }*/
 /*@font-face { font-family: Lato; src: url('fonts/lato/Lato-Light.TTF'); } */
 
 body{
-    font-family: Font !important;
+    font-family: displayFont !important;
     font-size: 12px !important;
 }
 
 h1{
-    font-family: Font !important;
+    font-family: displayFont !important;
     font-size: 72px !important;
 
 }
