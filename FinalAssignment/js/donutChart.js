@@ -12,7 +12,7 @@ var currentYear = 1999;
 function changeDiseaseForPieChart(diseaseName) {
     clearTimeout(timeout);
     disease = diseaseName;
-    readThisData(disease, 1999, false);
+    readThisData(disease, 2016, false);
 }
 
 
@@ -33,7 +33,7 @@ var data = [];
 
 var disease = "diphtheria";
 
-var year = 1999;
+var year = 2016;
 
 d3.csv('data/top_Global.csv', function (data) {
     donutMapData = data.filter(function (values) {
@@ -79,7 +79,12 @@ function ready(animate, data, sum, year) {
 
         if (year > 2016) {
             year = 1999;
+
+            if (data.name = "JapEnc") {
+                year = 2002;
+            }
         }
+
 
         timeout = setTimeout(function () {
             currentYear = year;
@@ -123,54 +128,50 @@ function ready2(animate, data, sum, year) {
         $(".exp2").donutpie('update', data, sum, year);
         var millisecondsToWait = 1200;
         currentYear = year;
+
         if (currentYear >= 2016) {
-            currentYear = 1999;
-        }
-        if (currentYear <= 1980) {
-            currentYear = 2017
-        }
+            currentYear = 1998;
 
-
-    }
-    else {
-        //$(".exp").donutpie('update', data, sum, year);
-        //ready(true, data, sum, year)
+        }
+        else if (currentYear <= 1998) {
+            currentYear = 2016
+        }
     }
 }
 
 
-function getPercentage(data, sum) {
-    if (sum > 0) {
-        return data / sum * 100;
+    function getPercentage(data, sum) {
+        if (sum > 0) {
+            return data / sum * 100;
+        }
+        else {
+            return 0;
+        }
     }
-    else {
-        return 0;
-    }
-}
 
 
-$(document).on('click', '#play', function () {
-    if (playState == true) {
+    $(document).on('click', '#play', function () {
+        if (playState == true) {
+            clearTimeout(timeout);
+            playState = false;
+        }
+        else {
+            readThisData(disease, currentYear, true);
+            playState = true;
+        }
+    });
+
+    $(document).on('click', '#next', function () {
         clearTimeout(timeout);
         playState = false;
-    }
-    else {
-        readThisData(disease, currentYear, true);
-        playState = true;
-    }
-});
+        updateRightOneYear(disease, currentYear + 1, false);
 
-$(document).on('click', '#next', function () {
-    clearTimeout(timeout);
-    playState = false;
-    updateRightOneYear(disease, currentYear + 1, false);
+    });
 
-});
+    $(document).on('click', '#prev', function () {
+        clearTimeout(timeout);
+        playState = false;
+        updateRightOneYear(disease, currentYear - 1, false);
 
-$(document).on('click', '#prev', function () {
-    clearTimeout(timeout);
-    playState = false;
-    updateRightOneYear(disease, currentYear - 1, false);
-
-});
+    });
 
