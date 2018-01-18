@@ -11,6 +11,7 @@ var currentYear = 1999;
 
 function changeDiseaseForPieChart(diseaseName) {
     clearTimeout(timeout);
+    playState = false;
     disease = diseaseName;
     readThisData(disease, 2016, false);
 }
