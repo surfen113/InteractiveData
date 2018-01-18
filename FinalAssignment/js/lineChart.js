@@ -118,8 +118,8 @@ d3.csv("data/data.csv", function (error, data) {
             .call(yAxisLeft)
             .append("text")
             .attr("fill", "#000")
-            .attr("x", -15)
-            .attr("y", 0)
+            .attr("x", 20)
+            .attr("y", -20)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
             .text("No. of Cases");
@@ -131,8 +131,8 @@ d3.csv("data/data.csv", function (error, data) {
             .call(yAxisRight)
             .append("text")
             .attr("fill", "#000")
-            .attr("x", 100)
-            .attr("y", 0)
+            .attr("x", 50)
+            .attr("y", -20)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
             .text("GDP per Capita");
