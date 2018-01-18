@@ -1,3 +1,36 @@
+/*line charts */
+
+path {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.line {
+    fill: none;
+    stroke: #6F257F;
+    stroke-width: 5px;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.hover-line {
+    stroke: #6F257F;
+    stroke-width: 2px;
+    stroke-dasharray: 3,3;
+}
+
 /* Donut Chart */
 .exp svg {
     margin-left:10%;
