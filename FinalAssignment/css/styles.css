@@ -185,7 +185,6 @@
     width: 100%;
     height: 60%;
     position: relative;
-    padding-bottom: 25%;
     box-sizing: border-box;
 }
 
@@ -193,7 +192,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    margin-top: 1% !important;
 }
 
 /*#chartdiv {*/
@@ -395,7 +393,11 @@ p {
 
 .special-radio-buttons {
   transform: translate(0%,-50%);
-    margin-top:2%;
+  
+}
+
+.menu-radio{
+      margin-top:2%;
     margin-bottom: 2%;
 }
 
