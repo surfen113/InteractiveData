@@ -1,3 +1,10 @@
+#textDiseaseDescription {
+    font-size: 1.5em;
+}
+
+
+
+/*Removing top space on these slides */
 #section2 .fp-tableCell{
     display: table-row !important;
     vertical-align: middle;
@@ -161,13 +168,10 @@
 .legend .sear { background-color: #4f9d3e; }
 .legend .wpr { background-color: #a7dc92; }
 
-.legend2 li { float: right; margin-right: 10%; }
-.legend2 span { 
-    float: right;
-    width: 16px;
-    height: 16px;
-    margin: 0 2px;
-}
+.legend2 { list-style: none; }
+.legend2 li { float: left; margin-right: 10px; }
+.legend2 span { border: 1.5px solid #ccc; float: left; width: 16px; height: 16px; margin: 2px; }
+
 .legend2 .gdp { background-color: darkblue; }
 .legend2 .cases { background-color: steelblue; }
 
@@ -185,6 +189,17 @@
 }
 
 #donutCharts ul {
+    list-style:none;
+}
+
+.lineCharts #lineLegend {
+    font-size:16px;
+    width:100%;
+margin-left:40%;
+position: inherit !important;
+}
+
+.lineCharts ul {
     list-style:none;
 }
 

@@ -166,7 +166,7 @@ function populateHTML(disease_label) {
     }
     $("#slide0-content").empty();
     var string = "<br><br> <button class='btn btn-primary' id='diseaseDescription'>Go to next Slide</button>";
-    $disease_description = '<p>' + myFunction(disease_label) + '</p>' + string;
+    $disease_description = '<div id="textDiseaseDescription"><p>' + myFunction(disease_label) + '</p></div>' + string;
     $('#slide0-content').append($disease_description);
 }
 
