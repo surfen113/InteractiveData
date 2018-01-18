@@ -1,3 +1,6 @@
+/**
+ * Created by jri on 18.01.18.
+ */
 (function ($) {
 
     var DonutPie = function ($self, options) {
@@ -44,14 +47,6 @@
             .attr('y', radius * 0.15)
             .attr('text-anchor', 'middle')
             .style('font-weight', 'bold');
-
-            this.svg.append('text')
-                .attr('class', 'center-txt percentage')
-                .attr('id', 'percentage')
-                .attr('y', radius * 0.35)
-                .style('font-size', '25px')
-                .attr('text-anchor', 'middle')
-                .style('fill', '#A2A2A2');
 
         this.pie = d3.layout.pie()
             .sort(null)
@@ -129,42 +124,7 @@
                 return d.data.name + " " + Math.round(d.value) + "%";
             })
             .attr("class", "slice")
-            .on("mouseover", function (d) {
-                d3.select(this).transition()
-                    .duration(300)
-                    .attr("d", arcHover);
 
-                if (tooltip) {
-                    if (d.id != "none") {
-
-                        center_text(element, d.data.name, year, d.data.cases, Math.round(d.value));
-                        // $(tpClass).html( d.data.name + " " + Math.round(d.value) + "%" );
-                        // $(tpClass).css("visibility", "visible");
-
-                    }
-                }
-            })
-            .on("mousemove", function (d) {
-                if (tooltip) {
-                    if (d.id != "none") {
-                        $(tpClass).css("top", (d3.event.pageY - 10) + "px").css("left", (d3.event.pageX + 10) + "px");
-
-                    }
-                }
-            })
-            .on("mouseout", function () {
-                d3.select(this).transition()
-                    .duration(200)
-                    .attr("d", arc);
-
-
-                center_text(element, "World", year, total, 100);
-
-                // if (tooltip) {
-                // $(tpClass).html("");
-                //    $(tpClass).css("visibility", "hidden");
-                // }
-            });
 
         slice
             .transition().duration(400)
@@ -188,29 +148,29 @@
 
     };
 
-    $.fn.donutpie = function (option) {
+    $.fn.donutpie2 = function (option) {
 
         var $this = $(this);
-        var $donutpie = $this.data("donutpie");
+        var $donutpie2 = $this.data("donutpie");
 
-        if (!$donutpie) {
+        if (!$donutpie2) {
             // init the object
             var options = typeof option == "object" && option;
-            $donutpie = new DonutPie($this, options);
-            $this.data("donutpie", $donutpie);
+            $donutpie2 = new DonutPie($this, options);
+            $this.data("donutpie", $donutpie2);
         }
 
         if (typeof option === 'string' && $.fn.donutpie.methods[option]) {
-            $donutpie[option].apply($donutpie, Array.prototype.slice.call(arguments, 1));
+            $donutpie2[option].apply($donutpie2, Array.prototype.slice.call(arguments, 1));
         } else if (typeof option === 'object' || !option) {
-            $donutpie.display.apply($donutpie, option);
+            $donutpie2.display.apply($donutpie2, option);
         } else {
             $.error('Method ' + option + ' does not exist in DonutPie');
         }
 
     };
 
-    $.fn.donutpie.methods = {
+    $.fn.donutpie2.methods = {
         'display': 1,
         'update': 1
     }

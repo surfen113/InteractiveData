@@ -24,9 +24,9 @@ $("#donutChart").donutpie({
     tooltipClass: "donut-pie-tooltip-bubble"
 });
 
-$(".exp2").donutpie({
+$(".exp2").donutpie2({
     radius: 350,
-    tooltip: false,
+    tooltip: true,
     tooltipClass: "donut-pie-tooltip-bubble"
 });
 
