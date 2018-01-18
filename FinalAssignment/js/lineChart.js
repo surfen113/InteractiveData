@@ -64,10 +64,6 @@ d3.csv("data/data.csv", function(error, data) {
             });
         }
 
-        console.log(data3);
-
-        console.log(svg);
-
         // Scale the range of the data
         x.domain(d3.extent(data3, function(d) { return d.year; }));
         y0.domain([0, d3.max(data3, function(d) {
@@ -165,7 +161,7 @@ d3.csv("data/data.csv", function(error, data) {
             focus.select("text").html(function() { return string});
 
             focus.select(".x-hover-line").attr("y2", height - yvalue);
-             console.log(y0(d.cases));
+             //console.log(y0(d.cases));
             // console.log(y1(d.gdp));
             // console.log(height);
             //focus.select(".y-hover-line").attr("x2", width + width);
@@ -174,16 +170,20 @@ d3.csv("data/data.csv", function(error, data) {
     });
 });
 
-function updateData(country) {
+var disease = $("input[name='selectPie']").value;
+
+function updateData(country, disease) {
 
     data3 = [];
 
     console.log(country);
 
+    console.log(disease);
+
     d3.csv("data/data.csv", function(error, data) {
 
         diseaseData = data.filter(function (value) {
-            return value["Cname"] === country && value["Disease"] == "polio";
+            return value["Cname"] === country && value["Disease"] == disease;
         });
 
         d3.csv("data/gdp_2.csv", function (error, data2) {
@@ -254,8 +254,8 @@ $(function() {
 
     $('.selectpicker').on('change', function(){
         var selected = $(this).find("option:selected").val();
-        console.log(selected);
-        updateData(selected);
+        //console.log(selected);
+        updateData(selected, disease);
     });
 
 });
