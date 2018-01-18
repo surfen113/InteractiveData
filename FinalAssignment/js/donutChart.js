@@ -5,9 +5,11 @@ $("input[name='selectPie']").change(function (radioChanged) {
     changeDiseaseForPieChart(radioChanged.currentTarget.value)
 });
 
+var timeout;
 function changeDiseaseForPieChart(diseaseName) {
+    clearTimeout(timeout);
     disease = diseaseName;
-    readThisData(disease, 1980);
+    readThisData(disease, 1980, false);
 }
 
 
@@ -44,8 +46,7 @@ function readThisData(disease, year, animate) {
         return diseaseData["Disease"] == disease;
     });
 
-    //console.log(disease);
-    //console.log(tempData);
+
     var sum = 0;
     tempData.forEach(function (value) {
         sum = sum + (+value[year]);
@@ -56,39 +57,36 @@ function readThisData(disease, year, animate) {
             name: value["region"],
             hvalue: getPercentage(+value[year], sum),
             cases: +value[year]
-            //color: colorGaps[color]
         })
     });
 
     ready(animate, data, sum, year);
 
-    //console.log(data);
     //$("#donutChart").donutpie('update', data);
 
 }
 
 function ready(animate, data, sum, year) {
-
+console.log(year);
     if (animate) {
         $(".exp2").donutpie('update', data, sum, year);
-        year+=1;
-        var millisecondsToWait = 500;
+        year += 1;
+        var millisecondsToWait = 1200;
 
-        if(year>2016) {
+        if (year > 2016) {
             year = 1980;
         }
 
-        setTimeout(function() {
+        timeout =setTimeout(function () {
             readThisData(disease, year, true);
         }, millisecondsToWait);
 
 
     }
-    else
-    {
+    else {
         $(".exp").donutpie('update', data, sum, year);
         ready(true, data, sum, year)
-}
+    }
 }
 
 

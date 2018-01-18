@@ -47,50 +47,52 @@
 
         /* Style for our header texts
         * --------------------------------------- */
-        h1{
+        h1 {
             font-size: 5em;
-            font-family: arial,helvetica;
+            font-family: arial, helvetica;
             color: #fff;
-            margin:0;
-            padding:0;
+            margin: 0;
+            padding: 0;
         }
-        .intro p{
+
+        .intro p {
             color: #fff;
         }
 
         /* Centered texts in each section
         * --------------------------------------- */
-        .section{
-            text-align:center;
+        .section {
+            text-align: center;
         }
 
         /* Fixed header and footer.
         * --------------------------------------- */
-        #header, #footer{
-            position:fixed;
+        #header, #footer {
+            position: fixed;
             height: 7%;
-            display:block;
+            display: block;
             width: 100%;
             background: #333;
-            z-index:9;
-            text-align:center;
+            z-index: 9;
+            text-align: center;
             color: #f2f2f2;
             padding: 0 0 0 0;
         }
 
-        #header{
-            top:0px;
-        }
-        #footer{
-            bottom:0px;
+        #header {
+            top: 0px;
         }
 
+        #footer {
+            bottom: 0px;
+        }
 
         /* Bottom menu
         * --------------------------------------- */
         #infoMenu {
             bottom: 80px;
         }
+
         #infoMenu li a {
             color: #fff;
             z-index: 999;
@@ -130,7 +132,7 @@
                 <label for="rb6">Neonatal Tetanus</label>
                 <input type="radio" name="selectPie" id="rb7" value="pertussis"/>
                 <label for="rb7">Pertussis</label>
-                <input type="radio" name="selectPie" id="rb8" value="polio" />
+                <input type="radio" name="selectPie" id="rb8" value="polio"/>
                 <label for="rb8">Polio</label>
                 <input type="radio" name="selectPie" id="rb9" value="Rubella"/>
                 <label for="rb9">Rubella</label>
@@ -201,41 +203,32 @@
 
             <div class="slide">
 
-                <div id="selectDiseaseDonutChart">
-                    <form>
+                <h1>Exploring the Disease Distribution in different regions</h1>
+                <div id="donutCharts">
+                    <div class="row" style=" position: relative; width: 100%; overflow: hidden;">
+                        <div style=" position: relative;width: 10%; height: 100%; float: left;">a</div>
+                        <div class="exp" id="donutChart"
+                             style=" position: relative;width: 40%; height: 100%; float: left;"></div>
+                        <div class="exp2" id="donutChart2"
+                             style=" position: relative; width: 40%; height: 100%; float: left;"></div>
+                        <div style=" position: relative;width: 10%; height: 100%; float: left;">c</div>
+                    </div>
+                    <center>
+                        <ul class="legend" id="donutLegend">
+                            <li><span class="afr"></span>Africa (AFR)</li>
+                            <li><span class="amr"></span>America (AMR)</li>
+                            <li><span class="emr"></span>Eastern Mediterranean (EMR)</li>
+                            <li><span class="eur"></span>Europe (EUR)</li>
+                            <li><span class="sear"></span>South-East Asia (SEAR)</li>
+                            <li><span class="wpr"></span>Western Pacific (WPR)</li>
+                        </ul>
+                    </center>
 
-                        <div class="special-radio-buttons disease">
-                            <input type="radio" name="selectPie" id="rb1" value="CRS"/>
-                            <label for="rb1">CRS</label>
-                            <input type="radio" name="selectPie" id="rb2" value="diphtheria" checked/>
-                            <label for="rb2">Diphtheria</label>
-                            <input type="radio" name="selectPie" id="rb3" value="JapEnc"/>
-                            <label for="rb3">Japanese Encephalitis</label>
-                            <input type="radio" name="selectPie" id="rb4" value="measles"/>
-                            <label for="rb4">Measles</label>
-                            <input type="radio" name="selectPie" id="rb5" value="Mumps"/>
-                            <label for="rb5">Mumps</label>
-                            <input type="radio" name="selectPie" id="rb6" value="ntetanus"/>
-                            <label for="rb6">Neonatal Tetanus</label>
-                            <input type="radio" name="selectPie" id="rb7" value="pertussis"/>
-                            <label for="rb7">Pertussis</label>
-                            <input type="radio" name="selectPie" id="rb8" value="polio" />
-                            <label for="rb8">Polio</label>
-                            <input type="radio" name="selectPie" id="rb9" value="Rubella"/>
-                            <label for="rb9">Rubella</label>
-                            <input type="radio" name="selectPie" id="rb10" value="ttetanus"/>
-                            <label for="rb10">Tetanus</label>
-                            <input type="radio" name="selectPie" id="rb11" value="yfever"/>
-                            <label for="rb11">Hay Fever</label>
-                        </div>
-                    </form>
                 </div>
-
-                <div class="row" style=" position: relative; width: 100%; overflow: hidden;">
-                    <div class="exp" id="donutChart"
-                         style=" position: relative;width: 50%; height: 100%; float: left;"></div>
-                    <div class="exp2" id="donutChart2"
-                         style=" position: relative; width: 50%; height: 100%; float: left;"></div>
+                <div style="text-align:center;">
+                    <center>
+                        <button class='btn btn-primary' id='donutBackButton' style=" margin: 0 auto;">Take me back to the Descriptions</button>
+                    </center>
                 </div>
 
 

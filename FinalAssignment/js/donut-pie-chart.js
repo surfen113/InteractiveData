@@ -24,37 +24,52 @@
             //.on(eventObj);
 
         this.svg.append('text')
+            .attr('class', 'center-txt year')
+            .attr('id', 'year')
+            .attr('y', radius * -0.3)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '30px')
+            .style('font-weight', 'bold');
+
+        this.svg.append('text')
             .attr('class', 'center-txt')
             .attr('id', 'region')
-            .attr('y', radius * -0.16)
+            .attr('y', radius * -0)
             .attr('text-anchor', 'middle')
-            .style('font-weight', 'bold');
+            .style('font-size', '25px')
+            .style('font-weight', 'normal');
 
         this.svg.append('text')
             .attr('class', 'center-txt value')
             .attr('id', 'cases')
-            .attr('text-anchor', 'middle');
+            .style('font-size', '25px')
+            .attr('y', radius * 0.15)
+            .attr('text-anchor', 'middle')
+            .style('font-weight', 'bold');
+
 
         this.svg.append('text')
             .attr('class', 'center-txt percentage')
             .attr('id', 'percentage')
-            .attr('y', radius * 0.16)
+            .attr('y', radius * 0.32)
+            .style('font-size', '25px')
             .attr('text-anchor', 'middle')
             .style('fill', '#A2A2A2');
 
-		this.pie = d3.layout.pie()
+
+        this.pie = d3.layout.pie()
 			.sort(null)
 			.value(function(d){
 				return d.hvalue;
 			});
 
 		this.arc = d3.svg.arc()
-		  .outerRadius(radius * 0.8)
+		  .outerRadius(radius * 0.85)
 		  .innerRadius(radius * 0.4);
 
         this.arcHover = d3.svg.arc()
             .innerRadius(radius*0.4)
-            .outerRadius(radius*0.9);
+            .outerRadius(radius*0.95);
 
 		this.outerArc = d3.svg.arc()
 		  .innerRadius(radius * 0.3)
@@ -79,9 +94,10 @@
 
 	function center_text(element, region, year, cases, percentage) {
 
-        element.select("#region").text("Total Cases in " + region + " in " + year);
-        element.select("#cases").text(cases);
+        element.select("#region").text("Total Cases in the " + region + ":");
+        element.select("#cases").text(cases.toLocaleString());
         element.select("#percentage").text(percentage  + " %");
+        element.select("#year").text(year);
     }
 
 
@@ -150,7 +166,7 @@
 		});
 
 		slice   
-		    .transition().duration(1000)
+		    .transition().duration(400)
 		 	.style("fill", function(d) { return d.data.color; })
 		 	.attr("title", function(d) { return d.data.name + " " + Math.round(d.value) + "%"; })
 		 	.attrTween("d", function(d) {

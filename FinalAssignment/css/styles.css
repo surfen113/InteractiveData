@@ -1,4 +1,44 @@
+/* Donut Chart */
+.exp svg {
+    margin-left:10%;
+}
 
+.exp2 svg {
+    margin-right:10%;
+}
+
+/* basic positioning */
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1.5px solid #ccc; float: left; width: 16px; height: 16px; margin: 2px; }
+/* your colors */
+.legend .afr { background-color: #3976af; }
+.legend .amr { background-color: #b2c7e5; }
+.legend .emr { background-color: #f08536; }
+.legend .eur { background-color: #f6bd82; }
+.legend .sear { background-color: #4f9d3e; }
+.legend .wpr { background-color: #a7dc92; }
+
+#donutCharts {
+    position: relative;
+    margin-bottom: 30px;
+    text-align:center;
+}
+
+#donutCharts #donutLegend {
+    font-size:16px;
+    width:1000px;
+    margin:0 auto !important;
+    position: inherit !important;
+}
+
+#donutCharts ul {
+    list-style:none;
+}
+
+
+
+/* Slider */
 .slider.slider-horizontal {
     width: 500px;
     height: 20px;

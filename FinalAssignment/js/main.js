@@ -74,6 +74,10 @@ $(document).on('click', '#crsDescription', function () {
     $.fn.fullpage.moveTo('secondPage', 1);
 });
 
+$(document).on('click', '#donutBackButton', function () {
+    $.fn.fullpage.moveTo('secondPage', 0);
+});
+
 function drawDonutChart(selectedDisease) {
     //alert(selectedDisease);
     //changeDiseaseForPieChart(selectedDisease);
