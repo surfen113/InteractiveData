@@ -50,6 +50,7 @@ var svg = d3.select(".lineChart")
         "translate(" + margin.left + "," + margin.top + ")");
 
 var diseaseData = [];
+
 var gdpData = [];
 
 var data3 = [];
@@ -58,21 +59,25 @@ var data3 = [];
 // Get the data
 d3.csv("data/data.csv", function (error, data) {
 
-    diseaseData = data.filter(function (value) {
+    diseaseData = data;
+
+    var actualdiseaseData = data.filter(function (value) {
         return value["Cname"] === "India" && value["Disease"] == "diphtheria";
     });
 
     d3.csv("data/gdp_2.csv", function (error, data2) {
 
-        gdpData = data2.filter(function (value) {
+        gdpData = data2;
+
+        var actualgdpData = data2.filter(function (value) {
             return value["Cname_data"] === "India";
         });
 
         for (var year_ = 1999; year_ <= 2016; year_++) {
             data3.push({
                 year: +year_,
-                cases: +diseaseData[0][year_],
-                gdp: +gdpData[0][year_]
+                cases: +actualdiseaseData[0][year_],
+                gdp: +actualgdpData[0][year_]
             });
         }
 
@@ -232,23 +237,31 @@ function updateLineData(country, disease) {
 
     console.log(disease);
 
-    d3.csv("data/data.csv", function (error, data) {
+    var actualdiseaseData = diseaseData.filter(function (value) {
+        return value["Cname"] === country && value["Disease"] == disease;
+    });
 
-        diseaseData = data.filter(function (value) {
-            return value["Cname"] === country && value["Disease"] == disease;
-        });
+    var actualgdpData = gdpData.filter(function (value) {
+        return value["Cname_data"] === country;
+    });
 
-        d3.csv("data/gdp_2.csv", function (error, data2) {
-
-            gdpData = data2.filter(function (value) {
-                return value["Cname_data"] === country;
-            });
+    // d3.csv("data/data.csv", function (error, data) {
+    //
+    //     diseaseData = data.filter(function (value) {
+    //         return value["Cname"] === country && value["Disease"] == disease;
+    //     });
+    //
+    //     d3.csv("data/gdp_2.csv", function (error, data2) {
+    //
+    //         gdpData = data2.filter(function (value) {
+    //             return value["Cname_data"] === country;
+    //         });
 
             for (var year_ = 1999; year_ <= 2016; year_++) {
                 data3.push({
                     year: +year_,
-                    cases: +diseaseData[0][year_],
-                    gdp: +gdpData[0][year_]
+                    cases: +actualdiseaseData[0][year_],
+                    gdp: +actualgdpData[0][year_]
                 });
             }
 
@@ -307,8 +320,8 @@ function updateLineData(country, disease) {
                 .attr("cx", valueline2.x())
                 .attr("cy", valueline2.y());
 
-        });
-    });
+    //     });
+    // });
 }
 $(function () {
 
