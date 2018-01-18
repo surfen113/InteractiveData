@@ -19,13 +19,13 @@ function changeDiseaseForPieChart(diseaseName, diseaseFullName) {
 
 
 $("#donutChart").donutpie({
-    radius: 350,
+    radius: 430,
     tooltip: true,
     tooltipClass: "donut-pie-tooltip-bubble"
 });
 
 $(".exp2").donutpie2({
-    radius: 350,
+    radius: 430,
     tooltip: true,
     tooltipClass: "donut-pie-tooltip-bubble"
 });
