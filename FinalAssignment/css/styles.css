@@ -63,8 +63,9 @@
 
 .chartwrapper {
     width: 100%;
+    height: 60%;
     position: relative;
-    padding-bottom: 35%;
+    padding-bottom: 25%;
     box-sizing: border-box;
 }
 
@@ -72,6 +73,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    margin-top: 1% !important;
 }
 
 /*#chartdiv {*/
@@ -458,3 +460,26 @@ body{
     font-family: Roboto !important;
     font-size: 12px !important;
 }
+
+.fp-tableCell{
+ padding-top: 3% !important;
+}
+
+#region{
+  font-size: 1.3em !important;
+}
+
+
+.noUi-handle::after, .noUi-handle::before {
+    height: 10px !important;
+    left: 15px !important;
+}
+.noUi-horizontal .noUi-handle {
+    height: 24px !important;
+    width: 28px !important;
+}
+
+.noUi-handle::after {
+    left: 12px !important;
+}
+
