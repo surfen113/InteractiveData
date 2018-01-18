@@ -1,20 +1,21 @@
 /*line charts */
 
-path {
+.path {
     stroke: steelblue;
     stroke-width: 2;
     fill: none;
 }
 
 .axis path,
-.axis line {
+.axis2 path{
     fill: none;
     stroke: grey;
     stroke-width: 1;
     shape-rendering: crispEdges;
 }
 
-.line {
+.line1,
+.line2{
     fill: none;
     stroke: #6F257F;
     stroke-width: 5px;
