@@ -365,9 +365,7 @@ p {
 }
 
 #slide0-content {
-    width: 50%;
-    float: left;
-    padding-right: 8% !important;
+    padding: 0 20% !important;
 }
 
 /* Section 3
