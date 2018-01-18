@@ -77,7 +77,7 @@ d3.csv("data/data.csv", function(error, data) {
 
         svg.append("path")
             .attr("class", "line2")// Add the valueline path1.  // Add the valueline2 path1.
-            .style("stroke", "red")
+            .style("stroke", "darkblue")
             .attr("d", valueline2(data3));
 
         svg.append("g")            // Add the X Axis
@@ -93,13 +93,14 @@ d3.csv("data/data.csv", function(error, data) {
         svg.append("g")
             .attr("class", "y axis2")
             .attr("transform", "translate(" + width + " ,0)")
-            .style("fill", "red")
+            .style("fill", "darkblue")
             .call(yAxisRight);
 
         svg.selectAll(".dot")
             .data(data3.filter(function(d) { return d; }))
             .enter().append("circle")
             .attr("class", "dot")
+            .style("fill", "steelblue")
             .attr("cx", valueline.x())
             .attr("cy", valueline.y())
             .attr("r", 3.5);
@@ -108,6 +109,7 @@ d3.csv("data/data.csv", function(error, data) {
             .data(data3.filter(function(d) { return d; }))
             .enter().append("circle")
             .attr("class", "dot2")
+            .style("fill", "darkblue")
             .attr("cx", valueline2.x())
             .attr("cy", valueline2.y())
             .attr("r", 3.5);

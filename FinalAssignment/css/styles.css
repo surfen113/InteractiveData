@@ -125,8 +125,8 @@
 .line1,
 .line2{
     fill: none;
-    stroke: #6F257F;
-    stroke-width: 5px;
+    stroke: steelblue;
+    stroke-width: 3px;
 }
 
 .overlay {
@@ -135,9 +135,9 @@
 }
 
 .hover-line {
-    stroke: #6F257F;
+    stroke: darkblue;
     stroke-width: 2px;
-    stroke-dasharray: 3,3;
+    stroke-dasharray: 1,1;
 }
 
 /* Donut Chart */
@@ -162,9 +162,14 @@
 .legend .wpr { background-color: #a7dc92; }
 
 .legend2 li { float: right; margin-right: 10%; }
-.legend2 span { border: 1.5px solid #ccc; float: right; width: 16px; height: 16px; margin: 2px; }
-.legend2 .gdp { background-color: #ff0000; }
-.legend2 .cases { background-color: #6f257f; }
+.legend2 span { 
+    float: right;
+    width: 16px;
+    height: 16px;
+    margin: 0 2px;
+}
+.legend2 .gdp { background-color: darkblue; }
+.legend2 .cases { background-color: steelblue; }
 
 #donutCharts {
     position: relative;
@@ -553,23 +558,6 @@ label::before {
 /*      background: #000000;*/
 }
 
-
-.btn-default {
-  border-radius: 50% !important;
-  width: 100px !important; 
-  height:100px !important;
-/*background-color: white !important;*/
-  margin: 0.5%;
-  border: 1px solid #64C7CC !important;
-  color: #64C7CC !important;
-
-}
-
-.btn-default:hover {
-    background-color: #64C7CC !important; /* Green */
-    color: white  !important;
-    /*transform: scale(1.05);*/
-}
 
 *:focus {
     outline: 0 !important;
