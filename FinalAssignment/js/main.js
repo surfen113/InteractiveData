@@ -43,7 +43,7 @@ $(document).ready(function () {
         padding: 1,
         //step: 1,
         range: {
-            'min': 1979,
+            'min': 1998,
             'max': 2017
         }
     });
@@ -60,8 +60,10 @@ $(document).ready(function () {
 //     filterData(slideEvt.value[0], slideEvt.value[1])
 // });
 
-$("input[name='rb']").change(function (radioChanged) {
-    changeDisease(radioChanged.currentTarget.value)
+$("input[name='selectPie']").change(function (radioChanged) {
+    //populateHTML(radioChanged.currentTarget.value);
+    changeDiseaseForPieChart(radioChanged.currentTarget.value);
+    changeDisease(radioChanged.currentTarget.value);
 });
 
 $("input[name='mode']").change(function (radioChanged) {
@@ -69,8 +71,8 @@ $("input[name='mode']").change(function (radioChanged) {
 });
 
 
-$(document).on('click', '#crsDescription', function () {
-    drawDonutChart("CRS");
+$(document).on('click', '#diseaseDescription', function () {
+    //drawDonutChart("CRS");
     $.fn.fullpage.moveTo('secondPage', 1);
 });
 

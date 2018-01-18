@@ -1,15 +1,15 @@
 /**
  * Created by jri on 17.01.18.
  */
-$("input[name='selectPie']").change(function (radioChanged) {
-    changeDiseaseForPieChart(radioChanged.currentTarget.value)
-});
+// $("input[name='selectPie']").change(function (radioChanged) {
+//     changeDiseaseForPieChart(radioChanged.currentTarget.value)
+// });
 
 var timeout;
 function changeDiseaseForPieChart(diseaseName) {
     clearTimeout(timeout);
     disease = diseaseName;
-    readThisData(disease, 1980, false);
+    readThisData(disease, 1999, false);
 }
 
 
@@ -30,7 +30,7 @@ var data = [];
 
 var disease = "diphtheria";
 
-var year = 1980;
+var year = 1999;
 
 d3.csv('data/top_Global.csv', function (data) {
     donutMapData = data.filter(function (values) {
@@ -74,7 +74,7 @@ console.log(year);
         var millisecondsToWait = 1200;
 
         if (year > 2016) {
-            year = 1980;
+            year = 1999;
         }
 
         timeout =setTimeout(function () {

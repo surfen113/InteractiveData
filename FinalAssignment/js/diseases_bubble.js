@@ -63,10 +63,10 @@ function DataIsReady(label_disease, color) {
         {text: yfever_label, count: yfever_total},
     ];
 
-    $(document).ready(function () {
-        document.getElementById("CRS").click();
-        document.getElementById('CRS').style.backgroundColor = "#eee";
-    });
+    // $(document).ready(function () {
+    //    document.getElementById("rb2").click();
+    //     document.getElementById('CRS').style.backgroundColor = "#eee";
+    // });
 
 };
 
@@ -159,19 +159,21 @@ function getTotalCases() {
 
 var default_value = true;
 
+
 function populateHTML(disease_label) {
     if (default_value) {
         document.getElementById('CRS').style.backgroundColor = "#fff";
     }
     $("#slide0-content").empty();
-    $disease_description = '<p>' + myFunction(disease_label) + '</p>'
+    var string = "<br><br> <button class='btn btn-primary' id='diseaseDescription'>Go to next Slide</button>";
+    $disease_description = '<p>' + myFunction(disease_label) + '</p>' + string;
     $('#slide0-content').append($disease_description);
 }
 
 function myFunction(opt) {
     switch (opt) {
         case "CRS":
-            return "<h1>Congenital rubella syndrome</h1></br></br>Congenital rubella syndrome (CRS) is an illness in infants that results from maternal infection with rubella virus during pregnancy. When rubella infection occurs during early pregnancy, serious consequences–such as miscarriages, stillbirths, and a constellation of severe birth defects in infants–can result. The risk of congenital infection and defects is highest during the first 12 weeks of gestation and decreases after the 12th week of gestation; defects are rare after infection in the 20th week (or later) of gestation. Common congenital defects of CRS include cataracts, congenital heart disease, hearing impairment, and developmental delay. Infants with CRS often present with more than 1 sign or symptom consistent with congenital rubella infection. However, infants may present with a single defect, with hearing impairment being the most common single defect.<br><br> <button class='btn btn-primary' id='crsDescription'>Go to next Slide</button>";
+            return "<h1>Congenital rubella syndrome</h1></br></br>Congenital rubella syndrome (CRS) is an illness in infants that results from maternal infection with rubella virus during pregnancy. When rubella infection occurs during early pregnancy, serious consequences–such as miscarriages, stillbirths, and a constellation of severe birth defects in infants–can result. The risk of congenital infection and defects is highest during the first 12 weeks of gestation and decreases after the 12th week of gestation; defects are rare after infection in the 20th week (or later) of gestation. Common congenital defects of CRS include cataracts, congenital heart disease, hearing impairment, and developmental delay. Infants with CRS often present with more than 1 sign or symptom consistent with congenital rubella infection. However, infants may present with a single defect, with hearing impairment being the most common single defect.";
         case "diphtheria":
             return "<h1>Diphtheria</h1></br></br>Diphtheria is an infection caused by the bacterium Corynebacterium diphtheriae. Signs and symptoms may vary from mild to severe. They usually start two to five days after exposure. Symptoms often come on fairly gradually, beginning with a sore throat and fever. In severe cases, a grey or white patch develops in the throat. This can block the airway and create a barking cough as in croup. The neck may swell in part due to enlarged lymph nodes. A form of diphtheria that involves the skin, eyes, or genitals also exists. Complications may include myocarditis, inflammation of nerves, kidney problems, and bleeding problems due to low levels of platelets. Myocarditis may result in an abnormal heart rate and inflammation of the nerves may result in paralysis.";
         case "JapEnc":
