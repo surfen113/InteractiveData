@@ -9,8 +9,9 @@ var timeout;
 var playState = true;
 var currentYear = 1999;
 
-function changeDiseaseForPieChart(diseaseName) {
+function changeDiseaseForPieChart(diseaseName, diseaseFullName) {
     clearTimeout(timeout);
+    $("#diseaseHeaderDonuts").html(diseaseFullName);
     playState = false;
     disease = diseaseName;
     readThisData(disease, 2016, false);

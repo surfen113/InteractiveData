@@ -65,7 +65,7 @@ $(document).ready(function () {
 $("input[name='selectPie']").change(function (radioChanged) {
     //populateHTML(radioChanged.currentTarget.value);
     populateHTML(radioChanged.currentTarget.value);
-    changeDiseaseForPieChart(radioChanged.currentTarget.value);
+    changeDiseaseForPieChart(radioChanged.currentTarget.value, $("label[for='"+radioChanged.currentTarget.id+"']").text());
     changeDisease(radioChanged.currentTarget.value);
 
     var country = $('.selectpicker').find("option:selected").val();
