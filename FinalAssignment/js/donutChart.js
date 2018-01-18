@@ -73,7 +73,6 @@ function readThisData(disease, year, animate) {
 }
 
 function ready(animate, data, sum, year) {
-    console.log(year);
     if (animate) {
 
         $(".exp2").donutpie('update', data, sum, year);
