@@ -1,15 +1,15 @@
 /* Help Button */
 .help-tip{
     position: absolute;
-    top: 9px;
-    right: 18px;
+    top: 25%;
+    right: 18%;
     text-align: center;
-    background-color: #BCDBEA;
+    background-color: #ddd;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 15px;
+    height: 15px;
     font-size: 14px;
-    line-height: 26px;
+    line-height: 100%;
     cursor: default;
 }
 
@@ -29,19 +29,18 @@
 }
 
 .help-tip p{    /* The tooltip */
-    display: none;
-    text-align: left;
-    background-color: #1E2021;
-    padding: 20px;
-    width: 300px;
-    position: absolute;
-    border-radius: 3px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    top:-50px;
-    right: -310px;
-    color: #FFF;
-    font-size: 13px;
-    line-height: 1.4;
+  display: none;
+  text-align: left;
+  background-color: #ddd;
+  padding: 10px;
+  width: 500px;
+  position: absolute;
+  border-radius: 3px;
+  top: -90px;
+  right: -500px;
+  color: #FFF;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 /*.help-tip p:before{ !* The pointer of the tooltip *!*/
