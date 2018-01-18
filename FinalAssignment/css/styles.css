@@ -483,3 +483,7 @@ body{
     left: 12px !important;
 }
 
+.chart-icons{
+  float: right;
+  margin: 1%;
+}

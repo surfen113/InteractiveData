@@ -85,3 +85,43 @@ $(document).on('click', '#donutBackButton', function () {
     //alert(selectedDisease);
     //changeDiseaseForPieChart(selectedDisease);
  }
+
+var playing = true;
+function Changeicon(){
+    if(playing){
+        document.getElementById("play").classList.remove('fa-pause');
+        document.getElementById("play").classList.add('fa-play');
+        playing = false;
+    }
+    else{
+        document.getElementById("play").classList.remove('fa-play');
+        document.getElementById("play").classList.add('fa-pause');
+        playing = true;
+    }
+
+// document.getElementById("MyElement").classList.remove('MyClass');
+}
+
+
+// var PauseClass = true;
+function ChangeToPlay(){
+    if(playing){
+        document.getElementById("play").classList.remove('fa-pause');
+        document.getElementById("play").classList.add('fa-play');
+        playing = false;
+    }
+    else{
+        
+    }
+}
+//     if(PauseClass){
+//         document.getElementById("play").classList.remove('fa-pause');
+//         document.getElementById("play").classList.add('fa-play');
+//         PauseClass = false;
+//     }
+//     else{
+//         document.getElementById("play").classList.remove('fa-play');
+//         document.getElementById("play").classList.add('fa-pause');
+//         PauseClass = true;
+//     }
+// }

@@ -6,6 +6,8 @@
     <title>Diseases around the world</title>
     <meta name="author" content="Simona Toader, Riddhi Raj, Julian Ritter"/>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!--D3 -->
     <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
     <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -211,10 +213,14 @@
                              style=" position: relative;width: 40%; height: 100%; float: left;"></div>
                         <div class="exp2" id="donutChart2"
                              style=" position: relative; width: 40%; height: 100%; float: left;"></div>
-                        <button id="prev">Prev</button>
-                        <button id="play">Play/Pause</button>
-                        <button id="next">Next</button>
-                        <div style=" position: relative;width: 10%; height: 100%; float: left;">c</div>
+
+
+
+                        <div style=" position: relative;width: 100%; height: 100%; float: left;">
+                                <i class="fa fa-forward chart-icons" id="next" onclick="ChangeToPlay()" style="margin-right: 28%;"></i>
+                                <i class="fa fa-pause chart-icons" id="play" onclick="Changeicon()"></i>
+                                <i class="fa fa-backward chart-icons" id="prev" onclick="ChangeToPlay()" ></i>
+                        </div>
                     </div>
                     <center>
                         <ul class="legend" id="donutLegend">
