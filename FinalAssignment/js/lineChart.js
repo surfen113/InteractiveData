@@ -107,10 +107,10 @@ d3.csv("data/data.csv", function (error, data) {
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
             .append("text")      // text label for the x axis
-            .attr("x", 400)
-            .attr("y", 30)
+            .attr("x", width /2 )
+            .attr("y", margin.bottom - 10)
             .style("text-anchor", "middle")
-            .text("YEAR");
+            .text("Year");
 
         svg.append("g")
             .attr("class", "y axis")
@@ -118,8 +118,7 @@ d3.csv("data/data.csv", function (error, data) {
             .call(yAxisLeft)
             .append("text")
             .attr("fill", "#000")
-            //.attr("transform", "rotate(-90)")
-            .attr("x", 80)
+            .attr("x", -15)
             .attr("y", 0)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
@@ -132,7 +131,6 @@ d3.csv("data/data.csv", function (error, data) {
             .call(yAxisRight)
             .append("text")
             .attr("fill", "#000")
-            //.attr("transform", "rotate(-90)")
             .attr("x", 100)
             .attr("y", 0)
             .attr("dy", "0.71em")
