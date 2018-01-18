@@ -174,7 +174,7 @@ d3.csv("data/data.csv", function(error, data) {
 
 var disease = $("input[name='selectPie']").value;
 
-function updateData(country, disease) {
+function updateLineData(country, disease) {
 
     data3 = [];
 
@@ -257,7 +257,7 @@ $(function() {
     $('.selectpicker').on('change', function(){
         var selected = $(this).find("option:selected").val();
         //console.log(selected);
-        updateData(selected, disease);
+        updateLineData(selected, disease);
     });
 
 });

@@ -28,6 +28,8 @@ $(document).ready(function () {
 
     //document.getElementById( 'footer' ).style.display = 'none';
     populateHTML("diphtheria");
+    changeDisease("diphtheria");
+    updateLineData("India", "diphtheria");
 });
 
 
@@ -67,7 +69,7 @@ $("input[name='selectPie']").change(function (radioChanged) {
     changeDisease(radioChanged.currentTarget.value);
 
     var country = $('.selectpicker').find("option:selected").val();
-    updateData(country, radioChanged.currentTarget.value);
+    updateLineData(country, radioChanged.currentTarget.value);
 });
 
 $("input[name='mode']").change(function (radioChanged) {
