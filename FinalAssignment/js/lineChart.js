@@ -18,15 +18,27 @@ var yAxisRight = d3.svg.axis().scale(y1)  // This is the new declaration for the
     .orient("right");           // and includes orientation of the axis to the right.
 
 var valueline = d3.svg.line()
-    .defined(function(d) { return d; })
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y0(d.cases); })
+    .defined(function (d) {
+        return d;
+    })
+    .x(function (d) {
+        return x(d.year);
+    })
+    .y(function (d) {
+        return y0(d.cases);
+    })
     .interpolate("monotone");    // <== y0
 
 var valueline2 = d3.svg.line()
-    .defined(function(d) { return d; })
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y1(d.gdp); })
+    .defined(function (d) {
+        return d;
+    })
+    .x(function (d) {
+        return x(d.year);
+    })
+    .y(function (d) {
+        return y1(d.gdp);
+    })
     .interpolate("monotone"); // <== y1
 
 var svg = d3.select(".lineChart")
@@ -44,10 +56,10 @@ var data3 = [];
 
 
 // Get the data
-d3.csv("data/data.csv", function(error, data) {
+d3.csv("data/data.csv", function (error, data) {
 
     diseaseData = data.filter(function (value) {
-        return value["Cname"] === "India" && value["Disease"] == "polio";
+        return value["Cname"] === "India" && value["Disease"] == "diphtheria";
     });
 
     d3.csv("data/gdp_2.csv", function (error, data2) {
@@ -56,7 +68,7 @@ d3.csv("data/data.csv", function(error, data) {
             return value["Cname_data"] === "India";
         });
 
-        for(var year_ = 1999; year_ <= 2016; year_++){
+        for (var year_ = 1999; year_ <= 2016; year_++) {
             data3.push({
                 year: +year_,
                 cases: +diseaseData[0][year_],
@@ -65,11 +77,15 @@ d3.csv("data/data.csv", function(error, data) {
         }
 
         // Scale the range of the data
-        x.domain(d3.extent(data3, function(d) { return d.year; }));
-        y0.domain([0, d3.max(data3, function(d) {
-            return Math.max(d.cases); })]);
-        y1.domain([0, d3.max(data3, function(d) {
-            return Math.max(d.gdp); })]);
+        x.domain(d3.extent(data3, function (d) {
+            return d.year;
+        }));
+        y0.domain([0, d3.max(data3, function (d) {
+            return Math.max(d.cases);
+        })]);
+        y1.domain([0, d3.max(data3, function (d) {
+            return Math.max(d.gdp);
+        })]);
 
         svg.append("path")
             .attr("class", "line1")// Add the valueline path1.
@@ -85,8 +101,8 @@ d3.csv("data/data.csv", function(error, data) {
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
             .append("text")      // text label for the x axis
-            .attr("x", 400 )
-            .attr("y",  30 )
+            .attr("x", 400)
+            .attr("y", 30)
             .style("text-anchor", "middle")
             .text("Date");
 
@@ -116,7 +132,9 @@ d3.csv("data/data.csv", function(error, data) {
             .text("GDP per Capita");
 
         svg.selectAll(".dot")
-            .data(data3.filter(function(d) { return d; }))
+            .data(data3.filter(function (d) {
+                return d;
+            }))
             .enter().append("circle")
             .attr("class", "dot")
             .style("fill", "red")
@@ -125,7 +143,9 @@ d3.csv("data/data.csv", function(error, data) {
             .attr("r", 3.5);
 
         svg.selectAll(".dot2")
-            .data(data3.filter(function(d) { return d; }))
+            .data(data3.filter(function (d) {
+                return d;
+            }))
             .enter().append("circle")
             .attr("class", "dot2")
             .style("fill", "darkblue")
@@ -138,8 +158,12 @@ d3.csv("data/data.csv", function(error, data) {
             .attr("class", "overlay")
             .attr("width", width)
             .attr("height", height)
-            .on("mouseover", function() { focus.style("display", null); })
-            .on("mouseout", function() { focus.style("display", "none"); })
+            .on("mouseover", function () {
+                focus.style("display", null);
+            })
+            .on("mouseout", function () {
+                focus.style("display", "none");
+            })
             .on("mousemove", mousemove);
 
 
@@ -162,7 +186,9 @@ d3.csv("data/data.csv", function(error, data) {
             .attr("y", 15)
             .attr("data-html", "true");
 
-        var bisectDate = d3.bisector(function(d) { return d.year; }).left;
+        var bisectDate = d3.bisector(function (d) {
+            return d.year;
+        }).left;
 
         function mousemove() {
             var x0 = x.invert(d3.mouse(this)[0]),
@@ -173,16 +199,18 @@ d3.csv("data/data.csv", function(error, data) {
             var yvalue = y1(d.gdp) > y0(d.cases) ? y0(d.cases) : y1(d.gdp);
             focus.attr("transform", "translate(" + x(d.year) + "," + yvalue + ")");
 
-            focus.select("text").attr("y", (height - yvalue)/2);
+            focus.select("text").attr("y", (height - yvalue) / 2);
 
             //line break still doesn't work
 
             var string = "Cases: " + d.cases + " " + "GDP: " + d.gdp;
 
-            focus.select("text").html(function() { return string});
+            focus.select("text").html(function () {
+                return string
+            });
 
             focus.select(".x-hover-line").attr("y2", height - yvalue);
-             //console.log(y0(d.cases));
+            //console.log(y0(d.cases));
             // console.log(y1(d.gdp));
             // console.log(height);
             //focus.select(".y-hover-line").attr("x2", width + width);
@@ -201,7 +229,7 @@ function updateLineData(country, disease) {
 
     console.log(disease);
 
-    d3.csv("data/data.csv", function(error, data) {
+    d3.csv("data/data.csv", function (error, data) {
 
         diseaseData = data.filter(function (value) {
             return value["Cname"] === country && value["Disease"] == disease;
@@ -213,7 +241,7 @@ function updateLineData(country, disease) {
                 return value["Cname_data"] === country;
             });
 
-            for(var year_ = 1999; year_ <= 2016; year_++){
+            for (var year_ = 1999; year_ <= 2016; year_++) {
                 data3.push({
                     year: +year_,
                     cases: +diseaseData[0][year_],
@@ -226,11 +254,15 @@ function updateLineData(country, disease) {
             // console.log(data3);
 
             // Scale the range of the data
-            x.domain(d3.extent(data3, function(d) { return d.year; }));
-            y0.domain([0, d3.max(data3, function(d) {
-                return Math.max(d.cases); })]);
-            y1.domain([0, d3.max(data3, function(d) {
-                return Math.max(d.gdp); })]);
+            x.domain(d3.extent(data3, function (d) {
+                return d.year;
+            }));
+            y0.domain([0, d3.max(data3, function (d) {
+                return Math.max(d.cases);
+            })]);
+            y1.domain([0, d3.max(data3, function (d) {
+                return Math.max(d.gdp);
+            })]);
 
             svg = d3.select(".lineChart");
 
@@ -255,14 +287,18 @@ function updateLineData(country, disease) {
                 .call(yAxisRight);
 
             svg.selectAll(".dot")
-                .data(data3.filter(function(d) { return d; }))
+                .data(data3.filter(function (d) {
+                    return d;
+                }))
                 .transition()// change the line
                 .duration(transition)
                 .attr("cx", valueline.x())
                 .attr("cy", valueline.y());
 
             svg.selectAll(".dot2")
-                .data(data3.filter(function(d) { return d; }))
+                .data(data3.filter(function (d) {
+                    return d;
+                }))
                 .transition()// change the line
                 .duration(transition)
                 .attr("cx", valueline2.x())
@@ -271,9 +307,9 @@ function updateLineData(country, disease) {
         });
     });
 }
-$(function() {
+$(function () {
 
-    $('.selectpicker').on('change', function(){
+    $('.selectpicker').on('change', function () {
         var selected = $(this).find("option:selected").val();
         //console.log(selected);
         updateLineData(selected, disease);

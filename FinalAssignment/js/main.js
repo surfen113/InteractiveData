@@ -29,7 +29,7 @@ $(document).ready(function () {
     //document.getElementById( 'footer' ).style.display = 'none';
     populateHTML("diphtheria");
     changeDisease("diphtheria");
-    updateLineData("India", "diphtheria");
+    //updateLineData("India", "diphtheria");
 });
 
 
@@ -65,7 +65,7 @@ $(document).ready(function () {
 $("input[name='selectPie']").change(function (radioChanged) {
     //populateHTML(radioChanged.currentTarget.value);
     populateHTML(radioChanged.currentTarget.value);
-    changeDiseaseForPieChart(radioChanged.currentTarget.value, $("label[for='"+radioChanged.currentTarget.id+"']").text());
+    changeDiseaseForPieChart(radioChanged.currentTarget.value, $("label[for='" + radioChanged.currentTarget.id + "']").text());
     chekstuff();
     changeDisease(radioChanged.currentTarget.value);
 
@@ -87,10 +87,10 @@ $(document).on('click', '#donutBackButton', function () {
     $.fn.fullpage.moveTo('secondPage', 0);
 });
 
- function drawDonutChart(selectedDisease) {
+function drawDonutChart(selectedDisease) {
     //alert(selectedDisease);
     //changeDiseaseForPieChart(selectedDisease);
- }
+}
 
 var playing = true;
 //
@@ -110,12 +110,12 @@ var playing = true;
 // }
 
 var PauseClass = true;
-function ChangeToPlay(){
+function ChangeToPlay() {
 
     // if(PauseClass){
-        document.getElementById("play").classList.remove('fa-pause');
-        document.getElementById("play").classList.add('fa-play');
-        // PauseClass = false;
+    document.getElementById("play").classList.remove('fa-pause');
+    document.getElementById("play").classList.add('fa-play');
+    // PauseClass = false;
     // }
     // else{
     //     document.getElementById("play").classList.remove('fa-play');
