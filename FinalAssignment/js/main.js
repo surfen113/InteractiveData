@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
 
     //document.getElementById( 'footer' ).style.display = 'none';
-    populateHTML("CRS");
+    populateHTML("diphtheria");
 });
 
 
@@ -36,7 +36,7 @@ $(document).ready(function () {
     var fancySlider = document.getElementById('slider');
 
     noUiSlider.create(fancySlider, {
-        start: [1993, 2003],
+        start: [fromYr, toYr],
         connect: true,
         behaviour: 'drag-tap',
         tooltips: [wNumb({decimals: 0}), wNumb({decimals: 0})],
@@ -65,6 +65,9 @@ $("input[name='selectPie']").change(function (radioChanged) {
     populateHTML(radioChanged.currentTarget.value);
     changeDiseaseForPieChart(radioChanged.currentTarget.value);
     changeDisease(radioChanged.currentTarget.value);
+
+    var country = $('.selectpicker').find("option:selected").val();
+    updateData(country, radioChanged.currentTarget.value);
 });
 
 $("input[name='mode']").change(function (radioChanged) {
