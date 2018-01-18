@@ -12,10 +12,10 @@ var xAxis = d3.svg.axis().scale(x)
     .orient("bottom").ticks(10).tickFormat(d3.format("d"));
 
 var yAxisLeft = d3.svg.axis().scale(y0)     //  <==  Add in 'Left' and 'y0'
-    .orient("left");
+    .orient("left").ticks(10);
 
 var yAxisRight = d3.svg.axis().scale(y1)  // This is the new declaration for the 'Right', 'y1'
-    .orient("right");           // and includes orientation of the axis to the right.
+    .orient("right").ticks(10);           // and includes orientation of the axis to the right.
 
 var valueline = d3.svg.line()
     .defined(function (d) {
