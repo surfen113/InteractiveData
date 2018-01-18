@@ -162,7 +162,7 @@ var default_value = true;
 
 function populateHTML(disease_label) {
     if (default_value) {
-        document.getElementById('CRS').style.backgroundColor = "#fff";
+       // document.getElementById('CRS').style.backgroundColor = "#fff";
     }
     $("#slide0-content").empty();
     var string = "<br><br> <button class='btn btn-primary' id='diseaseDescription'>Go to next Slide</button>";
