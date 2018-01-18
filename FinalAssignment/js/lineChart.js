@@ -73,6 +73,7 @@ d3.csv("data/data.csv", function(error, data) {
 
         svg.append("path")
             .attr("class", "line1")// Add the valueline path1.
+            .style("stroke", "red")
             .attr("d", valueline(data3));
 
         svg.append("path")
@@ -88,7 +89,7 @@ d3.csv("data/data.csv", function(error, data) {
             .attr("x", 400 )
             .attr("y",  30 )
             .style("text-anchor", "middle")
-            .text("Date");
+            .text("YEAR");
 
         svg.append("g")
             .attr("class", "y axis")
@@ -96,8 +97,9 @@ d3.csv("data/data.csv", function(error, data) {
             .call(yAxisLeft)
             .append("text")
             .attr("fill", "#000")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
+            //.attr("transform", "rotate(-90)")
+            .attr("x", 80)
+            .attr("y", 0)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
             .text("No. of Cases");
@@ -109,8 +111,9 @@ d3.csv("data/data.csv", function(error, data) {
             .call(yAxisRight)
             .append("text")
             .attr("fill", "#000")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
+            //.attr("transform", "rotate(-90)")
+            .attr("x", 100)
+            .attr("y", 0)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
             .text("GDP per Capita");
