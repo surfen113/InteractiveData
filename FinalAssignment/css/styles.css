@@ -1,3 +1,10 @@
+#textDiseaseDescription {
+    font-size: 1.5em;
+}
+
+
+
+/*Removing top space on these slides */
 #section2 .fp-tableCell{
     display: table-row !important;
     vertical-align: middle;
