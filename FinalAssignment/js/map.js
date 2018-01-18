@@ -4,9 +4,9 @@
 
 var map;
 var mapData;
-var fromYr = 1993;
-var toYr = 2003;
-var disease = "polio";
+var fromYr = 2005;
+var toYr = 2010;
+var disease = "diphtheria";
 var mode = "total";
 
 AmCharts.loadFile("data/data.csv", {}, function (response) {
