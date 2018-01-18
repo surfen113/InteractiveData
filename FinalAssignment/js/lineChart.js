@@ -50,6 +50,7 @@ var svg = d3.select(".lineChart")
         "translate(" + margin.left + "," + margin.top + ")");
 
 var diseaseData = [];
+
 var gdpData = [];
 
 var data3 = [];
@@ -58,21 +59,25 @@ var data3 = [];
 // Get the data
 d3.csv("data/data.csv", function (error, data) {
 
-    diseaseData = data.filter(function (value) {
+    diseaseData = data;
+
+    var actualdiseaseData = data.filter(function (value) {
         return value["Cname"] === "India" && value["Disease"] == "diphtheria";
     });
 
     d3.csv("data/gdp_2.csv", function (error, data2) {
 
-        gdpData = data2.filter(function (value) {
+        gdpData = data2;
+
+        var actualgdpData = data2.filter(function (value) {
             return value["Cname_data"] === "India";
         });
 
         for (var year_ = 1999; year_ <= 2016; year_++) {
             data3.push({
                 year: +year_,
-                cases: +diseaseData[0][year_],
-                gdp: +gdpData[0][year_]
+                cases: +actualdiseaseData[0][year_],
+                gdp: +actualgdpData[0][year_]
             });
         }
 
@@ -89,6 +94,7 @@ d3.csv("data/data.csv", function (error, data) {
 
         svg.append("path")
             .attr("class", "line1")// Add the valueline path1.
+            .style("stroke", "red")
             .attr("d", valueline(data3));
 
         svg.append("path")
@@ -101,10 +107,10 @@ d3.csv("data/data.csv", function (error, data) {
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
             .append("text")      // text label for the x axis
-            .attr("x", 400)
-            .attr("y", 30)
+            .attr("x", width /2 )
+            .attr("y", margin.bottom - 10)
             .style("text-anchor", "middle")
-            .text("Date");
+            .text("Year");
 
         svg.append("g")
             .attr("class", "y axis")
@@ -112,8 +118,8 @@ d3.csv("data/data.csv", function (error, data) {
             .call(yAxisLeft)
             .append("text")
             .attr("fill", "#000")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
+            .attr("x", -15)
+            .attr("y", 0)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
             .text("No. of Cases");
@@ -125,8 +131,8 @@ d3.csv("data/data.csv", function (error, data) {
             .call(yAxisRight)
             .append("text")
             .attr("fill", "#000")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
+            .attr("x", 100)
+            .attr("y", 0)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
             .text("GDP per Capita");
@@ -229,23 +235,31 @@ function updateLineData(country, disease) {
 
     console.log(disease);
 
-    d3.csv("data/data.csv", function (error, data) {
+    var actualdiseaseData = diseaseData.filter(function (value) {
+        return value["Cname"] === country && value["Disease"] == disease;
+    });
 
-        diseaseData = data.filter(function (value) {
-            return value["Cname"] === country && value["Disease"] == disease;
-        });
+    var actualgdpData = gdpData.filter(function (value) {
+        return value["Cname_data"] === country;
+    });
 
-        d3.csv("data/gdp_2.csv", function (error, data2) {
-
-            gdpData = data2.filter(function (value) {
-                return value["Cname_data"] === country;
-            });
+    // d3.csv("data/data.csv", function (error, data) {
+    //
+    //     diseaseData = data.filter(function (value) {
+    //         return value["Cname"] === country && value["Disease"] == disease;
+    //     });
+    //
+    //     d3.csv("data/gdp_2.csv", function (error, data2) {
+    //
+    //         gdpData = data2.filter(function (value) {
+    //             return value["Cname_data"] === country;
+    //         });
 
             for (var year_ = 1999; year_ <= 2016; year_++) {
                 data3.push({
                     year: +year_,
-                    cases: +diseaseData[0][year_],
-                    gdp: +gdpData[0][year_]
+                    cases: +actualdiseaseData[0][year_],
+                    gdp: +actualgdpData[0][year_]
                 });
             }
 
@@ -304,8 +318,8 @@ function updateLineData(country, disease) {
                 .attr("cx", valueline2.x())
                 .attr("cy", valueline2.y());
 
-        });
-    });
+    //     });
+    // });
 }
 $(function () {
 
