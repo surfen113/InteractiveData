@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
 
     //document.getElementById( 'footer' ).style.display = 'none';
-
+    populateHTML("CRS");
 });
 
 
@@ -62,6 +62,7 @@ $(document).ready(function () {
 
 $("input[name='selectPie']").change(function (radioChanged) {
     //populateHTML(radioChanged.currentTarget.value);
+    populateHTML(radioChanged.currentTarget.value);
     changeDiseaseForPieChart(radioChanged.currentTarget.value);
     changeDisease(radioChanged.currentTarget.value);
 });
@@ -80,7 +81,7 @@ $(document).on('click', '#donutBackButton', function () {
     $.fn.fullpage.moveTo('secondPage', 0);
 });
 
-function drawDonutChart(selectedDisease) {
+ function drawDonutChart(selectedDisease) {
     //alert(selectedDisease);
     //changeDiseaseForPieChart(selectedDisease);
-}
+ }
