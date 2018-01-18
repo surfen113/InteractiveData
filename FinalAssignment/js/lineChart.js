@@ -107,7 +107,7 @@ d3.csv("data/data.csv", function (error, data) {
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
             .append("text")      // text label for the x axis
-            .attr("x", width /2 )
+            .attr("x", width /2-30 )
             .attr("y", margin.bottom - 10)
             .style("text-anchor", "middle")
             .text("Year");

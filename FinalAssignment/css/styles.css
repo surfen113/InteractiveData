@@ -1,3 +1,7 @@
+.dropdown-menu  {
+    max-height:400px !important;
+}
+
 #menu li {
     border: 0.5px solid;
     background: rgba(221,227,235, 0.1);
