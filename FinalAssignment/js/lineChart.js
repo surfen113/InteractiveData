@@ -1,5 +1,5 @@
 var margin = {top: 50, right: 100, bottom: 50, left: 100},
-    width = 900 - margin.left - margin.right,
+    width = (window.innerWidth*0.75) - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
 
 var transition = 150;
@@ -41,9 +41,12 @@ var valueline2 = d3.svg.line()
     })
     .interpolate("monotone"); // <== y1
 
+// console.log(d3.select('#section2').style('width'));
+console.log(window.innerWidth);
 var svg = d3.select(".lineChart")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
+    //.attr("width", '75%')
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform",
