@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="libraries/jQueryFullPage/jquery.fullPage.css"/>
     <script type="text/javascript" src="libraries/jQueryFullPage/jquery.fullPage.js"></script>
 
+
     <!-- AmCharts -->
     <script src="libraries/amMap/ammap.js"></script>
     <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
@@ -32,6 +33,13 @@
     <link rel="stylesheet" type="text/css" href="css/nouislider.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.min.js"></script>
 
+    <!--Line charts-->
+    <!--<link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
     <!-- Own Code + style -->
     <script src="js/main.js" defer></script>
     <script src="js/map.js" defer></script>
@@ -39,10 +47,12 @@
     <script src="js/diseases_bubble.js" defer></script>
     <script src="js/donut-pie-chart.js"></script>
     <script src="js/donutChart.js" defer></script>
+    <script src="js/lineChart.js" defer></script>
 
 
     <!--Bootstrap -->
     <link rel="stylesheet" type="text/css" href="libraries/bootstrap/bootstrap.min.css"/>
+
 
 
     <style>
@@ -243,33 +253,244 @@
         </div>
     </div>
 
+
     <div class="section" id="section2">
         <div class="intro">
-            <h1>Example</h1>
-            <p>
-                The aim of our project is to display the distribution of different diseases all around the world. We
-                therefore used <a href="">datasets</a> from the <a href="">World Health Organization</a> which
-                delivers us the total number of cases for each country and every year for the diseases xx,yy,zz. We
-                display this data on a map, using different colours in order to show which countries and parts of
-                the world are extremely affected by the disease. </br> </br> As a total number is not always
-                extremely
-                meaningful though, we wanted to recognize whether there is a relation between the wealth of the
-                country and the number of diseases. Therefore, we colleted data about the Gross Domestic Product
-                (GDP) of the countries. In order to display the relation, we divide the number of cases per country
-                by the average GDP per person. High results are generally displayed in a darker red on the
-                map. </br></br> Also, the users can choose to display the number of cases per inhabitant for every
-                country as total numbers are not useful to compare big and small countries. </br></br> In order to
-                show
-                the trend over the years, there is a possibility to use a time picker to only show the data of
-                specific years.
-            </p>
+            <div class="lineChart" id="lineChart"></div>
+            <div>
+                <select class="selectpicker" liveSearchNormalize="true" data-live-search="true" liveSearchStyle="startsWith" id="countries">
+                    <option>Afghanistan</option>
+                    <option>Albania</option>
+                    <option>Algeria</option>
+                    <option>Andorra</option>
+                    <option>Angola</option>
+                    <option>Antigua and Barbuda</option>
+                    <option>Argentina</option>
+                    <option>Armenia</option>
+                    <option>Australia</option>
+                    <option>Austria</option>
+                    <option>Azerbaijan</option>
+                    <option>Bahamas (the)</option>
+                    <option>Bahrain</option>
+                    <option>Bangladesh</option>
+                    <option>Barbados</option>
+                    <option>Belarus</option>
+                    <option>Belgium</option>
+                    <option>Belize</option>
+                    <option>Benin</option>
+                    <option>Bhutan</option>
+                    <option>Bolivia (Plurinational State of)</option>
+                    <option>Bosnia and Herzegovina</option>
+                    <option>Botswana</option>
+                    <option>Brazil</option>
+                    <option>Brunei Darussalam</option>
+                    <option>Bulgaria</option>
+                    <option>Burkina Faso</option>
+                    <option>Burundi</option>
+                    <option>Cabo Verde</option>
+                    <option>Cambodia</option>
+                    <option>Cameroon</option>
+                    <option>Canada</option>
+                    <option>Central African Republic (the)</option>
+                    <option>Chad</option>
+                    <option>Chile</option>
+                    <option>China</option>
+                    <option>Colombia</option>
+                    <option>Comoros (the)</option>
+                    <option>Congo (the)</option>
+                    <option>Costa Rica</option>
+                    <option>Côte d'Ivoire</option>
+                    <option>Country Name</option>
+                    <option>Croatia</option>
+                    <option>Cuba</option>
+                    <option>Cyprus</option>
+                    <option>Czech Republic (the)</option>
+                    <option>Democratic People's Republic of Korea (the)</option>
+                    <option>Democratic Republic of the Congo (the)</option>
+                    <option>Denmark</option>
+                    <option>Djibouti</option>
+                    <option>Dominica</option>
+                    <option>Dominican Republic (the)</option>
+                    <option>Ecuador</option>
+                    <option>Egypt</option>
+                    <option>El Salvador</option>
+                    <option>Equatorial Guinea</option>
+                    <option>Eritrea</option>
+                    <option>Estonia</option>
+                    <option>Ethiopia</option>
+                    <option>Fiji</option>
+                    <option>Finland</option>
+                    <option>France</option>
+                    <option>Gabon</option>
+                    <option>Gambia (the)</option>
+                    <option>Georgia</option>
+                    <option>Germany</option>
+                    <option>Ghana</option>
+                    <option>Greece</option>
+                    <option>Grenada</option>
+                    <option>Guatemala</option>
+                    <option>Guinea</option>
+                    <option>Guinea-Bissau</option>
+                    <option>Guyana</option>
+                    <option>Haiti</option>
+                    <option>Honduras</option>
+                    <option>Hungary</option>
+                    <option>Iceland</option>
+                    <option selected>India</option>
+                    <option>Indonesia</option>
+                    <option>Iran (Islamic Republic of)</option>
+                    <option>Iraq</option>
+                    <option>Ireland</option>
+                    <option>Israel</option>
+                    <option>Italy</option>
+                    <option>Jamaica</option>
+                    <option>Japan</option>
+                    <option>Jordan</option>
+                    <option>Kazakhstan</option>
+                    <option>Kenya</option>
+                    <option>Kiribati</option>
+                    <option>Kuwait</option>
+                    <option>Kyrgyzstan</option>
+                    <option>Lao People's Democratic Republic (the)</option>
+                    <option>Latvia</option>
+                    <option>Lebanon</option>
+                    <option>Lesotho</option>
+                    <option>Liberia</option>
+                    <option>Libya</option>
+                    <option>Lithuania</option>
+                    <option>Luxembourg</option>
+                    <option>Madagascar</option>
+                    <option>Malawi</option>
+                    <option>Malaysia</option>
+                    <option>Maldives</option>
+                    <option>Mali</option>
+                    <option>Malta</option>
+                    <option>Marshall Islands (the)</option>
+                    <option>Mauritania</option>
+                    <option>Mauritius</option>
+                    <option>Mexico</option>
+                    <option>Micronesia (Federated States of)</option>
+                    <option>Monaco</option>
+                    <option>Mongolia</option>
+                    <option>Montenegro</option>
+                    <option>Morocco</option>
+                    <option>Mozambique</option>
+                    <option>Myanmar</option>
+                    <option>Namibia</option>
+                    <option>Nauru</option>
+                    <option>Nepal</option>
+                    <option>Netherlands (the)</option>
+                    <option>New Zealand</option>
+                    <option>Nicaragua</option>
+                    <option>Niger (the)</option>
+                    <option>Nigeria</option>
+                    <option>Norway</option>
+                    <option>Oman</option>
+                    <option>Pakistan</option>
+                    <option>Palau</option>
+                    <option>Panama</option>
+                    <option>Papua New Guinea</option>
+                    <option>Paraguay</option>
+                    <option>Peru</option>
+                    <option>Philippines (the)</option>
+                    <option>Poland</option>
+                    <option>Portugal</option>
+                    <option>Qatar</option>
+                    <option>Republic of Korea (the)</option>
+                    <option>Republic of Moldova (the)</option>
+                    <option>Romania</option>
+                    <option>Russian Federation (the)</option>
+                    <option>Rwanda</option>
+                    <option>Saint Kitts and Nevis</option>
+                    <option>Saint Lucia</option>
+                    <option>Saint Vincent and the Grenadines</option>
+                    <option>Samoa</option>
+                    <option>San Marino</option>
+                    <option>Sao Tome and Principe</option>
+                    <option>Saudi Arabia</option>
+                    <option>Senegal</option>
+                    <option>Serbia</option>
+                    <option>Seychelles</option>
+                    <option>Sierra Leone</option>
+                    <option>Singapore</option>
+                    <option>Slovakia</option>
+                    <option>Slovenia</option>
+                    <option>Solomon Islands</option>
+                    <option>Somalia</option>
+                    <option>South Africa</option>
+                    <option>South Sudan</option>
+                    <option>Spain</option>
+                    <option>Sri Lanka</option>
+                    <option>Sudan (the)</option>
+                    <option>Suriname</option>
+                    <option>Swaziland</option>
+                    <option>Sweden</option>
+                    <option>Switzerland</option>
+                    <option>Syrian Arab Republic (the)</option>
+                    <option>Tajikistan</option>
+                    <option>Thailand</option>
+                    <option>The former Yugoslav Republic of Macedonia</option>
+                    <option>Timor-Leste</option>
+                    <option>Togo</option>
+                    <option>Tonga</option>
+                    <option>Trinidad and Tobago</option>
+                    <option>Tunisia</option>
+                    <option>Turkey</option>
+                    <option>Turkmenistan</option>
+                    <option>Tuvalu</option>
+                    <option>Uganda</option>
+                    <option>Ukraine</option>
+                    <option>United Arab Emirates (the)</option>
+                    <option>United Kingdom of Great Britain and Northern Ireland (the)</option>
+                    <option>United Republic of Tanzania</option>
+                    <option>United States of America (the)</option>
+                    <option>Uruguay</option>
+                    <option>Uzbekistan</option>
+                    <option>Vanuatu</option>
+                    <option>Venezuela (Bolivarian Republic of)</option>
+                    <option>Viet Nam</option>
+                    <option>Yemen</option>
+                    <option>Zambia</option>
+                    <option>Zimbabwe</option>
+                </select>
+            </div>
+            <!--<h1>Example</h1>-->
+            <!--<p>-->
+            <!--The aim of our project is to display the distribution of different diseases all around the world. We-->
+            <!--therefore used <a href="">datasets</a> from the <a href="">World Health Organization</a> which-->
+            <!--delivers us the total number of cases for each country and every year for the diseases xx,yy,zz. We-->
+            <!--display this data on a map, using different colours in order to show which countries and parts of-->
+            <!--the world are extremely affected by the disease. </br> </br> As a total number is not always-->
+            <!--extremely-->
+            <!--meaningful though, we wanted to recognize whether there is a relation between the wealth of the-->
+            <!--country and the number of diseases. Therefore, we colleted data about the Gross Domestic Product-->
+            <!--(GDP) of the countries. In order to display the relation, we divide the number of cases per country-->
+            <!--by the average GDP per person. High results are generally displayed in a darker red on the-->
+            <!--map. </br></br> Also, the users can choose to display the number of cases per inhabitant for every-->
+            <!--country as total numbers are not useful to compare big and small countries. </br></br> In order to-->
+            <!--show-->
+            <!--the trend over the years, there is a possibility to use a time picker to only show the data of-->
+            <!--specific years.-->
+            <!--</p>-->
         </div>
     </div>
-
 
     <div class="section" id="section3">
         <!--<h1>Map</h1>-->
 
+        <center>
+            <form>
+                <div class="special-radio-buttons mode" style="margin-top: 3%;width:20%">
+                    <input type="radio" name="mode" id="mode1" value="Total" checked/>
+                    <label for="mode1">Total</label>
+                    <input type="radio" name="mode" id="mode2" value="inhabitants"/>
+                    <label for="mode2">Per Inhabitant</label>
+                    <div class="help-tip">
+                        <p>There are 2 modes for the map. The Mode <b><i>Total</i></b> colours the countries based on the total number of cases per country. <br>The mode <b><i>Per Inhabitant</i></b> takes into account the number of inhabitant for each country and colours the map according to this. </p>
+                    </div>
+                </div>
+            </form>
+        </center>
         <div class="chartwrapper">
             <div id="chartdiv" class="chartdiv"></div>
         </div>
@@ -279,41 +500,11 @@
 
         <div id="slider" style="margin-left:35%; margin-right:35%; margin-top: 3%;height: 2%;"></div>
 
-        <center>
-            <form>
-                <div class="special-radio-buttons mode" style="margin-top: 3%;">
-                    <input type="radio" name="mode" id="mode1" value="Total" checked/>
-                    <label for="mode1">Total</label>
-                    <input type="radio" name="mode" id="mode2" value="inhabitants"/>
-                    <label for="mode2">Per Inhabitant</label>
-                </div>
-                <!--<div class="special-radio-buttons disease">-->
-                    <!--<input type="radio" name="rb" id="rb1" value="CRS"/>-->
-                    <!--<label for="rb1">CRS</label>-->
-                    <!--<input type="radio" name="rb" id="rb2" value="diphtheria"/>-->
-                    <!--<label for="rb2">Diphtheria</label>-->
-                    <!--<input type="radio" name="rb" id="rb3" value="JapEnc"/>-->
-                    <!--<label for="rb3">Japanese Encephalitis</label>-->
-                    <!--<input type="radio" name="rb" id="rb4" value="measles"/>-->
-                    <!--<label for="rb4">Measles</label>-->
-                    <!--<input type="radio" name="rb" id="rb5" value="Mumps"/>-->
-                    <!--<label for="rb5">Mumps</label>-->
-                    <!--<input type="radio" name="rb" id="rb6" value="ntetanus"/>-->
-                    <!--<label for="rb6">Neonatal Tetanus</label>-->
-                    <!--<input type="radio" name="rb" id="rb7" value="pertussis"/>-->
-                    <!--<label for="rb7">Pertussis</label>-->
-                    <!--<input type="radio" name="rb" id="rb8" value="polio" checked/>-->
-                    <!--<label for="rb8">Polio</label>-->
-                    <!--<input type="radio" name="rb" id="rb9" value="Rubella"/>-->
-                    <!--<label for="rb9">Rubella</label>-->
-                    <!--<input type="radio" name="rb" id="rb10" value="ttetanus"/>-->
-                    <!--<label for="rb10">Tetanus</label>-->
-                    <!--<input type="radio" name="rb" id="rb11" value="yfever"/>-->
-                    <!--<label for="rb11">Hay Fever</label>-->
-                <!--</div>-->
-            </form>
-        </center>
+
 
     </div>
+
+
+
 </body>
 </html>

@@ -34,7 +34,7 @@
         this.svg.append('text')
             .attr('class', 'center-txt')
             .attr('id', 'region')
-            .attr('y', radius * -0)
+            .attr('y', radius * -0.05)
             .attr('text-anchor', 'middle')
             .style('font-size', '25px')
             .style('font-weight', 'normal');
@@ -94,7 +94,7 @@
 
 	function center_text(element, region, year, cases, percentage) {
 
-        element.select("#region").text("Total Cases in the " + region + ":");
+        element.select("#region").text("Total Cases in " + region + ":");
         element.select("#cases").text(cases.toLocaleString());
         element.select("#percentage").text(percentage  + " %");
         element.select("#year").text(year);
