@@ -163,15 +163,13 @@ $(document).on('click', '#play', function () {
 $(document).on('click', '#next', function () {
     clearTimeout(timeout);
     playState = false;
-
-
     updateRightOneYear(disease, currentYear + 1, false);
 
 });
 
 $(document).on('click', '#prev', function () {
     clearTimeout(timeout);
-
+    playState = false;
     updateRightOneYear(disease, currentYear - 1, false);
 
 });
