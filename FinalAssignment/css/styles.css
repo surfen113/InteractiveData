@@ -48,9 +48,9 @@
     text-align: center;
     background-color: #ddd;
     border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
     line-height: 100%;
     cursor: default;
 }
@@ -64,7 +64,6 @@
 .help-tip:hover p{
     display:block;
     transform-origin: 100% 0%;
-
     -webkit-animation: fadeIn 0.3s ease-in-out;
     animation: fadeIn 0.3s ease-in-out;
 

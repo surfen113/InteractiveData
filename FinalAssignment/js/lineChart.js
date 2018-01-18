@@ -325,11 +325,15 @@ function updateLineData(country, disease) {
     // });
 }
 $(function () {
-
     $('.selectpicker').on('change', function () {
         var selected = $(this).find("option:selected").val();
-        //console.log(selected);
         updateLineData(selected, disease);
     });
 
 });
+
+function changeCountry(country, disease) {
+    $(".selectpicker").val(country).change();
+    $("#rb5").prop("checked", true);
+    updateLineData(country, disease);
+}
