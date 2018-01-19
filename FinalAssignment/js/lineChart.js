@@ -51,8 +51,6 @@ var valueline2 = d3.svg.line()
     })
     .interpolate("monotone"); // <== y1
 
-// console.log(d3.select('#section2').style('width'));
-console.log(window.innerWidth);
 var svg = d3.select(".lineChart")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
