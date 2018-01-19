@@ -29,9 +29,10 @@ $(document).ready(function () {
     //document.getElementById( 'footer' ).style.display = 'none';
     populateHTML("diphtheria");
     changeDisease("diphtheria");
+
+
     //updateLineData("India", "diphtheria");
 });
-
 
 //https://refreshless.com/nouislider/
 $(document).ready(function () {

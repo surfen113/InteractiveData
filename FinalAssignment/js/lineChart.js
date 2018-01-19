@@ -35,7 +35,9 @@ var tooltip = d3.select(".lineChart")
     .style("z-index", "10")
     .style("visibility", "hidden")
     .style("background", "#fff")
-    .text("a simple tooltip");
+    .style("opacity", "0.8")
+    .style("text-align", "left")
+    .style("padding", "10px");
 
 var valueline2 = d3.svg.line()
     .defined(function (d) {
@@ -178,11 +180,17 @@ d3.csv("data/data.csv", function (error, data) {
             .attr("width", width)
             .attr("height", height)
 
-        .on("mouseover", function(d){console.log(d);tooltip.html("yes <br> new line"); return tooltip.style("visibility", "visible");})
-        //     .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+        .on("mouseover", function(){
+            focus.style("display", null);
+            tooltip.style("visibility", "visible");})
 
-            .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
-            .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");});
+        .on("mouseout", function(){
+                    focus.style("display", "none");
+            tooltip.style("visibility", "hidden");})
+
+            // .on("mousemove", function(){
+            //     return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px")
+            //         ;})
 
 
         //
@@ -192,7 +200,7 @@ d3.csv("data/data.csv", function (error, data) {
         //     .on("mouseout", function () {
         //         focus.style("display", "none");
         //     })
-        //     .on("mousemove", mousemove);
+            .on("mousemove", mousemove);
 
 
         var focus = svg.append("g")
@@ -204,41 +212,49 @@ d3.csv("data/data.csv", function (error, data) {
             .attr("y1", 0)
             .attr("y2", height);
 
-        focus.append("line")
-            .attr("class", "y-hover-line hover-line")
-            .attr("x1", width)
-            .attr("x2", width);
-
-        focus.append("text")
-            .attr("x", 15)
-            .attr("y", 15)
-            .attr("data-html", "true");
+        // focus.append("line")
+        //     .attr("class", "y-hover-line hover-line")
+        //     .attr("x1", width)
+        //     .attr("x2", width)
+        //     .style("fill", "yellow");
+        //
+        // focus.append("text")
+        //     .attr("x", 15)
+        //     .attr("y", 15)
+        //     .attr("data-html", "true");
 
         var bisectDate = d3.bisector(function (d) {
             return d.year;
         }).left;
 
         function mousemove() {
+
             var x0 = x.invert(d3.mouse(this)[0]),
                 i = bisectDate(data3, x0, 1),
                 d0 = data3[i - 1],
                 d1 = data3[i],
                 d = x0 - d0.year > d1.year - x0 ? d1 : d0;
-            var yvalue = y1(d.gdp) > y0(d.cases) ? y0(d.cases) : y1(d.gdp);
-            focus.attr("transform", "translate(" + x(d.year) + "," + yvalue + ")");
 
-            focus.select("text").attr("y", (height - yvalue) / 2);
+            var yvalue = y1(d.gdp) > y0(d.cases) ? y0(d.cases) : y1(d.gdp);
+
+            focus.attr("transform", "translate(" + x(d.year) + "," + yvalue + ")");
+            //
+            // focus.select("text").attr("y", (height - yvalue) / 2);
 
             //line break still doesn't work
 
-            var string = "Cases: " + d.cases + " " + "GDP: " + d.gdp;
+            var string = "<b>Cases: " + d.cases + "<br>" + "GDP (US $): " + Math.round(d.gdp) + "</b>";
 
-            focus.select("text").html(function () {
-                return string
-            });
+            tooltip.html(string);
 
+            tooltip.style("bottom", ((height - yvalue))+"px").style("left",(d3.event.pageX+10)+"px");
+
+            // focus.select("text").html(function () {
+            //     return string
+            // });
+            //
             focus.select(".x-hover-line").attr("y2", height - yvalue);
-            //console.log(y0(d.cases));
+            // //console.log(y0(d.cases));
             // console.log(y1(d.gdp));
             // console.log(height);
             //focus.select(".y-hover-line").attr("x2", width + width);
