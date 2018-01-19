@@ -104,8 +104,6 @@ d3.csv("data/data.csv", function (error, data) {
 
             var percentage = +actualdiseaseData[0][year_]/+popArray[0][year_];
 
-            console.log(percentage);
-
             data3.push({
                 year: +year_,
                 cases: percentage * Math.pow(10, 5),//+actualdiseaseData[0][year_],

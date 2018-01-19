@@ -763,3 +763,62 @@ border-radius: 16px !important;
 #menu li.active a:hover {
     color: #fff !important;
 }
+
+
+
+#section0 {
+    background-image:url(../data/pic3_.jpg);
+}
+
+/* Style for our header texts
+* --------------------------------------- */
+h1 {
+    font-size: 5em;
+    /*font-family: arial, helvetica;*/
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/*        .intro p {
+            color: #fff;
+        }*/
+
+/* Centered texts in each section
+* --------------------------------------- */
+.section {
+    text-align: center;
+}
+
+/* Fixed header and footer.
+* --------------------------------------- */
+#header, #footer {
+    position: fixed;
+    height: 6%;
+    display: block;
+    width: 100%;
+    background: rgba(122, 134, 146, 0.3);
+    z-index: 9;
+    text-align: center;
+    color: #f2f2f2;
+    padding: 0 0 0 0;
+}
+
+#header {
+    top: 0px;
+}
+
+#footer {
+    bottom: 0px;
+}
+
+/* Bottom menu
+* --------------------------------------- */
+#infoMenu {
+    bottom: 80px;
+}
+
+#infoMenu li a {
+    color: #fff;
+    z-index: 999;
+}
