@@ -152,11 +152,11 @@ d3.csv("data/data.csv", function (error, data) {
             .call(yAxisLeft)
             .append("text")
             .attr("fill", "#000")
-            .attr("x", 50)
+            .attr("x", 65)
             .attr("y", -20)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
-            .text("Percentage Population Affected (x10\u00B3)");
+            .text("Population Affected (x10\u00B3 %)");
 
         svg.append("g")
             .attr("class", "y axis2")
