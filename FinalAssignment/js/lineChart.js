@@ -58,6 +58,8 @@ var gdpData = [];
 
 var data3 = [];
 
+var currentDiseaseName = "Diphtheria";
+
 
 // Get the data
 d3.csv("data/data.csv", function (error, data) {
@@ -230,7 +232,18 @@ d3.csv("data/data.csv", function (error, data) {
 
 var disease = $("input[name='selectPie']").value;
 
-function updateLineData(country, disease) {
+function updateLineData(country, disease, diseaseFullName) {
+
+    if(diseaseFullName == null) {
+        console.log(currentDiseaseName);
+        $("#headerLineChart").html(currentDiseaseName + " in " + country);
+    }
+    else {
+        currentDiseaseName = diseaseFullName;
+        $("#headerLineChart").html(currentDiseaseName + " in " + country);
+    }
+
+
 
     data3 = [];
 
@@ -327,7 +340,7 @@ function updateLineData(country, disease) {
 $(function () {
     $('.selectpicker').on('change', function () {
         var selected = $(this).find("option:selected").val();
-        updateLineData(selected, disease);
+        updateLineData(selected, disease, null);
     });
 
 });
@@ -335,5 +348,5 @@ $(function () {
 function changeCountry(country, disease) {
     $(".selectpicker").val(country).change();
     $("#rb5").prop("checked", true);
-    updateLineData(country, disease);
+    updateLineData(country, disease, "Mumps");
 }

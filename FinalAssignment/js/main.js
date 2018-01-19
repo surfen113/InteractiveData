@@ -70,7 +70,7 @@ $("input[name='selectPie']").change(function (radioChanged) {
     changeDisease(radioChanged.currentTarget.value);
 
     var country = $('.selectpicker').find("option:selected").val();
-    updateLineData(country, radioChanged.currentTarget.value);
+    updateLineData(country, radioChanged.currentTarget.value, $("label[for='" + radioChanged.currentTarget.id + "']").text());
 });
 
 $("input[name='mode']").change(function (radioChanged) {
@@ -85,6 +85,10 @@ $(document).on('click', '#diseaseDescription', function () {
 
 $(document).on('click', '#donutBackButton', function () {
     $.fn.fullpage.moveTo('secondPage', 0);
+});
+
+$(document).on('click', '#toMapButton', function () {
+    $.fn.fullpage.moveTo('4thpage', 0);
 });
 
 function drawDonutChart(selectedDisease) {
