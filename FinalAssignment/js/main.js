@@ -14,12 +14,12 @@ $(document).ready(function () {
 
             if (index == 1) {
                 document.getElementById('footer').style.display = 'none';
-                $("#menu,li,a").css("color", "white");
+                $("#menu").find("li").find("a").css("color", "white");
             }
             else
             {
                 document.getElementById('footer').style.display = 'inline';
-                $("#menu,li,a").css("color", "black");
+                $("#menu").find("li").find("a").css("color", "black");
             }
 
             // if (index == 3) {
