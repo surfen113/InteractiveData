@@ -286,14 +286,21 @@ var selectedDisease = $("input[name='selectPie']").value;
 
 function updateLineData(country, disease, diseaseFullName) {
 
+    // if(name == null) {
+    //     console.log(name);
+        $("#headerLineChart").html(diseaseFullName + " in " + country);
+    // }
+    // else {
+    //     currentDiseaseName = name;
+    //     $("#headerLineChart").html(currentDiseaseName + " in " + country);
+    // }
+
     console.log("----------");
 
     console.log(disease);
 
     if(!disease)
         disease = selectedDisease;
-
-
 
     data3 = [];
 
@@ -401,12 +408,12 @@ function updateLineData(country, disease, diseaseFullName) {
 $(function () {
     $('.selectpicker').on('change', function () {
         var selected = $(this).find("option:selected").val();
-        updateLineData(selected, selectedDisease, null);
+        updateLineData(selected, selectedDisease, name);
     });
 
 });
 
-var name = null;
+var name = currentDiseaseName;
 
 function changeCountry(country, disease) {
 
@@ -451,14 +458,14 @@ function changeCountry(country, disease) {
     }
 
 
-    if(name == null) {
-        console.log(name);
+    // if(name == null) {
+    //     console.log(name);
         $("#headerLineChart").html(name + " in " + country);
-    }
-    else {
-        currentDiseaseName = name;
-        $("#headerLineChart").html(currentDiseaseName + " in " + country);
-    }
+    // }
+    // else {
+    //     currentDiseaseName = name;
+    //     $("#headerLineChart").html(currentDiseaseName + " in " + country);
+    // }
 
     selectedDisease = disease;
 
