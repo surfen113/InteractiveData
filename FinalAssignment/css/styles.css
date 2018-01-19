@@ -12,8 +12,8 @@
 }
 
 #menu li {
-    border: 0.5px solid;
     background: rgba(221,227,235, 0.1);
+    border: 0.5px solid #ccc;
 }
 
 #menu li:hover {
@@ -733,4 +733,22 @@ circle{
 .mode label{
   border: 1px solid rgb(68,121,178) !important;
 border-radius: 16px !important;
+}
+
+#col {
+  -moz-column-count: 3;
+  -webkit-column-count: 3;
+  column-count: 3;
+  color:#666 !important;
+  width:80%;
+  margin-top: 5%;
+}
+
+#menu li.active {
+    background: rgb(68,121,178) !important;
+    border: 0.5px solid  rgb(68,121,178) !important;
+}
+
+#menu li.active a:hover {
+    color: #fff !important;
 }
