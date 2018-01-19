@@ -180,7 +180,7 @@
 .legend2 span { border: 1.5px solid #ccc; float: left; width: 16px; height: 16px; margin: 2px; }
 
 .legend2 .gdp { background-color: darkblue; }
-.legend2 .cases { background-color: #ec3324; }
+.legend2 .cases { background-color: red; }
 
 #donutCharts {
     position: relative;
