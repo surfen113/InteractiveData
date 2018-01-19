@@ -235,19 +235,32 @@
     </div>
 
     <div class="section" id="section3">
-        <!--<h1>Map</h1>-->
-        <center>
-            <div class="special-radio-buttons mode">
-                <input type="radio" name="mode" id="mode1" value="Total" checked/>
-                <label for="mode1">Total</label>
-                <input type="radio" name="mode" id="mode2" value="inhabitants"/>
-                <label for="mode2">Per Inhabitant</label>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <div class="special-radio-buttons mode">
+                    <input type="radio" name="mode" id="mode1" value="Total" checked/>
+                    <label for="mode1">Total</label>
+                    <input type="radio" name="mode" id="mode2" value="inhabitants"/>
+                    <label for="mode2">Per Inhabitant</label>
+
+                </div>
+            </div>
+            <div class="col-md-1">
                 <div class="help-tip">
                     <p>There are 2 modes for the map. The Mode <b><i>Total</i></b> colours the countries based on the
                         total number of cases per country. <br>The mode <b><i>Per Inhabitant</i></b> takes into account
                         the number of inhabitant for each country and colours the map according to this. </p>
                 </div>
             </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+        <!--<h1>Map</h1>-->
+        <center>
+
         </center>
         <div class="chartwrapper">
             <div id="chartdiv" class="chartdiv"></div>
