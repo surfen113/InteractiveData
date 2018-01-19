@@ -11,7 +11,7 @@ var currentYear = 1999;
 
 function changeDiseaseForPieChart(diseaseName, diseaseFullName) {
     clearTimeout(timeout);
-    $("#diseaseHeaderDonuts").html(diseaseFullName);
+    $("#headerDonuts").html("Exploring <b>" + diseaseFullName + "</b> Distribution in different regions");
     playState = false;
     disease = diseaseName;
     readThisData(disease, 2016, false);
@@ -19,13 +19,13 @@ function changeDiseaseForPieChart(diseaseName, diseaseFullName) {
 
 
 $("#donutChart").donutpie({
-    radius: 430,
+    radius: 470,
     tooltip: true,
     tooltipClass: "donut-pie-tooltip-bubble"
 });
 
 $(".exp2").donutpie2({
-    radius: 430,
+    radius: 470,
     tooltip: true,
     tooltipClass: "donut-pie-tooltip-bubble"
 });
