@@ -191,8 +191,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <h2>Exploring the Disease Distribution in different regions</h2>
-                    <h3 id="diseaseHeaderDonuts" style="color:darkblue;margin-top:3%">Diphtheria</h3>
-                    <div class="help-tip">
+                    <h3 id="diseaseHeaderDonuts" style="color:darkblue;">Diphtheria</h3>
+                    <div class="help-tip help-tip-donut">
                         <p>The left Donut Chart...</p>
                     </div>
 
@@ -203,10 +203,11 @@
                     </div>
                     <div class="col-md-6">
                         <div class="exp2" id="donutChart2"></div>
-                        <i class="fa fa-backward chart-icons" id="prev" onclick="ChangeToPlay()"></i>
-                        <i class="fa fa-pause chart-icons" id="play"></i>
-                        <i class="fa fa-forward chart-icons" id="next" onclick="ChangeToPlay()"></i>
-
+                        <center><div class="play-buttons">
+                            <i class="fa fa-backward chart-icons" id="prev" onclick="ChangeToPlay()"></i>
+                            <i class="fa fa-pause chart-icons" id="play"></i>
+                            <i class="fa fa-forward chart-icons" id="next" onclick="ChangeToPlay()"></i>
+                        </div></center>
                     </div>
                 </div>
                 <div class="row">
@@ -235,7 +236,7 @@
             <div class="row" style="margin-top:5%;">
                 <div class="col-md-9 lineChartWrapper">
                     <h3 id="headerLineChart">Diphtheria in India</h3>
-                    <div class="lineChart" id="lineChart" style="margin-left:-5%"></div>
+                    <div class="lineChart" id="lineChart" style="margin-left:-5%; "></div>
                     <ul class="legend2" id="lineLegend" style="display: flex;  justify-content: center;">
                         <li><span class="gdp"></span>GDP</li>
                         <li><span class="cases"></span>Cases</li>
@@ -440,8 +441,7 @@
 
                 </div>
                 <div class="col-md-3">
-                    <div style="border-radius:25px; padding-top: 1em; opacity: 0.5;background-color: rgba(193, 193, 193, 0.8);border:2px solid #5c4f4f; margin-top: 5.0em;width:90%;"
-                         class="box">
+                    <div class="box">
                         <p style="font-color:black; font-size:14px">This diagram shows the GDP per Capita (blue line)
                             vs. the number of incidents (red line) for the chosen disease. The x-Axis represents the
                             time.</p>
