@@ -46,7 +46,9 @@
     <script src="js/main.js" defer></script>
     <script src="js/map.js" defer></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://dl.dropbox.com/s/9qs7h4qdkwc6mwz/styles.css">
     <script src="js/diseases_bubble.js" defer></script>
+    <script src="https://dl.dropbox.com/s/gx5vozym0dt84o1/script.js"></script>
     <script src="js/donut-pie-chart.js"></script>
     <script src="js/donut-pie-chart2.js"></script>
     <script src="js/donutChart.js" defer></script>
@@ -126,8 +128,10 @@
 <ul id="menu">
     <li data-menuanchor="firstPage"><a href="#firstPage">Start</a></li>
     <li data-menuanchor="secondPage"><a href="#secondPage">Diseases</a></li>
-    <li data-menuanchor="3rdPage"><a href="#3rdPage">GDP vs. Incidents</a></li>
-    <li data-menuanchor="4thpage"><a href="#4thpage">Discover on a map</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">Discover on a Map</a></li>
+    <li data-menuanchor="4thpage"><a href="#4thpage">GDP vs. Incidences</a></li>
+    <li data-menuanchor="4thpage"><a href="#5thpage">Conclusions</a></li>
+
 </ul>
 
 
@@ -191,7 +195,7 @@
         <div class="slide" id="slide2">
             <div class="container-fluid">
                 <div class="row">
-                    <h2 id="headerDonuts">Exploring <b> Diphtheria</b> Distribution in different regions</h2>
+                    <h2 id="headerDonuts">Exploring <b> Diphtheria</b> distribution in different regions</h2>
 
 
                 </div>
@@ -251,17 +255,17 @@
             <div class="col-md-4">
                 <div class="special-radio-buttons mode">
                     <input type="radio" name="mode" id="mode1" value="Total" checked/>
-                    <label for="mode1">Total</label>
+                    <label for="mode1">Total Cases</label>
                     <input type="radio" name="mode" id="mode2" value="inhabitants"/>
-                    <label for="mode2">Per Inhabitant</label>
+                    <label for="mode2">Population Affected</label>
 
                 </div>
             </div>
             <div class="col-md-1">
                 <div class="help-tip">
-                    <p>There are 2 modes for the map. The Mode <b><i>Total</i></b> colours the countries based on the
-                        total number of cases per country. <br>The mode <b><i>Per Inhabitant</i></b> takes into account
-                        the number of inhabitant for each country and colours the map according to this. </p>
+                    <p>There are 2 modes for the map. The Mode <b><i>Total</i></b> colours the countries based only on the
+                        total number of cases per country. <br><br>The mode <b><i>Per Inhabitant</i></b> takes into account
+                        the number of inhabitants for each country and colours the map according to the cases per inhabitant.</p>
                 </div>
             </div>
             <div class="col-md-3">
@@ -495,14 +499,10 @@
                 </div>
                 <div class="col-md-3">
                     <div class="box">
-                        <p>This diagram shows the GDP per Capita (blue line)
-                            vs. the number of incidents (red line) for the chosen disease. The x-Axis represents the
-                            time.</p>
-                        <p>The diagram is very useful to find out specific
-                            information for a disease in a certain country.</p>
-                        <p>Looking at the Data for Denmark, reveals that <a
-                                href="javascript:changeCountry('Denmark','Mumps')">Denmark</a> has a very high GDP per
-                            Capita compared to the number of cases for most Diseases.</p>
+                        <p>This diagram shows the GDP per Capita (blue line) vs. the percentage of population affected (red line) for the chosen disease and country over 1999 - 2016.</p>
+                        <p>The diagram is very useful to find out specific information for a disease in a certain country.</p>
+                        <p>Looking at the Data for Denmark, reveals that <a href="javascript:changeCountry('Denmark','Mumps')">Denmark</a>
+                            has a very high GDP per Capita compared to the number of cases for most Diseases.</p>
                         <p>Looking at countries with a comparatively small GDP
                             like <a href="javascript:changeCountry('Colombia','Mumps')">Colombia</a> or <a
                                     href="javascript:changeCountry('Azerbaijan','Mumps')">Azerbaijan</a> shows that the
@@ -510,13 +510,27 @@
                         </p>
                         <p>And more</p>
                         <p>And more</p>
-                        <button class='btn btn-primary' id='toMapButton' style="margin-bottom:10px">Bring me to the map</button>
+                        <button class='btn btn-primary' id='toMapButton' style="margin-bottom:10px">Take me back to the map</button>
 
                     </div>
                 </div>
             </div>
 
 
+        </div>
+    </div>
+
+    <div class="section" id="section4">
+        <div class="slide" id="slide4_1">
+            <div class="intro" style="color:#666">
+                    <h1 style="text-align: center;color:#666">Blub</h1>
+                <p style="color:#666">Diphtheria is an infection caused by the bacterium Corynebacterium diphtheriae. Signs and symptoms may vary from mild to severe. They usually start two to five days after exposure. Symptoms often come on fairly gradually, beginning with a sore throat and fever. In severe cases, a grey or white patch develops in the throat. This can block the airway and create a barking cough as in croup. The neck may swell in part due to enlarged lymph nodes. A form of diphtheria that involves the skin, eyes, or genitals also exists. Complications may include myocarditis, inflammation of nerves, kidney problems, and bleeding problems due to low levels of platelets. Myocarditis may result in an abnormal heart rate and inflammation of the nerves may result in paralysis.</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide4_2">
+            <h1>blub2</h1>
+            <p>gagagags</p>
         </div>
     </div>
 </div>
