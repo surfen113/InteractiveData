@@ -44,13 +44,13 @@
 .help-tip{
     position: absolute;
     top: 25%;
-    right: 18%;
+    right: 22%;
     text-align: center;
     background-color: #ddd;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 30px;
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
     line-height: 100%;
     cursor: default;
 }
@@ -70,18 +70,18 @@
 }
 
 .help-tip p{    /* The tooltip */
-  display: none;
-  text-align: left;
-  background-color: #ddd;
-  padding: 10px;
-  width: 400px;
-  position: absolute;
-  border-radius: 3px;
-  top: -90px;
-  right: -500px;
-  color: #FFF;
-  font-size: 13px;
-  line-height: 1.4;
+   display: none;
+   text-align: left;
+   background-color: #ddd;
+   padding: 10px;
+   width: 500px;
+   position: absolute;
+   border-radius: 3px;
+   top: -90px;
+   right: -500px;
+   color: #FFF;
+   font-size: 13px;
+   line-height: 1.4;
 }
 
 /*.help-tip p:before{ !* The pointer of the tooltip *!*/
@@ -449,8 +449,8 @@ p {
 }
 
 .menu-radio{
-      margin-top:2%;
-    margin-bottom: 2%;
+  margin: 2%;
+  padding-bottom: 1%;
 }
 
 input[type="radio"] {
@@ -606,7 +606,7 @@ margin-left: 8% !important;
 }
 
 .row{
-  margin-bottom: 2% !important;
+  margin-bottom: 1% !important;
 }
 
 
@@ -654,5 +654,35 @@ h1{
 }
 
 .chart-icons{
-  margin: 1%;
+  margin: 0 1%;
+}
+
+.help-tip-donut{
+top: 24%;
+right: 23%;
+width: 15px;
+height: 15px;
+font-size: 14px;
+  cursor: default;
+}
+
+.help-tip-donut p{
+width: 400px;
+position: absolute;
+border-radius: 3px;
+top: 10px;
+right: -400px;
+}
+
+.box{
+  border-radius: 25px;
+padding-top: 1em;
+opacity: 0.5;
+background-color: rgba(193, 193, 193, 0.8);
+border:1px solid #5c4f4f;
+margin-top: 10.0em;
+width: 90%;
+opacity: 100;
+color: #fff;
+padding: 2%;
 }
