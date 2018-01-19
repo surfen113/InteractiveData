@@ -11,7 +11,7 @@ var currentYear = 1999;
 
 function changeDiseaseForPieChart(diseaseName, diseaseFullName) {
     clearTimeout(timeout);
-    $("#headerDonuts").html("Exploring <b>" + diseaseFullName + "</b> Distribution in different regions");
+    $("#headerDonuts").html("Exploring <b>" + diseaseFullName + "</b> distribution in different regions");
     playState = false;
     disease = diseaseName;
     readThisData(disease, 2016, false);
