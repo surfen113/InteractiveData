@@ -173,13 +173,16 @@
         <h1>Diseases around the world</h1>
         <p>Final project - Interactive Data Exploration 2017/18</p>
         <p>Simona Toader, Riddhi Raj, Julian Ritter</p>
-        <div style="border-radius:25px; padding-top: 1em; opacity: 0.5;background-color: rgba(193, 193, 193, 0.8);border:2px solid #5c4f4f; margin-top: 5.0em;width:70%;margin-left:15%;margin-right:15%;"
+        <div style="border-radius:25px; padding-top: 1em; opacity: 0.5;background-color: rgba(51, 36, 34, 0.2);border:2px solid #5c4f4f; margin-top: 5.0em;width:25%;margin-left:37.5%;margin-right:37.5%;"
              class="box">
-            <p style="font-color:black">This is....</p>
-            <p>Some more</p>
-            <p>And more</p>
-            <p>4th line</p>
-            <p>5th line</p>
+            <p style="font-color:black; font-size:20px">This web page aims at visualizing data from the <a
+                    href="http://apps.who.int/immunization_monitoring/globalsummary/timeseries/tsincidencediphtheria.html">WHO</a>
+                about the reported cases of different diseases. <br><br>There are different visualizations being used on
+                this site in order
+                to demonstrate the distribution of the diseases for countries and regions and also in order to compare
+                the diseases amount of incidences to
+                the GDP per capita for each country.</p>
+
         </div>
     </div>
 
@@ -204,12 +207,15 @@
                     </div>
                     <div class="col-md-4">
                         <button class='btn btn-primary' id='donutBackButton'>Take me back to the
-                            descriptions
+                            Descriptions
                         </button>
                     </div>
                     <div class="col-md-1">
                         <div class="help-tip help-tip-donut">
-                            <p>The donut chart...
+                            <p>These donut charts visualize the amount of incidences for each disease, split up by years
+                                and regions - according to the <a href="http://www.who.int/about/regions/en/">6 WHO
+                                    regions</a> . <br><br>The left chart always displays the most recent data for the
+                                disease, while the year of the right chart can be changed.
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -222,11 +228,13 @@
                     </div>
                     <div class="col-md-6">
                         <div class="exp2" id="donutChart2"></div>
-                        <center><div class="play-buttons">
-                            <i class="fa fa-backward chart-icons" id="prev" onclick="ChangeToPlay()"></i>
-                            <i class="fa fa-pause chart-icons" id="play"></i>
-                            <i class="fa fa-forward chart-icons" id="next" onclick="ChangeToPlay()"></i>
-                        </div></center>
+                        <center>
+                            <div class="play-buttons">
+                                <i class="fa fa-backward chart-icons" id="prev" onclick="ChangeToPlay()"></i>
+                                <i class="fa fa-pause chart-icons" id="play"></i>
+                                <i class="fa fa-forward chart-icons" id="next" onclick="ChangeToPlay()"></i>
+                            </div>
+                        </center>
                     </div>
                 </div>
                 <div class="row">
@@ -241,7 +249,7 @@
                 </div>
 
                 <div class="row">
-                    <button class='btn btn-primary' id='buttonExploreOnMap' >Explore further on a map
+                    <button class='btn btn-primary' id='buttonExploreOnMap'>Explore further on a map
                     </button>
                 </div>
             </div>
@@ -263,9 +271,12 @@
             </div>
             <div class="col-md-1">
                 <div class="help-tip">
-                    <p>There are 2 modes for the map. The Mode <b><i>Total</i></b> colours the countries based only on the
-                        total number of cases per country. <br><br>The mode <b><i>Per Inhabitant</i></b> takes into account
-                        the number of inhabitants for each country and colours the map according to the cases per inhabitant.</p>
+                    <p>There are 2 modes for the map. The Mode <b><i>Total Cases</i></b> colours the countries based only on
+                        the
+                        total number of cases per country. <br><br>The mode <b><i>Population Affected</i></b> takes into
+                        account
+                        the number of inhabitants for each country and colours the map according to the cases per
+                        inhabitant.</p>
                 </div>
             </div>
             <div class="col-md-3">
@@ -287,7 +298,7 @@
 
     </div>
 
-       <div class="section" id="section2">
+    <div class="section" id="section2">
         <div class="container-fluid">
 
             <div class="row" style="margin-top:5%;">
@@ -299,206 +310,224 @@
                         <li><span class="cases"></span>Cases</li>
                     </ul>
                     <div class="selectcontainer">
-                    <select style="margin-top:10%;background-color: whitesmoke;" class="selectpicker" liveSearchNormalize="true"
-                            data-live-search="true"
-                            liveSearchStyle="startsWith" id="countries">
-                        <option>Afghanistan</option>
-                        <option>Albania</option>
-                        <option>Algeria</option>
-                        <option>Andorra</option>
-                        <option>Angola</option>
-                        <option>Antigua and Barbuda</option>
-                        <option>Argentina</option>
-                        <option>Armenia</option>
-                        <option>Australia</option>
-                        <option>Austria</option>
-                        <option>Azerbaijan</option>
-                        <option>Bahamas (the)</option>
-                        <option>Bahrain</option>
-                        <option>Bangladesh</option>
-                        <option>Barbados</option>
-                        <option>Belarus</option>
-                        <option>Belgium</option>
-                        <option>Belize</option>
-                        <option>Benin</option>
-                        <option>Bhutan</option>
-                        <option>Bolivia (Plurinational State of)</option>
-                        <option>Bosnia and Herzegovina</option>
-                        <option>Botswana</option>
-                        <option>Brazil</option>
-                        <option>Brunei Darussalam</option>
-                        <option>Bulgaria</option>
-                        <option>Burkina Faso</option>
-                        <option>Burundi</option>
-                        <option>Cabo Verde</option>
-                        <option>Cambodia</option>
-                        <option>Cameroon</option>
-                        <option>Canada</option>
-                        <option>Central African Republic (the)</option>
-                        <option>Chad</option>
-                        <option>Chile</option>
-                        <option>China</option>
-                        <option>Colombia</option>
-                        <option>Comoros (the)</option>
-                        <option>Congo (the)</option>
-                        <option>Costa Rica</option>
-                        <option>Côte d'Ivoire</option>
-                        <option>Croatia</option>
-                        <option>Cuba</option>
-                        <option>Cyprus</option>
-                        <option>Czech Republic (the)</option>
-                        <option>Democratic People's Republic of Korea (the)</option>
-                        <option>Democratic Republic of the Congo (the)</option>
-                        <option>Denmark</option>
-                        <option>Djibouti</option>
-                        <option>Dominica</option>
-                        <option>Dominican Republic (the)</option>
-                        <option>Ecuador</option>
-                        <option>Egypt</option>
-                        <option>El Salvador</option>
-                        <option>Equatorial Guinea</option>
-                        <option>Eritrea</option>
-                        <option>Estonia</option>
-                        <option>Ethiopia</option>
-                        <option>Fiji</option>
-                        <option>Finland</option>
-                        <option>France</option>
-                        <option>Gabon</option>
-                        <option>Gambia (the)</option>
-                        <option>Georgia</option>
-                        <option>Germany</option>
-                        <option>Ghana</option>
-                        <option>Greece</option>
-                        <option>Grenada</option>
-                        <option>Guatemala</option>
-                        <option>Guinea</option>
-                        <option>Guinea-Bissau</option>
-                        <option>Guyana</option>
-                        <option>Haiti</option>
-                        <option>Honduras</option>
-                        <option>Hungary</option>
-                        <option>Iceland</option>
-                        <option selected>India</option>
-                        <option>Indonesia</option>
-                        <option>Iran (Islamic Republic of)</option>
-                        <option>Iraq</option>
-                        <option>Ireland</option>
-                        <option>Israel</option>
-                        <option>Italy</option>
-                        <option>Jamaica</option>
-                        <option>Japan</option>
-                        <option>Jordan</option>
-                        <option>Kazakhstan</option>
-                        <option>Kenya</option>
-                        <option>Kiribati</option>
-                        <option>Kuwait</option>
-                        <option>Kyrgyzstan</option>
-                        <option>Lao People's Democratic Republic (the)</option>
-                        <option>Latvia</option>
-                        <option>Lebanon</option>
-                        <option>Lesotho</option>
-                        <option>Liberia</option>
-                        <option>Libya</option>
-                        <option>Lithuania</option>
-                        <option>Luxembourg</option>
-                        <option>Madagascar</option>
-                        <option>Malawi</option>
-                        <option>Malaysia</option>
-                        <option>Maldives</option>
-                        <option>Mali</option>
-                        <option>Malta</option>
-                        <option>Marshall Islands (the)</option>
-                        <option>Mauritania</option>
-                        <option>Mauritius</option>
-                        <option>Mexico</option>
-                        <option>Micronesia (Federated States of)</option>
-                        <option>Monaco</option>
-                        <option>Mongolia</option>
-                        <option>Montenegro</option>
-                        <option>Morocco</option>
-                        <option>Mozambique</option>
-                        <option>Myanmar</option>
-                        <option>Namibia</option>
-                        <option>Nauru</option>
-                        <option>Nepal</option>
-                        <option>Netherlands (the)</option>
-                        <option>New Zealand</option>
-                        <option>Nicaragua</option>
-                        <option>Niger (the)</option>
-                        <option>Nigeria</option>
-                        <option>Norway</option>
-                        <option>Oman</option>
-                        <option>Pakistan</option>
-                        <option>Palau</option>
-                        <option>Panama</option>
-                        <option>Papua New Guinea</option>
-                        <option>Paraguay</option>
-                        <option>Peru</option>
-                        <option>Philippines (the)</option>
-                        <option>Poland</option>
-                        <option>Portugal</option>
-                        <option>Qatar</option>
-                        <option>Republic of Korea (the)</option>
-                        <option>Republic of Moldova (the)</option>
-                        <option>Romania</option>
-                        <option>Russian Federation (the)</option>
-                        <option>Rwanda</option>
-                        <option>Saint Kitts and Nevis</option>
-                        <option>Saint Lucia</option>
-                        <option>Saint Vincent and the Grenadines</option>
-                        <option>Samoa</option>
-                        <option>San Marino</option>
-                        <option>Sao Tome and Principe</option>
-                        <option>Saudi Arabia</option>
-                        <option>Senegal</option>
-                        <option>Serbia</option>
-                        <option>Seychelles</option>
-                        <option>Sierra Leone</option>
-                        <option>Singapore</option>
-                        <option>Slovakia</option>
-                        <option>Slovenia</option>
-                        <option>Solomon Islands</option>
-                        <option>Somalia</option>
-                        <option>South Africa</option>
-                        <option>South Sudan</option>
-                        <option>Spain</option>
-                        <option>Sri Lanka</option>
-                        <option>Sudan (the)</option>
-                        <option>Suriname</option>
-                        <option>Swaziland</option>
-                        <option>Sweden</option>
-                        <option>Switzerland</option>
-                        <option>Syrian Arab Republic (the)</option>
-                        <option>Tajikistan</option>
-                        <option>Thailand</option>
-                        <option>The former Yugoslav Republic of Macedonia</option>
-                        <option>Timor-Leste</option>
-                        <option>Togo</option>
-                        <option>Tonga</option>
-                        <option>Trinidad and Tobago</option>
-                        <option>Tunisia</option>
-                        <option>Turkey</option>
-                        <option>Turkmenistan</option>
-                        <option>Tuvalu</option>
-                        <option>Uganda</option>
-                        <option>Ukraine</option>
-                        <option>United Arab Emirates (the)</option>
-                        <option>United Kingdom of Great Britain and Northern Ireland (the)</option>
-                        <option>United Republic of Tanzania</option>
-                        <option>United States of America (the)</option>
-                        <option>Uruguay</option>
-                        <option>Uzbekistan</option>
-                        <option>Vanuatu</option>
-                        <option>Venezuela (Bolivarian Republic of)</option>
-                        <option>Viet Nam</option>
-                        <option>Yemen</option>
-                        <option>Zambia</option>
-                        <option>Zimbabwe</option>
-                    </select>
+                        <select style="margin-top:10%;background-color: whitesmoke;" class="selectpicker"
+                                liveSearchNormalize="true"
+                                data-live-search="true"
+                                liveSearchStyle="startsWith" id="countries">
+                            <option>Afghanistan</option>
+                            <option>Albania</option>
+                            <option>Algeria</option>
+                            <option>Andorra</option>
+                            <option>Angola</option>
+                            <option>Antigua and Barbuda</option>
+                            <option>Argentina</option>
+                            <option>Armenia</option>
+                            <option>Australia</option>
+                            <option>Austria</option>
+                            <option>Azerbaijan</option>
+                            <option>Bahamas (the)</option>
+                            <option>Bahrain</option>
+                            <option>Bangladesh</option>
+                            <option>Barbados</option>
+                            <option>Belarus</option>
+                            <option>Belgium</option>
+                            <option>Belize</option>
+                            <option>Benin</option>
+                            <option>Bhutan</option>
+                            <option>Bolivia (Plurinational State of)</option>
+                            <option>Bosnia and Herzegovina</option>
+                            <option>Botswana</option>
+                            <option>Brazil</option>
+                            <option>Brunei Darussalam</option>
+                            <option>Bulgaria</option>
+                            <option>Burkina Faso</option>
+                            <option>Burundi</option>
+                            <option>Cabo Verde</option>
+                            <option>Cambodia</option>
+                            <option>Cameroon</option>
+                            <option>Canada</option>
+                            <option>Central African Republic (the)</option>
+                            <option>Chad</option>
+                            <option>Chile</option>
+                            <option>China</option>
+                            <option>Colombia</option>
+                            <option>Comoros (the)</option>
+                            <option>Congo (the)</option>
+                            <option>Costa Rica</option>
+                            <option>Côte d'Ivoire</option>
+                            <option>Croatia</option>
+                            <option>Cuba</option>
+                            <option>Cyprus</option>
+                            <option>Czech Republic (the)</option>
+                            <option>Democratic People's Republic of Korea (the)</option>
+                            <option>Democratic Republic of the Congo (the)</option>
+                            <option>Denmark</option>
+                            <option>Djibouti</option>
+                            <option>Dominica</option>
+                            <option>Dominican Republic (the)</option>
+                            <option>Ecuador</option>
+                            <option>Egypt</option>
+                            <option>El Salvador</option>
+                            <option>Equatorial Guinea</option>
+                            <option>Eritrea</option>
+                            <option>Estonia</option>
+                            <option>Ethiopia</option>
+                            <option>Fiji</option>
+                            <option>Finland</option>
+                            <option>France</option>
+                            <option>Gabon</option>
+                            <option>Gambia (the)</option>
+                            <option>Georgia</option>
+                            <option>Germany</option>
+                            <option>Ghana</option>
+                            <option>Greece</option>
+                            <option>Grenada</option>
+                            <option>Guatemala</option>
+                            <option>Guinea</option>
+                            <option>Guinea-Bissau</option>
+                            <option>Guyana</option>
+                            <option>Haiti</option>
+                            <option>Honduras</option>
+                            <option>Hungary</option>
+                            <option>Iceland</option>
+                            <option selected>India</option>
+                            <option>Indonesia</option>
+                            <option>Iran (Islamic Republic of)</option>
+                            <option>Iraq</option>
+                            <option>Ireland</option>
+                            <option>Israel</option>
+                            <option>Italy</option>
+                            <option>Jamaica</option>
+                            <option>Japan</option>
+                            <option>Jordan</option>
+                            <option>Kazakhstan</option>
+                            <option>Kenya</option>
+                            <option>Kiribati</option>
+                            <option>Kuwait</option>
+                            <option>Kyrgyzstan</option>
+                            <option>Lao People's Democratic Republic (the)</option>
+                            <option>Latvia</option>
+                            <option>Lebanon</option>
+                            <option>Lesotho</option>
+                            <option>Liberia</option>
+                            <option>Libya</option>
+                            <option>Lithuania</option>
+                            <option>Luxembourg</option>
+                            <option>Madagascar</option>
+                            <option>Malawi</option>
+                            <option>Malaysia</option>
+                            <option>Maldives</option>
+                            <option>Mali</option>
+                            <option>Malta</option>
+                            <option>Marshall Islands (the)</option>
+                            <option>Mauritania</option>
+                            <option>Mauritius</option>
+                            <option>Mexico</option>
+                            <option>Micronesia (Federated States of)</option>
+                            <option>Monaco</option>
+                            <option>Mongolia</option>
+                            <option>Montenegro</option>
+                            <option>Morocco</option>
+                            <option>Mozambique</option>
+                            <option>Myanmar</option>
+                            <option>Namibia</option>
+                            <option>Nauru</option>
+                            <option>Nepal</option>
+                            <option>Netherlands (the)</option>
+                            <option>New Zealand</option>
+                            <option>Nicaragua</option>
+                            <option>Niger (the)</option>
+                            <option>Nigeria</option>
+                            <option>Norway</option>
+                            <option>Oman</option>
+                            <option>Pakistan</option>
+                            <option>Palau</option>
+                            <option>Panama</option>
+                            <option>Papua New Guinea</option>
+                            <option>Paraguay</option>
+                            <option>Peru</option>
+                            <option>Philippines (the)</option>
+                            <option>Poland</option>
+                            <option>Portugal</option>
+                            <option>Qatar</option>
+                            <option>Republic of Korea (the)</option>
+                            <option>Republic of Moldova (the)</option>
+                            <option>Romania</option>
+                            <option>Russian Federation (the)</option>
+                            <option>Rwanda</option>
+                            <option>Saint Kitts and Nevis</option>
+                            <option>Saint Lucia</option>
+                            <option>Saint Vincent and the Grenadines</option>
+                            <option>Samoa</option>
+                            <option>San Marino</option>
+                            <option>Sao Tome and Principe</option>
+                            <option>Saudi Arabia</option>
+                            <option>Senegal</option>
+                            <option>Serbia</option>
+                            <option>Seychelles</option>
+                            <option>Sierra Leone</option>
+                            <option>Singapore</option>
+                            <option>Slovakia</option>
+                            <option>Slovenia</option>
+                            <option>Solomon Islands</option>
+                            <option>Somalia</option>
+                            <option>South Africa</option>
+                            <option>South Sudan</option>
+                            <option>Spain</option>
+                            <option>Sri Lanka</option>
+                            <option>Sudan (the)</option>
+                            <option>Suriname</option>
+                            <option>Swaziland</option>
+                            <option>Sweden</option>
+                            <option>Switzerland</option>
+                            <option>Syrian Arab Republic (the)</option>
+                            <option>Tajikistan</option>
+                            <option>Thailand</option>
+                            <option>The former Yugoslav Republic of Macedonia</option>
+                            <option>Timor-Leste</option>
+                            <option>Togo</option>
+                            <option>Tonga</option>
+                            <option>Trinidad and Tobago</option>
+                            <option>Tunisia</option>
+                            <option>Turkey</option>
+                            <option>Turkmenistan</option>
+                            <option>Tuvalu</option>
+                            <option>Uganda</option>
+                            <option>Ukraine</option>
+                            <option>United Arab Emirates (the)</option>
+                            <option>United Kingdom of Great Britain and Northern Ireland (the)</option>
+                            <option>United Republic of Tanzania</option>
+                            <option>United States of America (the)</option>
+                            <option>Uruguay</option>
+                            <option>Uzbekistan</option>
+                            <option>Vanuatu</option>
+                            <option>Venezuela (Bolivarian Republic of)</option>
+                            <option>Viet Nam</option>
+                            <option>Yemen</option>
+                            <option>Zambia</option>
+                            <option>Zimbabwe</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="box">
+                        <p>This diagram shows the GDP per Capita (blue line) vs. the percentage of population affected
+                            (red line) for the chosen disease and country over 1999 - 2016.</p>
+                        <p>The diagram is very useful to find out specific information for a disease in a certain
+                            country.</p>
+                        <p>Looking at the Data for Denmark, reveals that <a
+                                href="javascript:changeCountry('Denmark','Mumps')">Denmark</a>
+                            has a very high GDP per Capita compared to the number of cases for most Diseases.</p>
+                        <p>Looking at countries with a comparatively small GDP
+                            like <a href="javascript:changeCountry('Colombia','Mumps')">Colombia</a> or <a
+                                    href="javascript:changeCountry('Azerbaijan','Mumps')">Azerbaijan</a> shows that the
+                            number of cases is a lot higher than it is in Denmark while their GDP is extremely small.
+                        </p>
+                        <p>And more</p>
+                        <p>And more</p>
+                        <button class='btn btn-primary' id='toMapButton' style="margin-bottom:10px">Take me back to the
+                            map
+                        </button>
                         <p>This diagram shows the GDP per Capita (blue line) vs. the percentage of population affected (red line) for the chosen disease and country over 1999 - 2016.</p>
                         <p>The diagram is very useful to find out specific information about how the disease affects different economies differently.</p>
                         <p>For example, looking at Diphtheria in <a href="javascript:changeCountry('India','diphtheria')">India</a> and
@@ -518,8 +547,15 @@
     <div class="section" id="section4">
         <div class="slide" id="slide4_1">
             <div class="intro" style="color:#666">
-                    <h1 style="text-align: center;color:#666">Blub</h1>
-                <p style="color:#666">Diphtheria is an infection caused by the bacterium Corynebacterium diphtheriae. Signs and symptoms may vary from mild to severe. They usually start two to five days after exposure. Symptoms often come on fairly gradually, beginning with a sore throat and fever. In severe cases, a grey or white patch develops in the throat. This can block the airway and create a barking cough as in croup. The neck may swell in part due to enlarged lymph nodes. A form of diphtheria that involves the skin, eyes, or genitals also exists. Complications may include myocarditis, inflammation of nerves, kidney problems, and bleeding problems due to low levels of platelets. Myocarditis may result in an abnormal heart rate and inflammation of the nerves may result in paralysis.</p>
+                <h1 style="text-align: center;color:#666">Conclusions</h1>
+                <p style="color:#666">Diphtheria is an infection caused by the bacterium Corynebacterium diphtheriae.
+                    Signs and symptoms may vary from mild to severe. They usually start two to five days after exposure.
+                    Symptoms often come on fairly gradually, beginning with a sore throat and fever. In severe cases, a
+                    grey or white patch develops in the throat. This can block the airway and create a barking cough as
+                    in croup. The neck may swell in part due to enlarged lymph nodes. A form of diphtheria that involves
+                    the skin, eyes, or genitals also exists. Complications may include myocarditis, inflammation of
+                    nerves, kidney problems, and bleeding problems due to low levels of platelets. Myocarditis may
+                    result in an abnormal heart rate and inflammation of the nerves may result in paralysis.</p>
             </div>
         </div>
 
