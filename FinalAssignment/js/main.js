@@ -88,8 +88,12 @@ $(document).on('click', '#donutBackButton', function () {
     $.fn.fullpage.moveTo('secondPage', 0);
 });
 
+$(document).on('click', '#buttonExploreOnMap', function () {
+    $.fn.fullpage.moveTo('3rdPage', 0);
+});
+
 $(document).on('click', '#toMapButton', function () {
-    $.fn.fullpage.moveTo('4thpage', 0);
+    $.fn.fullpage.moveTo('3rdPage', 0);
 });
 
 function drawDonutChart(selectedDisease) {
