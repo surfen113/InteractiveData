@@ -13,7 +13,8 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="libraries/jquery-2.0.2.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>-->
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
 
     <!-- JQuery FullPage -->
@@ -241,7 +242,8 @@
                         <li><span class="gdp"></span>GDP</li>
                         <li><span class="cases"></span>Cases</li>
                     </ul>
-                    <select style="margin-top:10%" class="selectpicker" liveSearchNormalize="true"
+                    <div class="selectcontainer">
+                    <select style="margin-top:10%;" class="selectpicker" liveSearchNormalize="true"
                             data-live-search="true"
                             liveSearchStyle="startsWith" id="countries">
                         <option>Afghanistan</option>
@@ -437,7 +439,7 @@
                         <option>Zambia</option>
                         <option>Zimbabwe</option>
                     </select>
-
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="box">
