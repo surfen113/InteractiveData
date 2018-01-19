@@ -23,6 +23,10 @@ $(document).ready(function () {
             if (index == 4) {
                 document.getElementById('footer').style.display = 'inline';
             }
+
+            if (index == 5) {
+                document.getElementById('footer').style.display = 'none';
+            }
         }
     });
 
