@@ -70,6 +70,14 @@ var data3 = [];
 
 var currentDiseaseName = "Diphtheria";
 
+var popData = [];
+
+var countryid;
+
+d3.csv("data/inhabitants.csv", function (error, data) {
+    popData = data;
+
+});
 
 // Get the data
 d3.csv("data/data.csv", function (error, data) {
@@ -80,6 +88,8 @@ d3.csv("data/data.csv", function (error, data) {
         return value["Cname"] === "India" && value["Disease"] == "diphtheria";
     });
 
+    var id = actualdiseaseData[0]["ISO2"];
+
     d3.csv("data/gdp_2.csv", function (error, data2) {
 
         gdpData = data2;
@@ -89,9 +99,18 @@ d3.csv("data/data.csv", function (error, data) {
         });
 
         for (var year_ = 1999; year_ <= 2016; year_++) {
+
+            var popArray = popData.filter(function (value) {
+                return value["ISO2"] === id && value[year_];
+            });
+
+            var percentage = +actualdiseaseData[0][year_]/+popArray[0][year_];
+
+            console.log(percentage);
+
             data3.push({
                 year: +year_,
-                cases: +actualdiseaseData[0][year_],
+                cases: percentage * Math.pow(10, 5),//+actualdiseaseData[0][year_],
                 gdp: +actualgdpData[0][year_]
             });
         }
@@ -133,11 +152,11 @@ d3.csv("data/data.csv", function (error, data) {
             .call(yAxisLeft)
             .append("text")
             .attr("fill", "#000")
-            .attr("x", 25)
+            .attr("x", 65)
             .attr("y", -20)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
-            .text("No. of Cases");
+            .text("Population Affected (x10\u00B3 %)");
 
         svg.append("g")
             .attr("class", "y axis2")
@@ -150,7 +169,7 @@ d3.csv("data/data.csv", function (error, data) {
             .attr("y", -20)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
-            .text("GDP per Capita");
+            .text("GDP (US $) per Capita");
 
         svg.selectAll(".dot")
             .data(data3.filter(function (d) {
@@ -243,7 +262,7 @@ d3.csv("data/data.csv", function (error, data) {
 
             //line break still doesn't work
 
-            var string = "<b>Cases: " + d.cases + "<br>" + "GDP (US $): " + Math.round(d.gdp) + "</b>";
+            var string = "<b>Percentage (x 10\u00B3): " + parseFloat(d.cases).toFixed(4) + " %<br>" + "GDP (US $): " + Math.round(d.gdp) + "</b>";
 
             tooltip.html(string);
 
@@ -292,6 +311,8 @@ function updateLineData(country, disease, diseaseFullName) {
         return value["Cname_data"] === country;
     });
 
+    var id = actualdiseaseData[0]["ISO2"];
+
     // d3.csv("data/data.csv", function (error, data) {
     //
     //     diseaseData = data.filter(function (value) {
@@ -305,9 +326,15 @@ function updateLineData(country, disease, diseaseFullName) {
     //         });
 
             for (var year_ = 1999; year_ <= 2016; year_++) {
+
+                var popArray = popData.filter(function (value) {
+                    return value["ISO2"] === id && value[year_];
+                });
+
+                var percentage = +actualdiseaseData[0][year_]/+popArray[0][year_];
                 data3.push({
                     year: +year_,
-                    cases: +actualdiseaseData[0][year_],
+                    cases: percentage*Math.pow(10, 5),//+actualdiseaseData[0][year_],
                     gdp: +actualgdpData[0][year_]
                 });
             }
