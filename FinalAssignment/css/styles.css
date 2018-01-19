@@ -176,7 +176,7 @@
 /* basic positioning */
 .legend { list-style: none; }
 .legend li { float: left; margin-right: 10px; }
-.legend span { border: 1.5px solid #ccc; float: left; width: 16px; height: 16px; margin: 2px; }
+.legend span { float: left; width: 16px; height: 16px; margin: 2px; }
 /* your colors */
 .legend .afr { background-color: #3976af; }
 .legend .amr { background-color: #b2c7e5; }
@@ -187,7 +187,7 @@
 
 .legend2 { list-style: none; }
 .legend2 li { float: left; margin-right: 10px; }
-.legend2 span { border: 1.5px solid #ccc; float: left; width: 16px; height: 16px; margin: 2px; }
+.legend2 span { float: left; width: 16px; height: 16px; margin: 2px; }
 
 .legend2 .gdp { background-color: darkblue; }
 .legend2 .cases { background-color: red; }
@@ -389,7 +389,7 @@ p {
 /* Section 1
  * --------------------------------------- */
 #section0 {
-    background-color: #BFDA00;
+    background-color: whitesmoke !important;
 }
 
 #section0 h1 {
@@ -405,7 +405,7 @@ p {
  * --------------------------------------- */
 #section1 {
     /*background-color: #2EBE21;*/
-    background-color: #fff !important;
+    background-color: whitesmoke !important;
 }
 
 #section1 h1 {
@@ -685,15 +685,14 @@ right: -400px;
 }
 
 .box{
-  border-radius: 25px;
-padding-top: 1em;
-background-color: rgba(193, 193, 193, 0.8);
-border:1px solid #5c4f4f;
-margin-top: 5.0em;
-width: 90%;
-opacity: 100;
-color: #fff;
-padding: 2%;
+    border-radius: 5%;
+    padding-top: 1em;
+    border: 1px solid rgba(193, 193, 193, 0.8);
+    margin-top: 2.0em;
+    width: 90%;
+    opacity: 100;
+    color: #000000;
+    padding: 2%;
 }
 
 h3 {
@@ -702,4 +701,17 @@ h3 {
 
 .play-buttons{
   margin-bottom: 1%;
+}
+
+.selectcontainer{
+  margin-top: 3%;
+}
+
+circle{
+  fill: whitesmoke;
+}
+
+.box p{
+  font-color:black;
+  font-size: 12px;
 }
