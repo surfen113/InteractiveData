@@ -82,11 +82,7 @@ function ready(animate, data, sum, year) {
         if (year > 2016) {
             year = 1999;
 
-            if (data.name = "JapEnc") {
-                year = 2002;
-            }
         }
-
 
         timeout = setTimeout(function () {
             currentYear = year;
@@ -131,13 +127,13 @@ function ready2(animate, data, sum, year) {
         var millisecondsToWait = 1200;
         currentYear = year;
 
-        if (currentYear >= 2016) {
-            currentYear = 1998;
-
-        }
-        else if (currentYear <= 1998) {
-            currentYear = 2016
-        }
+        // if (currentYear >= 2016) {
+        //     currentYear = 1998;
+        //
+        // }
+        // else if (currentYear <= 1999) {
+        //     currentYear = 2016
+        // }
     }
 }
 
@@ -177,6 +173,9 @@ function chekstuff() {
     $(document).on('click', '#next', function () {
         clearTimeout(timeout);
         playState = false;
+        if (currentYear >= 2016) {
+            currentYear = 1998;
+        }
         updateRightOneYear(disease, currentYear + 1, false);
 
     });
@@ -184,6 +183,9 @@ function chekstuff() {
     $(document).on('click', '#prev', function () {
         clearTimeout(timeout);
         playState = false;
+        if (currentYear <= 1999) {
+            currentYear = 2017
+        }
         updateRightOneYear(disease, currentYear - 1, false);
 
     });
