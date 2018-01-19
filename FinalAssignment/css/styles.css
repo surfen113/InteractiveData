@@ -24,6 +24,8 @@
 
 #textDiseaseDescription {
     text-align: justify;
+    -ms-text-align-last: left;
+    text-align-last: center;
     font-size: 1.5em;
 }
 
