@@ -31,13 +31,14 @@
 
 
 
-/*Removing top space on these slides */
+/*Removing top space on these slides
 #section2 .fp-tableCell{
     display: table-row !important;
     vertical-align: middle;
     width: 100%;
     height: 100%;
 }
+*/
 
 #slide2 .fp-tableCell {
     display: table !important;

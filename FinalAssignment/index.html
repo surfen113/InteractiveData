@@ -61,6 +61,10 @@
 
     <style>
 
+        #section0 {
+            background-image:url(data/pic3.jpg)
+        }
+
         /* Style for our header texts
         * --------------------------------------- */
         h1 {
@@ -170,20 +174,22 @@
 
 <div id="fullpage">
     <div class="section active" id="section0">
-        <h1>Diseases around the world</h1>
-        <p>Final project - Interactive Data Exploration 2017/18</p>
-        <p>Simona Toader, Riddhi Raj, Julian Ritter</p>
-        <div style="border-radius:25px; padding-top: 1em; opacity: 0.5;background-color: rgba(51, 36, 34, 0.2);border:2px solid #5c4f4f; margin-top: 5.0em;width:25%;margin-left:37.5%;margin-right:37.5%;"
+        <h1 style="color:white;font-size:80px;font-weight:900">Diseases around the world</h1>
+        <h2 style="color:white;font-weight:400"><i>Final project - Interactive Data Exploration 2017/18</i></h2>
+        <!--<h3 style="color:white;font-weight:300">Simona Toader, Riddhi Raj, Julian Ritter</h3>-->
+
+
+        <div style="border-radius:25px; padding-top: 1em; border:2px solid #5c4f4f; margin-top: 5.0em;width:25%;margin-left:37.5%;margin-right:37.5%;"
              class="box">
-            <p style="font-color:black; font-size:20px">This web page aims at visualizing data from the <a
+            <h4 style="color:white;font-weight:200">This web page aims at visualizing data from the <a
                     href="http://apps.who.int/immunization_monitoring/globalsummary/timeseries/tsincidencediphtheria.html">WHO</a>
                 about the reported cases of different diseases. <br><br>There are different visualizations being used on
                 this site in order
                 to demonstrate the distribution of the diseases for countries and regions and also in order to compare
                 the diseases amount of incidences to
-                the GDP per capita for each country.</p>
-
+                the GDP per capita for each country</h4>
         </div>
+
     </div>
 
 
@@ -300,7 +306,7 @@
     <div class="section" id="section2">
         <div class="container-fluid">
 
-            <div class="row" style="margin-top:5%;">
+            <div class="row">
                 <div class="col-md-8 lineChartWrapper">
                     <h3 id="headerLineChart">Diphtheria in India</h3>
                     <div class="lineChart" id="lineChart" style="margin-left:-5%; "></div>
@@ -509,7 +515,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="box" style="text-align: justify">
+                    <div class="box" style="text-align: justify" style="margin-top:1%">
                         <p>This diagram shows the GDP per Capita (blue line) vs. the percentage of population affected (red line) for the chosen disease and country over 1999 - 2016.</p>
                         <p>The diagram is very useful to find out specific information about how the disease affects different economies differently.</p>
                         <p>For example, looking at Diphtheria in <a href="javascript:changeCountry('India','diphtheria')">India</a> and
@@ -527,8 +533,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 
