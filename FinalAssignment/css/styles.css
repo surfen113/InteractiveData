@@ -516,6 +516,7 @@ input[type="radio"]:checked + label {
 
 input[type="radio"] + label {
     padding-left: 10px;
+    width: 8%;
 }
 
 .disease input[type="radio"]:checked + label::before{
