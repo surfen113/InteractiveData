@@ -86,14 +86,14 @@
    text-align: left;
    background-color: #ddd;
    padding: 10px;
-   width: 500px;
    position: absolute;
    border-radius: 3px;
    top: -90px;
-   right: -500px;
+   right: -00px;
    color: #000;
    font-size: 13px;
    line-height: 1.4;
+    max-width:300px;
 }
 
 /*.help-tip p:before{ !* The pointer of the tooltip *!*/
@@ -684,6 +684,16 @@ h1{
 .help-tip-donut{
     top: 5px !important;
     right: 180%;
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    cursor: default;
+    z-index:10;
+}
+
+#slide2 .help-tip-donut{
+    top: 5px !important;
+    right: 42%;
     width: 20px;
     height: 20px;
     font-size: 13px;
