@@ -8,21 +8,27 @@ $(document).ready(function () {
             var loadedSection = $(this);
 
             //using index
-            if (index == 2) {
-                document.getElementById('footer').style.display = 'inline';
-            }
+            // if (index == 2) {
+            //     document.getElementById('footer').style.display = 'inline';
+            // }
 
             if (index == 1) {
                 document.getElementById('footer').style.display = 'none';
+                $("#menu,li,a").css("color", "white");
+            }
+            else
+            {
+                document.getElementById('footer').style.display = 'inline';
+                $("#menu,li,a").css("color", "black");
             }
 
-            if (index == 3) {
-                document.getElementById('footer').style.display = 'inline';
-            }
-
-            if (index == 4) {
-                document.getElementById('footer').style.display = 'inline';
-            }
+            // if (index == 3) {
+            //     document.getElementById('footer').style.display = 'inline';
+            // }
+            //
+            // if (index == 4) {
+            //     document.getElementById('footer').style.display = 'inline';
+            // }
         }
     });
 
