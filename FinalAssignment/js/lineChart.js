@@ -406,7 +406,16 @@ $(function () {
 });
 
 function changeCountry(country, disease) {
+    console.log(country + " " + disease);
     $(".selectpicker").val(country).change();
-    $("#rb5").prop("checked", true);
-    updateLineData(country, disease, "Mumps");
+
+    if(disease=="diphtheria") {
+        $("#rb2").prop("checked", true);
+        updateLineData(country, disease, "Diphtheria");
+    }
+    else if (disease == "pertussis") {
+        $("#rb7").prop("checked", true);
+        updateLineData(country, disease, "Pertussis");
+    }
+
 }
