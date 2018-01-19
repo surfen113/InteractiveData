@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#fullpage').fullpage({
-        sectionsColor: ['#1bbc9b', '#4BBFC3', 'whitesmoke', 'whitesmoke', '#ccddff'],
-        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage'],
+        sectionsColor: ['#1bbc9b', '#4BBFC3', 'whitesmoke', 'whitesmoke', 'whitesmoke'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', '5thpage'],
         menu: '#menu',
         scrollingSpeed: 1000,
         afterLoad: function (anchorLink, index) {
