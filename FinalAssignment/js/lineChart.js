@@ -29,6 +29,14 @@ var valueline = d3.svg.line()
     })
     .interpolate("monotone");    // <== y0
 
+var tooltip = d3.select(".lineChart")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("background", "#fff")
+    .text("a simple tooltip");
+
 var valueline2 = d3.svg.line()
     .defined(function (d) {
         return d;
@@ -169,13 +177,22 @@ d3.csv("data/data.csv", function (error, data) {
             .attr("class", "overlay")
             .attr("width", width)
             .attr("height", height)
-            .on("mouseover", function () {
-                focus.style("display", null);
-            })
-            .on("mouseout", function () {
-                focus.style("display", "none");
-            })
-            .on("mousemove", mousemove);
+
+        .on("mouseover", function(d){console.log(d);tooltip.html("yes <br> new line"); return tooltip.style("visibility", "visible");})
+        //     .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+
+            .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+            .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");});
+
+
+        //
+        // .on("mouseover", function () {
+        //         focus.style("display", null);
+        //     })
+        //     .on("mouseout", function () {
+        //         focus.style("display", "none");
+        //     })
+        //     .on("mousemove", mousemove);
 
 
         var focus = svg.append("g")

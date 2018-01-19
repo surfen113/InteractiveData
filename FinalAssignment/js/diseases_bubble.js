@@ -165,7 +165,7 @@ function populateHTML(disease_label) {
        // document.getElementById('CRS').style.backgroundColor = "#fff";
     }
     $("#slide0-content").empty();
-    var string = "<br><br> <button class='btn btn-primary' id='diseaseDescription'>Go to next Slide</button>";
+    var string = "<br><br> <button class='btn btn-primary' id='diseaseDescription'>Discover the disease distribution</button>";
     $disease_description = '<div id="textDiseaseDescription"><p>' + myFunction(disease_label) + '</p></div>' + string;
     $('#slide0-content').append($disease_description);
 }
