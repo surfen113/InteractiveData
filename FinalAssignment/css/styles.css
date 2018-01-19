@@ -90,7 +90,7 @@
    border-radius: 3px;
    top: -90px;
    right: -500px;
-   color: #FFF;
+   color: #000;
    font-size: 13px;
    line-height: 1.4;
 }
@@ -390,7 +390,7 @@ p {
 /* Section 1
  * --------------------------------------- */
 #section0 {
-    background-color: whitesmoke !important;
+    /* background-color: whitesmoke !important; */
 }
 
 #section0 h1 {
@@ -687,6 +687,7 @@ h1{
     height: 20px;
     font-size: 13px;
     cursor: default;
+    z-index:10;
 }
 
 .help-tip-donut p{
