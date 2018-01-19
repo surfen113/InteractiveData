@@ -407,6 +407,7 @@ $(function () {
 
 function changeCountry(country, disease) {
     $(".selectpicker").val(country).change();
+
     $("#rb5").prop("checked", true);
     updateLineData(country, disease, "Mumps");
 }
