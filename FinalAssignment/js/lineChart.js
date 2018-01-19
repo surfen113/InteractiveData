@@ -199,26 +199,26 @@ d3.csv("data/data.csv", function (error, data) {
             .attr("width", width)
             .attr("height", height)
 
-        .on("mouseover", function(){
-            focus.style("display", null);
-            tooltip.style("visibility", "visible");})
+            .on("mouseover", function(){
+                focus.style("display", null);
+                tooltip.style("visibility", "visible");})
 
-        .on("mouseout", function(){
-                    focus.style("display", "none");
-            tooltip.style("visibility", "hidden");})
+            .on("mouseout", function(){
+                focus.style("display", "none");
+                tooltip.style("visibility", "hidden");})
 
             // .on("mousemove", function(){
             //     return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px")
             //         ;})
 
 
-        //
-        // .on("mouseover", function () {
-        //         focus.style("display", null);
-        //     })
-        //     .on("mouseout", function () {
-        //         focus.style("display", "none");
-        //     })
+            //
+            // .on("mouseover", function () {
+            //         focus.style("display", null);
+            //     })
+            //     .on("mouseout", function () {
+            //         focus.style("display", "none");
+            //     })
             .on("mousemove", mousemove);
 
 
@@ -282,28 +282,22 @@ d3.csv("data/data.csv", function (error, data) {
     });
 });
 
-var selectedDisease = $("input[name='selectPie']").value;
+var disease = $("input[name='selectPie']").value;
 
 function updateLineData(country, disease, diseaseFullName) {
 
-    // if(name == null) {
-    //     console.log(name);
-        $("#headerLineChart").html(diseaseFullName + " in " + country);
-    // }
-    // else {
-    //     currentDiseaseName = name;
-    //     $("#headerLineChart").html(currentDiseaseName + " in " + country);
-    // }
+    if(diseaseFullName == null) {
+        console.log(currentDiseaseName);
+        $("#headerLineChart").html(currentDiseaseName + " in " + country);
+    }
+    else {
+        currentDiseaseName = diseaseFullName;
+        $("#headerLineChart").html(currentDiseaseName + " in " + country);
+    }
 
-    console.log("----------");
 
-    console.log(disease);
-
-    if(!disease)
-        disease = selectedDisease;
 
     data3 = [];
-
 
     console.log(country);
 
@@ -331,145 +325,88 @@ function updateLineData(country, disease, diseaseFullName) {
     //             return value["Cname_data"] === country;
     //         });
 
-            for (var year_ = 1999; year_ <= 2016; year_++) {
+    for (var year_ = 1999; year_ <= 2016; year_++) {
 
-                var popArray = popData.filter(function (value) {
-                    return value["ISO2"] === id && value[year_];
-                });
+        var popArray = popData.filter(function (value) {
+            return value["ISO2"] === id && value[year_];
+        });
 
-                var percentage = +actualdiseaseData[0][year_]/+popArray[0][year_];
-                data3.push({
-                    year: +year_,
-                    cases: percentage*Math.pow(10, 5),//+actualdiseaseData[0][year_],
-                    gdp: +actualgdpData[0][year_]
-                });
-            }
+        var percentage = +actualdiseaseData[0][year_]/+popArray[0][year_];
+        data3.push({
+            year: +year_,
+            cases: percentage*Math.pow(10, 5),//+actualdiseaseData[0][year_],
+            gdp: +actualgdpData[0][year_]
+        });
+    }
 
-            // console.log(diseaseData);
-            // console.log(gdpData);
-            // console.log(data3);
+    // console.log(diseaseData);
+    // console.log(gdpData);
+    // console.log(data3);
 
-            // Scale the range of the data
-            x.domain(d3.extent(data3, function (d) {
-                return d.year;
-            }));
-            y0.domain([0, d3.max(data3, function (d) {
-                return Math.max(d.cases);
-            })]);
-            y1.domain([0, d3.max(data3, function (d) {
-                return Math.max(d.gdp);
-            })]);
+    // Scale the range of the data
+    x.domain(d3.extent(data3, function (d) {
+        return d.year;
+    }));
+    y0.domain([0, d3.max(data3, function (d) {
+        return Math.max(d.cases);
+    })]);
+    y1.domain([0, d3.max(data3, function (d) {
+        return Math.max(d.gdp);
+    })]);
 
-            svg = d3.select(".lineChart");
+    svg = d3.select(".lineChart");
 
-            svg.select(".line1")
-                .transition()// change the line
-                .duration(transition)
-                .attr("d", valueline(data3));
+    svg.select(".line1")
+        .transition()// change the line
+        .duration(transition)
+        .attr("d", valueline(data3));
 
-            svg.select(".line2")
-                .transition()// change the line  // change the line
-                .duration(transition)
-                .attr("d", valueline2(data3));
+    svg.select(".line2")
+        .transition()// change the line  // change the line
+        .duration(transition)
+        .attr("d", valueline2(data3));
 
-            svg.select(".y.axis")
-                .transition()// change the line
-                .duration(transition)
-                .call(yAxisLeft);
+    svg.select(".y.axis")
+        .transition()// change the line
+        .duration(transition)
+        .call(yAxisLeft);
 
-            svg.select(".y.axis2")
-                .transition()// change the line
-                .duration(transition)
-                .call(yAxisRight);
+    svg.select(".y.axis2")
+        .transition()// change the line
+        .duration(transition)
+        .call(yAxisRight);
 
-            svg.selectAll(".dot")
-                .data(data3.filter(function (d) {
-                    return d;
-                }))
-                .transition()// change the line
-                .duration(transition)
-                .attr("cx", valueline.x())
-                .attr("cy", valueline.y());
+    svg.selectAll(".dot")
+        .data(data3.filter(function (d) {
+            return d;
+        }))
+        .transition()// change the line
+        .duration(transition)
+        .attr("cx", valueline.x())
+        .attr("cy", valueline.y());
 
-            svg.selectAll(".dot2")
-                .data(data3.filter(function (d) {
-                    return d;
-                }))
-                .transition()// change the line
-                .duration(transition)
-                .attr("cx", valueline2.x())
-                .attr("cy", valueline2.y());
+    svg.selectAll(".dot2")
+        .data(data3.filter(function (d) {
+            return d;
+        }))
+        .transition()// change the line
+        .duration(transition)
+        .attr("cx", valueline2.x())
+        .attr("cy", valueline2.y());
 
     //     });
     // });
 }
-
-
 $(function () {
     $('.selectpicker').on('change', function () {
         var selected = $(this).find("option:selected").val();
-        updateLineData(selected, selectedDisease, name);
+        updateLineData(selected, disease, null);
     });
 
 });
 
-var name = currentDiseaseName;
-
 function changeCountry(country, disease) {
-
-
-    switch(disease)
-    {
-        case "CRS": name = "CRS";
-            $("#rb1").prop("checked", true);
-            break;
-
-        case "diphtheria": name = "Diphtheria";
-            $("#rb2").prop("checked", true);
-            break;
-
-        case "measles": name = "Measles";
-            $("#rb4").prop("checked", true);
-            break;
-
-        case "Mumps": name = "Mumps";
-            $("#rb5").prop("checked", true);
-            break;
-
-        case "pertussis": name = "Pertussis";
-            $("#rb7").prop("checked", true);
-            break;
-
-        case "polio": name = "Polio";
-            $("#rb8").prop("checked", true);
-            break;
-
-        case "Rubella": name = "Rubella";
-            $("#rb9").prop("checked", true);
-            break;
-
-        case "ttetanus": name = "Tetanus";
-            $("#rb10").prop("checked", true);
-            break;
-
-        case "yfever": name = "Yellow Fever";
-            $("#rb11").prop("checked", true);
-            break;
-    }
-
-
-    // if(name == null) {
-    //     console.log(name);
-        $("#headerLineChart").html(name + " in " + country);
-    // }
-    // else {
-    //     currentDiseaseName = name;
-    //     $("#headerLineChart").html(currentDiseaseName + " in " + country);
-    // }
-
-    selectedDisease = disease;
-
     $(".selectpicker").val(country).change();
-
-    //updateLineData(country, currentDiseaseName, name);
+    $("#rb5").prop("checked", true);
+    updateLineData(country, disease, "Mumps");
 }
