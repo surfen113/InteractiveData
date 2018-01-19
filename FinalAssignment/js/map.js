@@ -112,6 +112,7 @@ function loadMap(areas) {
                 "position": "bottom-right"
             },
 
+
             "legend": {
                 width: "100%",
                 divId: "legenddiv",
