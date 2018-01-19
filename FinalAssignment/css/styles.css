@@ -681,12 +681,12 @@ h1{
 }
 
 .help-tip-donut{
-  top: 17%;
-  right: 22%;
-  width: 15px;
-  height: 15px;
-  font-size: 13px;
-  cursor: default;
+    top: 5px !important;
+    right: 180%;
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    cursor: default;
 }
 
 .help-tip-donut p{
