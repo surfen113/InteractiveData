@@ -282,22 +282,28 @@ d3.csv("data/data.csv", function (error, data) {
     });
 });
 
-var disease = $("input[name='selectPie']").value;
+var selectedDisease = $("input[name='selectPie']").value;
 
 function updateLineData(country, disease, diseaseFullName) {
 
-    if(diseaseFullName == null) {
-        console.log(currentDiseaseName);
-        $("#headerLineChart").html(currentDiseaseName + " in " + country);
-    }
-    else {
-        currentDiseaseName = diseaseFullName;
-        $("#headerLineChart").html(currentDiseaseName + " in " + country);
-    }
+    // if(name == null) {
+    //     console.log(name);
+        $("#headerLineChart").html(diseaseFullName + " in " + country);
+    // }
+    // else {
+    //     currentDiseaseName = name;
+    //     $("#headerLineChart").html(currentDiseaseName + " in " + country);
+    // }
 
+    console.log("----------");
 
+    console.log(disease);
+
+    if(!disease)
+        disease = selectedDisease;
 
     data3 = [];
+
 
     console.log(country);
 
@@ -397,17 +403,73 @@ function updateLineData(country, disease, diseaseFullName) {
     //     });
     // });
 }
+
+
 $(function () {
     $('.selectpicker').on('change', function () {
         var selected = $(this).find("option:selected").val();
-        updateLineData(selected, disease, null);
+        updateLineData(selected, selectedDisease, name);
     });
 
 });
 
+var name = currentDiseaseName;
+
 function changeCountry(country, disease) {
+
+
+    switch(disease)
+    {
+        case "CRS": name = "CRS";
+            $("#rb1").prop("checked", true);
+            break;
+
+        case "diphtheria": name = "Diphtheria";
+            $("#rb2").prop("checked", true);
+            break;
+
+        case "measles": name = "Measles";
+            $("#rb4").prop("checked", true);
+            break;
+
+        case "Mumps": name = "Mumps";
+            $("#rb5").prop("checked", true);
+            break;
+
+        case "pertussis": name = "Pertussis";
+            $("#rb7").prop("checked", true);
+            break;
+
+        case "polio": name = "Polio";
+            $("#rb8").prop("checked", true);
+            break;
+
+        case "Rubella": name = "Rubella";
+            $("#rb9").prop("checked", true);
+            break;
+
+        case "ttetanus": name = "Tetanus";
+            $("#rb10").prop("checked", true);
+            break;
+
+        case "yfever": name = "Yellow Fever";
+            $("#rb11").prop("checked", true);
+            break;
+    }
+
+
+    // if(name == null) {
+    //     console.log(name);
+        $("#headerLineChart").html(name + " in " + country);
+    // }
+    // else {
+    //     currentDiseaseName = name;
+    //     $("#headerLineChart").html(currentDiseaseName + " in " + country);
+    // }
+
+    selectedDisease = disease;
+
     $(".selectpicker").val(country).change();
 
-    $("#rb5").prop("checked", true);
-    updateLineData(country, disease, "Mumps");
+    //updateLineData(country, currentDiseaseName, name);
 }
