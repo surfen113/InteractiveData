@@ -229,12 +229,37 @@
         </div>
     </div>
 
+    <div class="section" id="section3">
+        <!--<h1>Map</h1>-->
+        <center>
+            <div class="special-radio-buttons mode" style="width:20%;">
+                <input type="radio" name="mode" id="mode1" value="Total" checked/>
+                <label for="mode1">Total</label>
+                <input type="radio" name="mode" id="mode2" value="inhabitants"/>
+                <label for="mode2">Per Inhabitant</label>
+                <div class="help-tip">
+                    <p>There are 2 modes for the map. The Mode <b><i>Total</i></b> colours the countries based on the
+                        total number of cases per country. <br>The mode <b><i>Per Inhabitant</i></b> takes into account
+                        the number of inhabitant for each country and colours the map according to this. </p>
+                </div>
+            </div>
+        </center>
+        <div class="chartwrapper">
+            <div id="chartdiv" class="chartdiv"></div>
+        </div>
+        <center>
+            <div id="legenddiv"></div>
+        </center>
 
-    <div class="section" id="section2">
+        <div id="slider" style="margin-left:35%; margin-right:35%; margin-top: 3%;height: 2%;"></div>
+
+    </div>
+
+       <div class="section" id="section2">
         <div class="container-fluid">
 
             <div class="row" style="margin-top:5%;">
-                <div class="col-md-9 lineChartWrapper">
+                <div class="col-md-8 lineChartWrapper">
                     <h3 id="headerLineChart">Diphtheria in India</h3>
                     <div class="lineChart" id="lineChart" style="margin-left:-5%; "></div>
                     <ul class="legend2" id="lineLegend" style="display: flex;  justify-content: center;">
@@ -242,7 +267,7 @@
                         <li><span class="cases"></span>Cases</li>
                     </ul>
                     <div class="selectcontainer">
-                    <select style="margin-top:10%;" class="selectpicker" liveSearchNormalize="true"
+                    <select style="margin-top:10%;background-color: whitesmoke;" class="selectpicker" liveSearchNormalize="true"
                             data-live-search="true"
                             liveSearchStyle="startsWith" id="countries">
                         <option>Afghanistan</option>
@@ -442,15 +467,15 @@
                 </div>
                 <div class="col-md-3">
                     <div class="box">
-                        <p style="font-color:black; font-size:14px">This diagram shows the GDP per Capita (blue line)
+                        <p>This diagram shows the GDP per Capita (blue line)
                             vs. the number of incidents (red line) for the chosen disease. The x-Axis represents the
                             time.</p>
-                        <p style="font-color:black; font-size:14px">The diagram is very useful to find out specific
+                        <p>The diagram is very useful to find out specific
                             information for a disease in a certain country.</p>
-                        <p style="font-color:black; font-size:14px">Looking at the Data for Denmark, reveals that <a
+                        <p>Looking at the Data for Denmark, reveals that <a
                                 href="javascript:changeCountry('Denmark','Mumps')">Denmark</a> has a very high GDP per
                             Capita compared to the number of cases for most Diseases.</p>
-                        <p style="font-color:black; font-size:14px">Looking at countries with a comparatively small GDP
+                        <p>Looking at countries with a comparatively small GDP
                             like <a href="javascript:changeCountry('Colombia','Mumps')">Colombia</a> or <a
                                     href="javascript:changeCountry('Azerbaijan','Mumps')">Azerbaijan</a> shows that the
                             number of cases is a lot higher than it is in Denmark while their GDP is extremely small.
@@ -465,34 +490,6 @@
 
 
         </div>
-    </div>
-
-
-    <div class="section" id="section3">
-        <!--<h1>Map</h1>-->
-        <center>
-            <div class="special-radio-buttons mode" style="width:20%;">
-                <input type="radio" name="mode" id="mode1" value="Total" checked/>
-                <label for="mode1">Total</label>
-                <input type="radio" name="mode" id="mode2" value="inhabitants"/>
-                <label for="mode2">Per Inhabitant</label>
-                <div class="help-tip">
-                    <p>There are 2 modes for the map. The Mode <b><i>Total</i></b> colours the countries based on the
-                        total number of cases per country. <br>The mode <b><i>Per Inhabitant</i></b> takes into account
-                        the number of inhabitant for each country and colours the map according to this. </p>
-                </div>
-            </div>
-        </center>
-        <div class="chartwrapper">
-            <div id="chartdiv" class="chartdiv"></div>
-        </div>
-        <center>
-            <div id="legenddiv"></div>
-        </center>
-
-        <div id="slider" style="margin-left:35%; margin-right:35%; margin-top: 3%;height: 2%;"></div>
-
-
     </div>
 </div>
 
