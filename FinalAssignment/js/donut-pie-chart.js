@@ -97,8 +97,11 @@
         element.select("#year").text(year);
     }
 
+    var newtotal = 0;
 
     DonutPie.prototype.update = function (data, total, year) {
+
+        newtotal = total;
 
         // check if all the items has colors.
         var colors = d3.scale.category20().range();
@@ -117,7 +120,7 @@
 
         var element = this.svg;
 
-        center_text(element, "World", year, total, 100);
+        center_text(element, "World", year, newtotal, 100);
 
 
         slice.enter()
@@ -145,6 +148,7 @@
                 }
             })
             .on("mousemove", function (d) {
+
                 if (tooltip) {
                     if (d.id != "none") {
                         $(tpClass).css("top", (d3.event.pageY - 10) + "px").css("left", (d3.event.pageX + 10) + "px");
@@ -153,12 +157,12 @@
                 }
             })
             .on("mouseout", function () {
+
                 d3.select(this).transition()
                     .duration(200)
                     .attr("d", arc);
 
-
-                center_text(element, "World", year, total, 100);
+                center_text(element, "World", year, newtotal, 100);
 
                 // if (tooltip) {
                 // $(tpClass).html("");
